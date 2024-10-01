@@ -1,0 +1,2 @@
+D:\CODE\PracaDyplomowaDocer\student_game.client\obj\Debug\student_game.client.esproj.CoreCompileInputs.cache
+D:\CODE\PracaDyplomowa\student_game.client\obj\Debug\student_game.client.esproj.CoreCompileInputs.cache
