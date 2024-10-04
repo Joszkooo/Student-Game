@@ -12,14 +12,14 @@ namespace Student_game.Server.Controllers
     {
         private readonly IStudentService _studentService;
 
-        public StudentController(IStudentService playerService)
+        public StudentController(IStudentService StudentService)
         {
-            _studentService = playerService;
+            _studentService = StudentService;
         }
         
         [HttpGet]
         [Route("GetStudent")]
-        public async Task<JsonResult> GetPlayer(int id)
+        public async Task<JsonResult> GetStudent(int id)
         {
             return new JsonResult(await _studentService.GetStudent(id));
         }

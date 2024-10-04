@@ -1,21 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.SignalR;
 
-
-namespace Student_game.Server.Models
+namespace Student_game.Server.Dtos.Student
 {
-    public class Student
+    public class GetStudentDTO
     {
-        // Keys
         public int Id { get; set; }
-
-        // Key fragments
         
+
         [Required]
         public int Money { get; set; } = 0;
         
@@ -25,12 +19,11 @@ namespace Student_game.Server.Models
         [Required]
         public int LevelPoints { get; set; } = 0;
         
-        // Experience and position in ranking
         public Ranks Rank { get; set; } = Ranks.Silver_I;
         public int Level { get; set; } = 1;
         public int Experience { get; set; } = 0;
 
-        // Points used in fights, events etc.
+
         [Required]
         public int HealthPoints { get; set; } = 100;
         
@@ -45,16 +38,5 @@ namespace Student_game.Server.Models
 
         [Required]
         public int IntelligencePoints { get; set; } = 1;
-        
-
-        [ForeignKey("Account")]
-        public int AccountId { get; set; }
-
-        // Db relation
-        public Student_Armor? Student_Armor{ get; set; }
-        public Student_Food? Student_Food{ get; set; }
-        public Student_Weapon? Student_Weapon{ get; set; }
-        public Stat? Stats{ get; set; }
-        public Account Account { get; set; } = null!;
     }
 }

@@ -11,18 +11,23 @@ namespace Student_game.Server.Models
         public int Id { get; set; }
         
         [Required]
+        [Column(TypeName = "varchar(50)")]
         public string Name { get; set; } = string.Empty;
 
         [Required]
+        [Column(TypeName = "varchar(50)")]
         public string Nickname { get; set; } = string.Empty;
 
-        [Required]
+        [Required, EmailAddress]
+        [Column(TypeName = "varchar(50)")]
         public string Email { get; set; } = string.Empty;
+
+        public DateTime DateCreated { get; set; } = DateTime.Now;
         
         [Required]
         public DateOnly Born_date { get; set; }
 
         // Db relation
-        public Student? Student { get; set; } = null!;
+        public Student? Student { get; set; }
     }
 }

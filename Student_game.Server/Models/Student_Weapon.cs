@@ -17,5 +17,9 @@ namespace Student_game.Server.Models
         
         [ForeignKey("Weapon")]
         public int WeaponId { get; set; }
+
+        // Db relation
+        public Student Student{ get; set; } = null!;
+        public Weapon Weapon{ get; set; } = null!;
     }
 }

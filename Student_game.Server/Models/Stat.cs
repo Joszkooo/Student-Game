@@ -23,7 +23,7 @@ namespace Student_game.Server.Models
         [ForeignKey("Student")]
         public int StudentId { get; set;}
 
-        // Database relation
+        // Db relation
         public Student Student{ get; set; } = null!;
     }
 }

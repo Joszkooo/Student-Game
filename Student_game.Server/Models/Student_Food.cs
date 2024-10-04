@@ -19,5 +19,9 @@ namespace Student_game.Server.Models
         
         [ForeignKey("Food")]
         public int FoodId { get; set; }
+        
+        // Db relation
+        public Student Student{ get; set; } = null!;
+        public Food Food { get; set; } = null!;
     }
 }

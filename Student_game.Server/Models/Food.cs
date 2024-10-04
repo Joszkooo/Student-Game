@@ -20,5 +20,8 @@ namespace Student_game.Server.Models
         
         [Required]
         public int Duration { get; set; }
+
+        // Db relation
+        public Student_Food? Student_Food{ get; set; }
     }
 }

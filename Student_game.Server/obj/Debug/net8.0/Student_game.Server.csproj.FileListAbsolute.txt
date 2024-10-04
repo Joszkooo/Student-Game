@@ -281,3 +281,4 @@ D:\CODE\PracaDyplomowa\Student_game.Server\obj\Debug\net8.0\Student_game.Server.
 D:\CODE\PracaDyplomowa\Student_game.Server\obj\Debug\net8.0\Student_game.Server.genruntimeconfig.cache
 D:\CODE\PracaDyplomowa\Student_game.Server\obj\Debug\net8.0\ref\Student_game.Server.dll
 D:\CODE\PracaDyplomowa\Student_game.Server\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll
+D:\CODE\PracaDyplomowa\Student_game.Server\obj\Debug\net8.0\Student_game.Server.sourcelink.json

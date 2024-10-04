@@ -1,15 +1,23 @@
 global using Microsoft.EntityFrameworkCore;
 global using System.ComponentModel.DataAnnotations;
 global using Microsoft.AspNetCore.Mvc;
-global using AutoMapper;
 global using System.ComponentModel.DataAnnotations.Schema;
+
+global using AutoMapper;
+
 global using Student_game.Server.Models;
 global using Student_game.Server.Data;
-global using Student_game.Server.Dtos.Account;
-global using Student_game.Server.Services.FightService;
-global using Student_game.Server.Services.AccountService;
-global using Student_game.Server.Services.StudentService;
 
+global using Student_game.Server.Dtos.Account;
+
+global using Student_game.Server.Services.AccountService;
+global using Student_game.Server.Services.ArmourService;
+global using Student_game.Server.Services.EnemieService;
+global using Student_game.Server.Services.FightService;
+global using Student_game.Server.Services.FoodService;
+global using Student_game.Server.Services.StatService;
+global using Student_game.Server.Services.StudentService;
+global using Student_game.Server.Services.WeaponService;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -25,9 +33,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
-builder.Services.AddScoped<IStudentService, StudentService>();
-builder.Services.AddScoped<IFightService, FightService>();
+
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IArmourService, ArmourService>();
+builder.Services.AddScoped<IEnemieService, EnemieService>();
+builder.Services.AddScoped<IFightService, FightService>();
+builder.Services.AddScoped<IFoodService, FoodService>();
+builder.Services.AddScoped<IStatService, StatService>();
+builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IWeaponService, WeaponService>();
+
 
 services.AddHttpContextAccessor();
 
