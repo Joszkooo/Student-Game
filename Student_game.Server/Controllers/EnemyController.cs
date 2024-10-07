@@ -18,17 +18,16 @@ namespace Student_game.Server.Controllers
 
         [HttpGet]
         [Route("GetEnemyById")]
-        public async Task<JsonResult> GetEnemyById(int id)
+        public async Task<IActionResult> GetEnemyById(int id)
         {
-            return new JsonResult(await _enemyService.GetEnemyById(id));
+            return Ok(new JsonResult(await _enemyService.GetEnemyById(id)));
         }
         
         [HttpGet]
         [Route("GetRandomEnemy")]
-        public async Task<JsonResult> GetRandomEnemy()
+        public async Task<IActionResult> GetRandomEnemy()
         {
-            return new JsonResult(await _enemyService.GetRandomEnemy());
-        
+            return Ok(new JsonResult(await _enemyService.GetRandomEnemy()));
         }
     }
 }

@@ -2,37 +2,37 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Mapster;
 
 namespace Student_game.Server.Services.StatService
 {
     public class StatService : IStatService
     {
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
 
         public StatService(DataContext dataContext, IMapper autoMapper)
         {
             _context = dataContext;
-            _mapper = autoMapper;
         }
         public async Task<ServiceResponse<GetStatDTO>> GetStatByStudentId(int id)
         {
             var serviceResponse = new ServiceResponse<GetStatDTO>(); 
             try
             {
-                var stats = await _context.Stats.FirstOrDefaultAsync(x => x.Id == id);
+                var stats = await _context.Stats
+                    .Include(s => s.Student)
+                        .ThenInclude(st => st.Account)
+                            .FirstOrDefaultAsync(x => x.Id == id);
                 if (stats is not null)
                 {
-
-                    // WPIERDOLIC W CHATA W JAKI SPOSOB DODAC NICKNAME DO GETSTATDTO JESLI GO NIE MA W MODELU STATS 
-                    // GetStatDTO stat = new GetStatDTO{Id = stas.id, Name = stats.Name}; //
-                    serviceResponse.Data = _mapper.Map<GetStatDTO>(stats);
+                    GetStatDTO response = stats.Adapt<GetStatDTO>();
+                    response.Nickname = stats.Student.Account.Nickname;
+                    serviceResponse.Data = response;
                     
                 }
                 else{
                     serviceResponse.Success = false;
                     serviceResponse.Message = $"Brak statystyk dla studenta o {id} id";
-                    return serviceResponse;
                 }
             }
             catch (Exception ex)
@@ -41,6 +41,7 @@ namespace Student_game.Server.Services.StatService
                 serviceResponse.Message = $"Error: {ex.Message}";
                 return serviceResponse;
             }
+            return serviceResponse;
         }
 
         public async Task<ServiceResponse<Stat>> IncrementDefeats(int id)
@@ -55,8 +56,7 @@ namespace Student_game.Server.Services.StatService
                 }
                 else throw new Exception($"Student z {id} id nie istnieje!");
                 await _context.SaveChangesAsync();
-                serviceResponse.Data = _mapper.Map<Stat>(DbOutcome);
-                
+                serviceResponse.Data = DbOutcome.Adapt<Stat>();
             }
             catch (Exception ex)
             {
@@ -79,7 +79,7 @@ namespace Student_game.Server.Services.StatService
                 else throw new Exception($"Student z {id} id nie istnieje!");
                 
                 await _context.SaveChangesAsync();
-                serviceResponse.Data = _mapper.Map<Stat>(DbOutcome);
+                serviceResponse.Data = DbOutcome.Adapt<Stat>();
                 
             }
             catch (Exception ex)

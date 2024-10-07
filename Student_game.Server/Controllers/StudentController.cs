@@ -19,9 +19,16 @@ namespace Student_game.Server.Controllers
         
         [HttpGet]
         [Route("GetStudentById")]
-        public async Task<JsonResult> GetStudentById(int id)
+        public async Task<IActionResult> GetStudentById(int id)
         {
-            return new JsonResult(await _studentService.GetStudentById(id));
+            return Ok(new JsonResult(await _studentService.GetStudentById(id)));
+        }
+
+        [HttpGet]
+        [Route("GetStudentEquipment")]
+        public async Task<IActionResult> GetStudentEquipment(int id)
+        {
+            return Ok(new JsonResult(await _studentService.GetStudentEquipment(id)));
         }
     }
 }

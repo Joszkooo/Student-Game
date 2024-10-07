@@ -17,7 +17,7 @@ namespace Student_game.Server.Models
         public Ranks Rank { get; set; }
         
         [Required]
-        public int Level { get; set; } = = new Random().Next(11);
+        public int Level { get; set; } = new Random().Next(11);
         
         // Stas (should be pseudo random in the game)
         [Required]

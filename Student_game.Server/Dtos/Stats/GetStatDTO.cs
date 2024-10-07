@@ -9,6 +9,7 @@ namespace Student_game.Server.Dtos.Stats
     {
         public int Id { get; set;}
 
+        [Required]
         public string Nickname { get; set;}
 
         // Stats added during gameplay

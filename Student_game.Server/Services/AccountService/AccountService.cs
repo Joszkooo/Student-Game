@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Security.Claims; // TODO <===== naucz sie co to
+using System.Security.Claims;
+using Mapster;
 
 
 namespace Student_game.Server.Services.AccountService
@@ -24,15 +25,15 @@ namespace Student_game.Server.Services.AccountService
         private int GetAccountId() => int.Parse(_httpContextAccessor.HttpContext!.User
             .FindFirstValue(ClaimTypes.NameIdentifier)!);
 
-        public async Task<ServiceResponse<Account>> GetAccount(int id)
+        public async Task<ServiceResponse<GetAccountDTO>> GetAccount(int id)
         {
-            var serviceResponse = new ServiceResponse<Account>();
+            var serviceResponse = new ServiceResponse<GetAccountDTO>();
             try
             {
                 var account = await _context.Accounts.FirstOrDefaultAsync(a => a.Id == id);
                 if (account is not null)
                 {
-                    serviceResponse.Data = _mapper.Map<Account>(account);
+                    serviceResponse.Data = account.Adapt<GetAccountDTO>();
                     return serviceResponse;
                 }
                 else{
@@ -49,5 +50,9 @@ namespace Student_game.Server.Services.AccountService
             }
         }
 
+        public Task<ServiceResponse<Account>> DeleteAccount(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "KHbTY14xDDA=",
+  "dgSpecHash": "VTzKGTmYLmzkrXRUkLYFeXoHlWBa2TXhXeTauzS3GdQg5QdKq9kx1MSqg8Lk93EPJpgcXbq35tIjxQoTBYU/lQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\joszko\\Documents\\GitHub\\PracaDyplomowa\\Student_game.Server\\Student_game.Server.csproj",
+  "projectFilePath": "D:\\CODE\\PracaDyplomowa\\Student_game.Server\\Student_game.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joszko\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\joszko\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\joszko\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\joszko\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\joszko\\.nuget\\packages\\mapster\\7.4.0\\mapster.7.4.0.nupkg.sha512",
+    "C:\\Users\\joszko\\.nuget\\packages\\mapster.core\\1.2.1\\mapster.core.1.2.1.nupkg.sha512",
     "C:\\Users\\joszko\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\8.0.8\\microsoft.aspnetcore.authentication.google.8.0.8.nupkg.sha512",
     "C:\\Users\\joszko\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.8\\microsoft.aspnetcore.spaproxy.8.0.8.nupkg.sha512",
     "C:\\Users\\joszko\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

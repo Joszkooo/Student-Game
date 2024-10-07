@@ -25,16 +25,16 @@ namespace Student_game.Server.Controllers
 
         [HttpPost]
         [Route("IncrementDefeats")]
-        public async Task<JsonResult> IncrementDefeats(int id)
+        public async Task<IActionResult> IncrementDefeats(int id)
         {
-            return new JsonResult(await _statService.IncrementDefeats(id));
+            return Ok(new JsonResult(await _statService.IncrementDefeats(id)));
         }
 
         [HttpPost]
         [Route("IncrementVictories")]
-        public async Task<JsonResult> IncrementVictories(int id)
+        public async Task<IActionResult> IncrementVictories(int id)
         {
-            return new JsonResult(await _statService.IncrementVictories(id));
+            return Ok(new JsonResult(await _statService.IncrementVictories(id)));
         }
     }
 }

@@ -48,11 +48,20 @@ namespace Student_game.Server.Services.StudentService
             var serviceResponse = new ServiceResponse<Student>();
             try
             {
-                var dbStudentFood = _context.Student_Foods.Where(x => x.Id == id).ToListAsync();
-                var dbStudentArmor = _context.Student_Armors.Where(x => x.Id == id).ToListAsync();
-                var dbStudentWeapon =  _context.Student_Weapons.Where(x => x.Id == id).ToListAsync();
+                var inventory = await _context.Students
+                .Include(c => c.Student_Armor)
+                .Include(c => c.Student_Food)
+                .Include(c => c.Student_Weapon)
+                .FirstOrDefaultAsync(x => x.Id == id);
                 
-
+                if (inventory is not null)
+                {
+                    serviceResponse.Data = inventory;
+                }
+                else{
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = $"Brak ekwipunku dla studenta o {id} id";
+                }
             }
             catch (Exception ex)
             {
@@ -60,6 +69,7 @@ namespace Student_game.Server.Services.StudentService
                 serviceResponse.Message = $"Error: {ex.Message}";
                 return serviceResponse;
             }
+            return serviceResponse;
         }
     }
 }

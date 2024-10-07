@@ -18,16 +18,16 @@ namespace Student_game.Server.Controllers
 
         [HttpGet]
         [Route("GetArmourById")]
-        public async Task<JsonResult> GetArmourById(int id)
+        public async Task<IActionResult> GetArmourById(int id)
         {
-            return new JsonResult(await _armourService.GetArmourById(id));
+            return Ok(new JsonResult(await _armourService.GetArmourById(id)));
         }
 
         [HttpGet]
         [Route("GetAllArmour")]
-        public async Task<JsonResult> GetAllArmour()
+        public async Task<IActionResult> GetAllArmour()
         {
-            return new JsonResult(await _armourService.GetAllArmour());
+            return Ok(new JsonResult(await _armourService.GetAllArmour()));
         }
     }
 }

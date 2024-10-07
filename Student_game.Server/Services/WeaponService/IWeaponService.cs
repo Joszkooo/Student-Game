@@ -9,6 +9,5 @@ namespace Student_game.Server.Services.WeaponService
     {
         Task<ServiceResponse<Weapon>> GetWeaponById(int id);
         Task<ServiceResponse<List<Weapon>>> GetAllWeapon ();
-    
     }
 }
