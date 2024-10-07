@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JDEK29EPS1Gq9GN6csP21FqkXoHFs6yrFAmjpbOIwMsSmb2oXezLRR9mPMt6nJVE6ihI7fVNWVGfv49+6YQnRQ==",
+  "dgSpecHash": "KHbTY14xDDA=",
   "success": true,
-  "projectFilePath": "D:\\CODE\\PracaDyplomowa\\Student_game.Server\\Student_game.Server.csproj",
+  "projectFilePath": "C:\\Users\\joszko\\Documents\\GitHub\\PracaDyplomowa\\Student_game.Server\\Student_game.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joszko\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\joszko\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",

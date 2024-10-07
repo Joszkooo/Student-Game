@@ -22,6 +22,6 @@ namespace Student_game.Server.Models
         public Rarity Rarity{ get; set; }
         
         // Db relation
-        public Enemie? Enemie{ get; set; }
+        public Enemy? Enemy{ get; set; }
     }
 }

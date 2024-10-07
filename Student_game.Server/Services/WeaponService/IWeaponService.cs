@@ -8,5 +8,7 @@ namespace Student_game.Server.Services.WeaponService
     public interface IWeaponService
     {
         Task<ServiceResponse<Weapon>> GetWeaponById(int id);
+        Task<ServiceResponse<List<Weapon>>> GetAllWeapon ();
+    
     }
 }

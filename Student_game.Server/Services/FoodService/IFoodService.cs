@@ -7,6 +7,8 @@ namespace Student_game.Server.Services.FoodService
 {
     public interface IFoodService
     {
-        
+        Task<ServiceResponse<Food>> GetFoodById (int id);
+        Task<ServiceResponse<List<Food>>> GetAllFood ();
+    
     }
 }

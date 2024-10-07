@@ -10,6 +10,7 @@ namespace Student_game.Server
         public AutoMapperProfile()
         {
             CreateMap<Account, GetAccountDTO>();
+            CreateMap<Stat, GetStatDTO>();
             // CreateMap<Weapon, GetWeaponDTO>();
         }
     }

@@ -18,7 +18,7 @@ namespace Student_game.Server.Services.StudentService
             _mapper = mapper;
         }
 
-        public async Task<ServiceResponse<Student>> GetStudent(int id)
+        public async Task<ServiceResponse<Student>> GetStudentById(int id)
         {
             var serviceResponse = new ServiceResponse<Student>(); 
             try
@@ -31,9 +31,28 @@ namespace Student_game.Server.Services.StudentService
                 }
                 else{
                     serviceResponse.Success = false;
-                    serviceResponse.Message = $"Brak studenta o określonym id";
+                    serviceResponse.Message = $"Brak studenta o {id} id";
                     return serviceResponse;
                 }
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = $"Error: {ex.Message}";
+                return serviceResponse;
+            }
+        }
+
+        public async Task<ServiceResponse<Student>> GetStudentEquipment(int id)
+        {
+            var serviceResponse = new ServiceResponse<Student>();
+            try
+            {
+                var dbStudentFood = _context.Student_Foods.Where(x => x.Id == id).ToListAsync();
+                var dbStudentArmor = _context.Student_Armors.Where(x => x.Id == id).ToListAsync();
+                var dbStudentWeapon =  _context.Student_Weapons.Where(x => x.Id == id).ToListAsync();
+                
+
             }
             catch (Exception ex)
             {

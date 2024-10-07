@@ -21,7 +21,7 @@ namespace Student_game.Server.Services.AccountService
             _httpContextAccessor = httpContextAccessor;
         }
 
-        private int GetUserId() => int.Parse(_httpContextAccessor.HttpContext!.User
+        private int GetAccountId() => int.Parse(_httpContextAccessor.HttpContext!.User
             .FindFirstValue(ClaimTypes.NameIdentifier)!);
 
         public async Task<ServiceResponse<Account>> GetAccount(int id)

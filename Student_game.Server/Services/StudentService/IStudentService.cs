@@ -7,6 +7,7 @@ namespace Student_game.Server.Services.StudentService
 {
     public interface IStudentService
     {
-        Task<ServiceResponse<Student>> GetStudent(int id);
+        Task<ServiceResponse<Student>> GetStudentById(int id);
+        Task<ServiceResponse<Student>> GetStudentEquipment(int id);
     }
 }

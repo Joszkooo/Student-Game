@@ -8,6 +8,6 @@ namespace Student_game.Server.Services.ArmourService
     public interface IArmourService
     {
         Task<ServiceResponse<Armour>> GetArmourById (int id);
-        Task<ServiceResponse<Armour>> GetAllArmour ();
+        Task<ServiceResponse<List<Armour>>> GetAllArmour ();
     }
 }

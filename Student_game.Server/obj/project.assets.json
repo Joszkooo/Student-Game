@@ -4674,11 +4674,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CODE\\PracaDyplomowa\\Student_game.Server\\Student_game.Server.csproj",
+      "projectUniqueName": "C:\\Users\\joszko\\Documents\\GitHub\\PracaDyplomowa\\Student_game.Server\\Student_game.Server.csproj",
       "projectName": "Student_game.Server",
-      "projectPath": "D:\\CODE\\PracaDyplomowa\\Student_game.Server\\Student_game.Server.csproj",
+      "projectPath": "C:\\Users\\joszko\\Documents\\GitHub\\PracaDyplomowa\\Student_game.Server\\Student_game.Server.csproj",
       "packagesPath": "C:\\Users\\joszko\\.nuget\\packages\\",
-      "outputPath": "D:\\CODE\\PracaDyplomowa\\Student_game.Server\\obj\\",
+      "outputPath": "C:\\Users\\joszko\\Documents\\GitHub\\PracaDyplomowa\\Student_game.Server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\joszko\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4766,7 +4766,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

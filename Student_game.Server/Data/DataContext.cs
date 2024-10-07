@@ -13,7 +13,7 @@ namespace Student_game.Server.Data
         public DbSet<Food> Foods {get; set;}
         public DbSet<Weapon> Weapons {get; set;}
         public DbSet<Armour> Armours {get; set;}
-        public DbSet<Enemie> Enemies {get; set;}
+        public DbSet<Enemy> Enemies {get; set;}
         public DbSet<Stat> Stats {get; set;}
         public DbSet<Student_Armor> Student_Armors {get; set;}
         public DbSet<Student_Food> Student_Foods {get; set;}  

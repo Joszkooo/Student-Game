@@ -2,6 +2,8 @@ namespace Student_game.Server.Models
 {
     // ranks from Counter-Strike: Global Offensive
     // to use just swap "_" with " "
+    
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Ranks
     {
         Silver_I = 1,

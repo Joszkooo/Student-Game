@@ -8,5 +8,8 @@ namespace Student_game.Server.Services.AccountService
     public interface IAccountService
     {
         Task<ServiceResponse<Account>> GetAccount(int id);
+        Task<ServiceResponse<Account>> DeleteAccount(int id);
+        // Task<ServiceResponse<Account>> MakeAccount();
+        
     }
 }

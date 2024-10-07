@@ -11,5 +11,6 @@ namespace Student_game.Server.Dtos.Account
         public string Nickname { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public DateOnly Born_date { get; set; }
+        public DateTime DateCreated { get;}
     }
 }

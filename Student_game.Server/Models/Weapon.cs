@@ -18,5 +18,8 @@ namespace Student_game.Server.Models
         public int Cost { get; set; }
         
         public Rarity Rarity{ get; set; }
+
+        // db relation
+        public Enemy? enemy { get; set; }
     }
 }

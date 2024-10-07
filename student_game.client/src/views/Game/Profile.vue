@@ -1,8 +1,12 @@
 <template>
     <div>
         <h1>Twoja nazwa</h1>
+        <div id=""atrybuty>
+            
+        </div>
+        
         <div>
-            <Cards />
+
         </div>
     </div>
 </template>

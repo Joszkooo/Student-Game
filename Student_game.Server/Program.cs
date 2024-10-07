@@ -2,6 +2,7 @@ global using Microsoft.EntityFrameworkCore;
 global using System.ComponentModel.DataAnnotations;
 global using Microsoft.AspNetCore.Mvc;
 global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Text.Json.Serialization;
 
 global using AutoMapper;
 
@@ -9,10 +10,11 @@ global using Student_game.Server.Models;
 global using Student_game.Server.Data;
 
 global using Student_game.Server.Dtos.Account;
+global using Student_game.Server.Dtos.Stats;
 
 global using Student_game.Server.Services.AccountService;
 global using Student_game.Server.Services.ArmourService;
-global using Student_game.Server.Services.EnemieService;
+global using Student_game.Server.Services.EnemyService;
 global using Student_game.Server.Services.FightService;
 global using Student_game.Server.Services.FoodService;
 global using Student_game.Server.Services.StatService;
@@ -36,7 +38,7 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IArmourService, ArmourService>();
-builder.Services.AddScoped<IEnemieService, EnemieService>();
+builder.Services.AddScoped<IEnemyService, EnemyService>();
 builder.Services.AddScoped<IFightService, FightService>();
 builder.Services.AddScoped<IFoodService, FoodService>();
 builder.Services.AddScoped<IStatService, StatService>();

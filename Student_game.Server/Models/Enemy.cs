@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Student_game.Server.Models
 {
-    public class Enemie
+    public class Enemy
     {
         public int Id { get; set; }
         
@@ -17,20 +17,20 @@ namespace Student_game.Server.Models
         public Ranks Rank { get; set; }
         
         [Required]
-        public int Level { get; set; } = 1;
+        public int Level { get; set; } = = new Random().Next(11);
         
         // Stas (should be pseudo random in the game)
         [Required]
-        public int HealthPoints { get; set; } = 100;
+        public int HealthPoints { get; set; } = new Random().Next(101);
         
         [Required]
-        public int AttackPoints { get; set; } = 100;
+        public int AttackPoints { get; set; } = new Random().Next(101);
         
         [Required]
-        public int DefensePoints { get; set; } = 100;
+        public int DefensePoints { get; set; } = new Random().Next(101);
         
         [Required]
-        public int LuckPoints { get; set; } = 100;
+        public int LuckPoints { get; set; } = new Random().Next(101);
 
 
         [ForeignKey("Weapon")]

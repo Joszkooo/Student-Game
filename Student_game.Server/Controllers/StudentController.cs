@@ -18,10 +18,10 @@ namespace Student_game.Server.Controllers
         }
         
         [HttpGet]
-        [Route("GetStudent")]
-        public async Task<JsonResult> GetStudent(int id)
+        [Route("GetStudentById")]
+        public async Task<JsonResult> GetStudentById(int id)
         {
-            return new JsonResult(await _studentService.GetStudent(id));
+            return new JsonResult(await _studentService.GetStudentById(id));
         }
     }
 }

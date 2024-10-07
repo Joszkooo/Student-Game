@@ -7,6 +7,8 @@ namespace Student_game.Server.Services.StatService
 {
     public interface IStatService
     {
-        
+        Task<ServiceResponse<GetStatDTO>> GetStatByStudentId(int id);
+        Task<ServiceResponse<Stat>> IncrementVictories(int id);
+        Task<ServiceResponse<Stat>> IncrementDefeats(int id);
     }
 }
