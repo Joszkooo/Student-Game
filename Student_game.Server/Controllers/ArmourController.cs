@@ -16,8 +16,7 @@ namespace Student_game.Server.Controllers
             _armourService = armourService;
         }
 
-        [HttpGet]
-        [Route("GetArmourById")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetArmourById(int id)
         {
             return Ok(new JsonResult(await _armourService.GetArmourById(id)));

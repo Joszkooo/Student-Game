@@ -17,8 +17,7 @@ namespace Student_game.Server.Controllers
             _studentService = StudentService;
         }
         
-        [HttpGet]
-        [Route("GetStudentById")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetStudentById(int id)
         {
             return Ok(new JsonResult(await _studentService.GetStudentById(id)));
@@ -29,6 +28,13 @@ namespace Student_game.Server.Controllers
         public async Task<IActionResult> GetStudentEquipment(int id)
         {
             return Ok(new JsonResult(await _studentService.GetStudentEquipment(id)));
+        }
+
+        [HttpGet]
+        [Route("Profile")]
+        public async Task<IActionResult> Profile(int id)
+        {
+            return Ok(new JsonResult(await _studentService.Profile(id)));
         }
     }
 }

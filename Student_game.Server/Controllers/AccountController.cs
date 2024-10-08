@@ -17,8 +17,7 @@ namespace Student_game.Server.Controllers
             _accountService = accountService;
         }
         
-        [HttpGet]
-        [Route("GetAccount")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetAccount(int id)
         {
             return Ok(new JsonResult(await _accountService.GetAccount(id)));

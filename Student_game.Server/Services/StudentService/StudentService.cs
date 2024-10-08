@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Mapster;
+using Student_game.Server.Dtos.Student;
 
 
 
@@ -10,12 +12,10 @@ namespace Student_game.Server.Services.StudentService
     public class StudentService : IStudentService
     {
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
 
-        public StudentService(DataContext context, IMapper mapper)
+        public StudentService(DataContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public async Task<ServiceResponse<Student>> GetStudentById(int id)
@@ -26,7 +26,7 @@ namespace Student_game.Server.Services.StudentService
                 var student = await _context.Students.FirstOrDefaultAsync(x => x.Id == id);
                 if (student is not null)
                 {
-                    serviceResponse.Data = _mapper.Map<Student>(student);
+                    serviceResponse.Data = student;
                     return serviceResponse;
                 }
                 else{
@@ -61,6 +61,31 @@ namespace Student_game.Server.Services.StudentService
                 else{
                     serviceResponse.Success = false;
                     serviceResponse.Message = $"Brak ekwipunku dla studenta o {id} id";
+                }
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = $"Error: {ex.Message}";
+                return serviceResponse;
+            }
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetStudentProfileDTO>> Profile(int id)
+        {
+            var serviceResponse = new ServiceResponse<GetStudentProfileDTO>();
+            try
+            {
+                var response = await _context.Students.FirstOrDefaultAsync(x => x.Id == id);
+                
+                if (response is not null)
+                {
+                    serviceResponse.Data = response.Adapt<GetStudentProfileDTO>();
+                }
+                else{
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = $"Brak studenta o {id} id";
                 }
             }
             catch (Exception ex)

@@ -17,8 +17,7 @@ namespace Student_game.Server.Controllers
             _foodService = foodService;
         }
 
-        [HttpGet]
-        [Route("GetFoodById")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetFoodById (int id)
         {
             return Ok(new JsonResult(await _foodService.GetFoodById(id)));

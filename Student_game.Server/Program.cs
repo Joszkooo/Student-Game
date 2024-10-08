@@ -11,6 +11,7 @@ global using Student_game.Server.Data;
 
 global using Student_game.Server.Dtos.Account;
 global using Student_game.Server.Dtos.Stats;
+global using Student_game.Server.Dtos.Fight;
 
 global using Student_game.Server.Services.AccountService;
 global using Student_game.Server.Services.ArmourService;
@@ -20,6 +21,7 @@ global using Student_game.Server.Services.FoodService;
 global using Student_game.Server.Services.StatService;
 global using Student_game.Server.Services.StudentService;
 global using Student_game.Server.Services.WeaponService;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;

@@ -17,8 +17,7 @@ namespace Student_game.Server.Controllers
             _weaponService = weaponService;
         }
         
-        [HttpGet]
-        [Route("GetWeaponById")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetWeaponById(int id)
         {
             return Ok(new JsonResult(await _weaponService.GetWeaponById(id)));

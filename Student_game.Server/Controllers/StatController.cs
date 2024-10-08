@@ -16,8 +16,7 @@ namespace Student_game.Server.Controllers
             _statService = statService;
         }
 
-        [HttpGet]
-        [Route("GetStatByStudentId")]
+        [HttpGet("{id}")]
         public async Task<JsonResult> GetStatByStudentId(int id)
         {
             return new JsonResult(await _statService.GetStatByStudentId(id));
