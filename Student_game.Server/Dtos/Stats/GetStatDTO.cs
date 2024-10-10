@@ -10,7 +10,7 @@ namespace Student_game.Server.Dtos.Stats
         public int Id { get; set;}
 
         [Required]
-        public string Nickname { get; set;}
+        public string Nickname { get; set;} = string.Empty;
 
         // Stats added during gameplay
         [Required]

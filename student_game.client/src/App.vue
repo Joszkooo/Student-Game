@@ -18,4 +18,5 @@
   import MainNav from './components/MainNav.vue';
   import UserNav from './components/UserNav.vue';
   var logged = true;
+  
 </script>

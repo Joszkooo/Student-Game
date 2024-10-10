@@ -31,10 +31,10 @@ namespace Student_game.Server.Controllers
         }
 
         [HttpGet]
-        [Route("Profile")]
-        public async Task<IActionResult> Profile(int id)
+        [Route("GetStudentProfile")]
+        public async Task<IActionResult> GetStudentProfile(int id)
         {
-            return Ok(new JsonResult(await _studentService.Profile(id)));
+            return Ok(new JsonResult(await _studentService.GetStudentProfile(id)));
         }
     }
 }

@@ -49,13 +49,14 @@ namespace Student_game.Server.Services.StudentService
             try
             {
                 var inventory = await _context.Students
-                .Include(c => c.Student_Armor)
-                .Include(c => c.Student_Food)
-                .Include(c => c.Student_Weapon)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                    .Include(c => c.Student_Armor)
+                    .Include(c => c.Student_Food)
+                    .Include(c => c.Student_Weapon)
+                        .FirstOrDefaultAsync(x => x.Id == id);
                 
                 if (inventory is not null)
                 {
+                    List<Weapon> weapons = inventory.Student_Armor.
                     serviceResponse.Data = inventory;
                 }
                 else{
@@ -72,16 +73,21 @@ namespace Student_game.Server.Services.StudentService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<GetStudentProfileDTO>> Profile(int id)
+        public async Task<ServiceResponse<GetStudentProfileDTO>> GetStudentProfile(int id)
         {
             var serviceResponse = new ServiceResponse<GetStudentProfileDTO>();
             try
             {
-                var response = await _context.Students.FirstOrDefaultAsync(x => x.Id == id);
+                var student = await _context.Students
+                    .Include(c => c.Account)
+                        .FirstOrDefaultAsync(x => x.Id == id);
                 
-                if (response is not null)
+                if (student is not null)
                 {
-                    serviceResponse.Data = response.Adapt<GetStudentProfileDTO>();
+                    GetStudentProfileDTO response = student.Adapt<GetStudentProfileDTO>(); 
+                    response.Nickname = student.Account.Nickname;
+                    
+                    serviceResponse.Data = response;
                 }
                 else{
                     serviceResponse.Success = false;

@@ -296,3 +296,9 @@ C:\Users\joszko\Documents\GitHub\PracaDyplomowa\Student_game.Server\obj\Debug\ne
 C:\Users\joszko\Documents\GitHub\PracaDyplomowa\Student_game.Server\obj\Debug\net8.0\Student_game.Server.pdb
 D:\CODE\PracaDyplomowa\Student_game.Server\bin\Debug\net8.0\Mapster.dll
 D:\CODE\PracaDyplomowa\Student_game.Server\bin\Debug\net8.0\Mapster.Core.dll
+D:\CODE\PracaDyplomowa\Student_game.Server\bin\Debug\net8.0\System.Web.Cors.dll
+D:\CODE\PracaDyplomowa\Student_game.Server\bin\Debug\net8.0\System.Net.Http.Formatting.dll
+D:\CODE\PracaDyplomowa\Student_game.Server\bin\Debug\net8.0\System.Web.Http.dll
+D:\CODE\PracaDyplomowa\Student_game.Server\bin\Debug\net8.0\System.Web.Http.Cors.dll
+D:\CODE\PracaDyplomowa\Student_game.Server\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\CODE\PracaDyplomowa\Student_game.Server\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

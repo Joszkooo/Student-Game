@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Student_game.Server.Dtos.Student
 {
-    public class GetStudentDTO
+    public class GetStudentInventoryDTO
     {
         
     }
