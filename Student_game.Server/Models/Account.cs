@@ -22,14 +22,13 @@ namespace Student_game.Server.Models
         [Column(TypeName = "varchar(50)")]
         public string Email { get; set; } = string.Empty;
 
-        [Required]
-        public DateTime DateCreated { get;} = DateTime.Now;
+        public DateTime DateCreated { get; set;} = DateTime.Now;
         
         [Required]
         public DateOnly Born_date { get; set; }
 
         [Required]
-        public bool IsAdmin { get;} = false;
+        public bool IsAdmin { get; set;} = false;
 
         // Db relation
         public Student? Student { get; set; }

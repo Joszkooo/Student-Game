@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
-using Mapster;
-
 
 namespace Student_game.Server.Services.AccountService
 {
@@ -12,13 +10,11 @@ namespace Student_game.Server.Services.AccountService
     public class AccountService: IAccountService
     {
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AccountService(DataContext context, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public AccountService(DataContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
-            _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
         }
 

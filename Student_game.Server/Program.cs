@@ -4,7 +4,7 @@ global using Microsoft.AspNetCore.Mvc;
 global using System.ComponentModel.DataAnnotations.Schema;
 global using System.Text.Json.Serialization;
 
-global using AutoMapper;
+global using Mapster;
 
 global using Student_game.Server.Models;
 global using Student_game.Server.Data;
@@ -12,6 +12,8 @@ global using Student_game.Server.Data;
 global using Student_game.Server.Dtos.Account;
 global using Student_game.Server.Dtos.Stats;
 global using Student_game.Server.Dtos.Fight;
+global using Student_game.Server.Dtos.Level;
+global using Student_game.Server.Dtos.Equipment;
 
 global using Student_game.Server.Services.AccountService;
 global using Student_game.Server.Services.ArmourService;
@@ -21,6 +23,7 @@ global using Student_game.Server.Services.FoodService;
 global using Student_game.Server.Services.StatService;
 global using Student_game.Server.Services.StudentService;
 global using Student_game.Server.Services.WeaponService;
+global using Student_game.Server.Services.LevelService;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,8 +42,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddCors(options =>
-{options.AddPolicy("AllowSpecificOrigin", builder =>{
-    builder.WithOrigins("https://localhost:5173") // Your frontend URL
+{options.AddPolicy("AllowSpecificOrigins", builder =>{
+    builder.WithOrigins("https://localhost:5174") // Frontend URL
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials();
@@ -52,10 +55,10 @@ builder.Services.AddScoped<IArmourService, ArmourService>();
 builder.Services.AddScoped<IEnemyService, EnemyService>();
 builder.Services.AddScoped<IFightService, FightService>();
 builder.Services.AddScoped<IFoodService, FoodService>();
+builder.Services.AddScoped<ILevelService, LevelService>();
 builder.Services.AddScoped<IStatService, StatService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IWeaponService, WeaponService>();
-
 
 services.AddHttpContextAccessor();
 
@@ -84,7 +87,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowSpecificOrigin");
+app.UseCors("AllowSpecificOrigins");
 
 app.UseHttpsRedirection();
 

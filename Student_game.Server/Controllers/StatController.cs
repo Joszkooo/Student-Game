@@ -17,9 +17,9 @@ namespace Student_game.Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<JsonResult> GetStatByStudentId(int id)
+        public async Task<IActionResult> GetStatByStudentId(int id)
         {
-            return new JsonResult(await _statService.GetStatByStudentId(id));
+            return Ok(new JsonResult(await _statService.GetStatByStudentId(id)));
         }
 
         [HttpPost]

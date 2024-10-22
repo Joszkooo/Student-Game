@@ -7,6 +7,7 @@ namespace Student_game.Server.Dtos.Fight
 {
     public class AttackResultDTO
     {
-        
+        public int Damage { get; set; }
+        public int? ActualHitChance { get; set; }
     }
 }

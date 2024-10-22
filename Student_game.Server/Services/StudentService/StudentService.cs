@@ -18,6 +18,7 @@ namespace Student_game.Server.Services.StudentService
             _context = context;
         }
 
+        // get full info about student
         public async Task<ServiceResponse<Student>> GetStudentById(int id)
         {
             var serviceResponse = new ServiceResponse<Student>(); 
@@ -43,36 +44,41 @@ namespace Student_game.Server.Services.StudentService
             }
         }
 
+        // get eq of student
         public async Task<ServiceResponse<Student>> GetStudentEquipment(int id)
         {
-            var serviceResponse = new ServiceResponse<Student>();
-            try
-            {
-                var inventory = await _context.Students
-                    .Include(c => c.Student_Armor)
-                    .Include(c => c.Student_Food)
-                    .Include(c => c.Student_Weapon)
-                        .FirstOrDefaultAsync(x => x.Id == id);
-                
-                if (inventory is not null)
-                {
-                    List<Weapon> weapons = inventory.Student_Armor.
-                    serviceResponse.Data = inventory;
-                }
-                else{
-                    serviceResponse.Success = false;
-                    serviceResponse.Message = $"Brak ekwipunku dla studenta o {id} id";
-                }
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = $"Error: {ex.Message}";
-                return serviceResponse;
-            }
-            return serviceResponse;
+            throw new NotImplementedException();
+            // var serviceResponse = new ServiceResponse<Dictionary<int, Object>>();
+            // try
+            // {
+            //     var inventory = await _context.Students
+            //         .Include(s => s.Student_Armor)
+            //             .ThenInclude(sa => sa.Armour)
+            //         .Include(sf => sf.Student_Food)
+            //             .ThenInclude(s => s.Food)
+            //         .Include(sw => sw.Student_Weapon)
+            //             .ThenInclude(s => s.Weapon)
+            //         .FirstOrDefaultAsync(x => x.Id == id);
+
+            //     if (inventory is not null)
+            //     {
+            //         serviceResponse.Data = serviceResponse.Add;
+            //     }
+            //     else{
+            //         serviceResponse.Success = false;
+            //         serviceResponse.Message = $"Brak ekwipunku dla studenta o {id} id";
+            //     }
+            // }
+            // catch (Exception ex)
+            // {
+            //     serviceResponse.Success = false;
+            //     serviceResponse.Message = $"Error: {ex.Message}";
+            //     return serviceResponse;
+            // }
+            // return serviceResponse;
         }
 
+        // get student info for profile page 
         public async Task<ServiceResponse<GetStudentProfileDTO>> GetStudentProfile(int id)
         {
             var serviceResponse = new ServiceResponse<GetStudentProfileDTO>();

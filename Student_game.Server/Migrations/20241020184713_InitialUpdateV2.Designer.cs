@@ -12,8 +12,8 @@ using Student_game.Server.Data;
 namespace Student_game.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241001161310_InitialUpdate")]
-    partial class InitialUpdate
+    [Migration("20241020184713_InitialUpdateV2")]
+    partial class InitialUpdateV2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,17 +36,23 @@ namespace Student_game.Server.Migrations
                     b.Property<DateOnly>("Born_date")
                         .HasColumnType("date");
 
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Nickname")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
@@ -79,7 +85,7 @@ namespace Student_game.Server.Migrations
                     b.ToTable("Armours");
                 });
 
-            modelBuilder.Entity("Student_game.Server.Models.Enemie", b =>
+            modelBuilder.Entity("Student_game.Server.Models.Enemy", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -117,8 +123,7 @@ namespace Student_game.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ArmourId")
-                        .IsUnique();
+                    b.HasIndex("ArmourId");
 
                     b.HasIndex("WeaponId");
 
@@ -145,6 +150,9 @@ namespace Student_game.Server.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rarity")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -199,6 +207,12 @@ namespace Student_game.Server.Migrations
                     b.Property<int>("Energy")
                         .HasColumnType("int");
 
+                    b.Property<int?>("EqArmourId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("EqWeaponId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Experience")
                         .HasColumnType("int");
 
@@ -228,19 +242,20 @@ namespace Student_game.Server.Migrations
                     b.HasIndex("AccountId")
                         .IsUnique();
 
+                    b.HasIndex("EqArmourId");
+
+                    b.HasIndex("EqWeaponId");
+
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("Student_game.Server.Models.Student_Armor", b =>
+            modelBuilder.Entity("Student_game.Server.Models.Student_Armour", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ArmorId")
-                        .HasColumnType("int");
 
                     b.Property<int>("ArmourId")
                         .HasColumnType("int");
@@ -255,8 +270,7 @@ namespace Student_game.Server.Migrations
 
                     b.HasIndex("ArmourId");
 
-                    b.HasIndex("StudentId")
-                        .IsUnique();
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Student_Armors");
                 });
@@ -280,11 +294,9 @@ namespace Student_game.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FoodId")
-                        .IsUnique();
+                    b.HasIndex("FoodId");
 
-                    b.HasIndex("StudentId")
-                        .IsUnique();
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Student_Foods");
                 });
@@ -308,8 +320,7 @@ namespace Student_game.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StudentId")
-                        .IsUnique();
+                    b.HasIndex("StudentId");
 
                     b.HasIndex("WeaponId");
 
@@ -345,16 +356,16 @@ namespace Student_game.Server.Migrations
                     b.ToTable("Weapons");
                 });
 
-            modelBuilder.Entity("Student_game.Server.Models.Enemie", b =>
+            modelBuilder.Entity("Student_game.Server.Models.Enemy", b =>
                 {
                     b.HasOne("Student_game.Server.Models.Armour", "Armour")
-                        .WithOne("enemie")
-                        .HasForeignKey("Student_game.Server.Models.Enemie", "ArmourId")
+                        .WithMany("Enemies")
+                        .HasForeignKey("ArmourId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Student_game.Server.Models.Weapon", "Weapon")
-                        .WithMany()
+                        .WithMany("Enemies")
                         .HasForeignKey("WeaponId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -383,21 +394,35 @@ namespace Student_game.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("Student_game.Server.Models.Student_Armor", b =>
-                {
                     b.HasOne("Student_game.Server.Models.Armour", "Armour")
                         .WithMany()
+                        .HasForeignKey("EqArmourId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Student_game.Server.Models.Weapon", "Weapon")
+                        .WithMany()
+                        .HasForeignKey("EqWeaponId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Account");
+
+                    b.Navigation("Armour");
+
+                    b.Navigation("Weapon");
+                });
+
+            modelBuilder.Entity("Student_game.Server.Models.Student_Armour", b =>
+                {
+                    b.HasOne("Student_game.Server.Models.Armour", "Armour")
+                        .WithMany("Student_Armours")
                         .HasForeignKey("ArmourId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Student_game.Server.Models.Student", "Student")
-                        .WithOne("Student_Armor")
-                        .HasForeignKey("Student_game.Server.Models.Student_Armor", "StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany("Student_Armours")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Armour");
@@ -408,14 +433,14 @@ namespace Student_game.Server.Migrations
             modelBuilder.Entity("Student_game.Server.Models.Student_Food", b =>
                 {
                     b.HasOne("Student_game.Server.Models.Food", "Food")
-                        .WithOne("student_Food")
-                        .HasForeignKey("Student_game.Server.Models.Student_Food", "FoodId")
+                        .WithMany("Student_Foods")
+                        .HasForeignKey("FoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Student_game.Server.Models.Student", "Student")
-                        .WithOne("Student_Food")
-                        .HasForeignKey("Student_game.Server.Models.Student_Food", "StudentId")
+                        .WithMany("Student_Foods")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -427,15 +452,15 @@ namespace Student_game.Server.Migrations
             modelBuilder.Entity("Student_game.Server.Models.Student_Weapon", b =>
                 {
                     b.HasOne("Student_game.Server.Models.Student", "Student")
-                        .WithOne("Student_Weapon")
-                        .HasForeignKey("Student_game.Server.Models.Student_Weapon", "StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany("Student_Weapons")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Student_game.Server.Models.Weapon", "Weapon")
-                        .WithMany()
+                        .WithMany("Student_Weapons")
                         .HasForeignKey("WeaponId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Student");
@@ -450,23 +475,32 @@ namespace Student_game.Server.Migrations
 
             modelBuilder.Entity("Student_game.Server.Models.Armour", b =>
                 {
-                    b.Navigation("enemie");
+                    b.Navigation("Enemies");
+
+                    b.Navigation("Student_Armours");
                 });
 
             modelBuilder.Entity("Student_game.Server.Models.Food", b =>
                 {
-                    b.Navigation("student_Food");
+                    b.Navigation("Student_Foods");
                 });
 
             modelBuilder.Entity("Student_game.Server.Models.Student", b =>
                 {
                     b.Navigation("Stats");
 
-                    b.Navigation("Student_Armor");
+                    b.Navigation("Student_Armours");
 
-                    b.Navigation("Student_Food");
+                    b.Navigation("Student_Foods");
 
-                    b.Navigation("Student_Weapon");
+                    b.Navigation("Student_Weapons");
+                });
+
+            modelBuilder.Entity("Student_game.Server.Models.Weapon", b =>
+                {
+                    b.Navigation("Enemies");
+
+                    b.Navigation("Student_Weapons");
                 });
 #pragma warning restore 612, 618
         }

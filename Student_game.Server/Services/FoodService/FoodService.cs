@@ -8,12 +8,10 @@ namespace Student_game.Server.Services.FoodService
     public class FoodService: IFoodService
     {
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
 
-        public FoodService(DataContext context, IMapper mapper)
+        public FoodService(DataContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public async Task<ServiceResponse<List<Food>>> GetAllFood()

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Student_game.Server.Models
 {
-    public class Student_Armor
+    public class Student_Armour
     {
         public int Id { get; set; }
         
@@ -15,7 +15,7 @@ namespace Student_game.Server.Models
         [ForeignKey("Student")]
         public int StudentId { get; set; }
         
-        [ForeignKey("Armor")]
+        [ForeignKey("Armour")]
         public int ArmourId { get; set; }
 
         // Db relations

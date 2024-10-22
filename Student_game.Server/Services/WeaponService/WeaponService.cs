@@ -8,12 +8,10 @@ namespace Student_game.Server.Services.WeaponService
     public class WeaponService : IWeaponService
     {
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
 
-        public WeaponService(DataContext context, IMapper mapper)
+        public WeaponService(DataContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public async Task<ServiceResponse<Weapon>> GetWeaponById(int id)
@@ -23,7 +21,7 @@ namespace Student_game.Server.Services.WeaponService
             {
                 var dbWeapon = await _context.Weapons.FirstOrDefaultAsync(x => x.Id == id);
                 if (dbWeapon is not null){
-                    serviceResponse.Data = _mapper.Map<Weapon>(dbWeapon);
+                    serviceResponse.Data = dbWeapon;
                     return serviceResponse;
                 }
                 else{

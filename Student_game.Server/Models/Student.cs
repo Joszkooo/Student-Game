@@ -22,39 +22,49 @@ namespace Student_game.Server.Models
         [Required]
         public int Energy { get; set; } = 100;
         
-        [Required]
-        public int LevelPoints { get; set; } = 0;
-        
         // Experience and position in ranking
+        public int LevelPoints { get; set; } = 0;
         public Ranks Rank { get; set; } = Ranks.Silver_I;
         public int Level { get; set; } = 1;
         public int Experience { get; set; } = 0;
 
         // Points used in fights, events etc.
         [Required]
-        public int HealthPoints { get; set; } = 100;
+        public int HealthPoints { get; set; } = 100;    // bazowe zdrowie
         
         [Required]
-        public int AttackPoints { get; set; } = 1;
+        public int AttackPoints { get; set; } = 1;      // bazowy atak
         
         [Required]
-        public int DefensePoints { get; set; } = 1;
+        public int DefensePoints { get; set; } = 1;     // zwieksza procentowo hp przy ataku
         
         [Required]
-        public int LuckPoints { get; set; } = 1;
+        public int LuckPoints { get; set; } = 1;        // pomaga przy losowaniu do ataku
 
         [Required]
-        public int IntelligencePoints { get; set; } = 1;
+        public int IntelligencePoints { get; set; } = 1;// 
         
+        // Equipped items
+        [ForeignKey("Armour")]
+        [AllowNull]
+        public int? EqArmourId { get; set; }
+        
+        [ForeignKey("Weapon")]
+        [AllowNull]
+        public int? EqWeaponId { get; set; }
 
         [ForeignKey("Account")]
         public int AccountId { get; set; }
 
         // Db relation
-        public Student_Armor? Student_Armor{ get; set; }
-        public Student_Food? Student_Food{ get; set; }
-        public Student_Weapon? Student_Weapon{ get; set; }
+        public ICollection<Student_Weapon> Student_Weapons { get; set; } = new List<Student_Weapon>();
+        public ICollection<Student_Armour> Student_Armours { get; set; } = new List<Student_Armour>();
+        public ICollection<Student_Food> Student_Foods { get; set; } = new List<Student_Food>();
         public Stat? Stats{ get; set; }
+
+        //child
+        public Armour Armour { get; set; } = null!;
+        public Weapon Weapon { get; set; } = null!;
         public Account Account { get; set; } = null!;
     }
 }

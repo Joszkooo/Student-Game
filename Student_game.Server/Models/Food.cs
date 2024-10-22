@@ -20,8 +20,11 @@ namespace Student_game.Server.Models
         
         [Required]
         public int Duration { get; set; }
+        
+        [Required]
+        public Rarity Rarity{ get; set; }
 
         // Db relation
-        public Student_Food? Student_Food{ get; set; }
+        public ICollection<Student_Food> Student_Foods { get; set; } = new List<Student_Food>();
     }
 }
