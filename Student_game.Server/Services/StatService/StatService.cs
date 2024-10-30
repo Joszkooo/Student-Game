@@ -10,7 +10,7 @@ namespace Student_game.Server.Services.StatService
     {
         private readonly DataContext _context;
 
-        public StatService(DataContext dataContext, IMapper autoMapper)
+        public StatService(DataContext dataContext)
         {
             _context = dataContext;
         }

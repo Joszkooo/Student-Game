@@ -24,6 +24,7 @@ global using Student_game.Server.Services.StatService;
 global using Student_game.Server.Services.StudentService;
 global using Student_game.Server.Services.WeaponService;
 global using Student_game.Server.Services.LevelService;
+global using Student_game.Server.Services.ShopService;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -59,6 +60,7 @@ builder.Services.AddScoped<ILevelService, LevelService>();
 builder.Services.AddScoped<IStatService, StatService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IWeaponService, WeaponService>();
+builder.Services.AddScoped<IShopService, ShopService>();
 
 services.AddHttpContextAccessor();
 

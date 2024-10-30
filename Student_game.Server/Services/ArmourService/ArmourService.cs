@@ -8,12 +8,10 @@ namespace Student_game.Server.Services.ArmourService
     public class ArmourService : IArmourService
     {
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
 
-        public ArmourService(DataContext context, IMapper mapper)
+        public ArmourService(DataContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public async Task<ServiceResponse<List<Armour>>> GetAllArmour()

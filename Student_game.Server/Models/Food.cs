@@ -19,6 +19,9 @@ namespace Student_game.Server.Models
         public int BoostAmount { get; set; }
         
         [Required]
+        public int Cost { get; set; }
+        
+        [Required]
         public int Duration { get; set; }
         
         [Required]

@@ -85,6 +85,9 @@
     background-attachment: fixed;
     background-color: #2c2c2c;
 }
+.footer-background{
+  background-color: #3b3b3b;
+}
 html{
   scroll-behavior: smooth;
   background: radial-gradient(circle at 50%, #2c2c2c, #191919);

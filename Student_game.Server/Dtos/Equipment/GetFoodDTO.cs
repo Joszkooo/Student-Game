@@ -11,6 +11,7 @@ namespace Student_game.Server.Dtos.Equipment
         public Boost BoostType { get; set; }
         public int BoostAmount { get; set; }
         public int Duration { get; set; }
+        public int Cost { get; set; }
         public Rarity Rarity{ get; set; }
         public int Quantity { get; set; }
     }

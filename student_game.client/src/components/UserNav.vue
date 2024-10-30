@@ -5,7 +5,6 @@
                 <a class="hover:underline cursor-pointer duration-100 hover:text-gray-300"><router-link :to="{ name: 'Profile' }">Profil</router-link></a>
                 <a class="hover:underline cursor-pointer duration-100 hover:text-gray-300"><router-link :to="{ name: 'Shop' }">Sklep</router-link></a>
                 <a class="hover:underline cursor-pointer duration-100 hover:text-gray-300"><router-link :to="{ name: 'Battle' }">Bitwa</router-link></a>
-                <a class="hover:underline cursor-pointer duration-100 hover:text-gray-300"><router-link :to="{ name: 'Gym' }">Siłownia</router-link></a>
             </div>
         </nav>
     </header>

@@ -8,12 +8,9 @@ namespace Student_game.Server.Services.EnemyService
     public class EnemyService : IEnemyService
     {
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
-
-        public EnemyService(DataContext context, IMapper mapper)
+        public EnemyService(DataContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public async Task<ServiceResponse<Enemy>> GetEnemyById(int id)

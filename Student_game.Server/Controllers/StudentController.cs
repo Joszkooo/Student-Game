@@ -18,23 +18,39 @@ namespace Student_game.Server.Controllers
         }
         
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetStudentById(int id)
+        public async Task<IActionResult> GetStudentById(int StudentId)
         {
-            return Ok(new JsonResult(await _studentService.GetStudentById(id)));
+            return Ok(new JsonResult(await _studentService.GetStudentById(StudentId)));
         }
 
-        [HttpGet]
-        [Route("GetStudentEquipment")]
-        public async Task<IActionResult> GetStudentEquipment(int id)
+        [HttpGet("GetStudentProfile{StudentId}")]
+        public async Task<IActionResult> GetStudentProfile(int StudentId)
         {
-            return Ok(new JsonResult(await _studentService.GetStudentEquipment(id)));
+            return Ok(new JsonResult(await _studentService.GetStudentProfile(StudentId)));
         }
 
-        [HttpGet]
-        [Route("GetStudentProfile")]
-        public async Task<IActionResult> GetStudentProfile(int id)
+        [HttpGet("GetStudentWeapon{StudentId}")]
+        public async Task<IActionResult> GetStudentWeapon(int StudentId)
         {
-            return Ok(new JsonResult(await _studentService.GetStudentProfile(id)));
+            return Ok(new JsonResult(await _studentService.GetStudentWeapon(StudentId)));
+        }        
+
+        [HttpGet("GetStudentArmour{StudentId}")]
+        public async Task<IActionResult> GetStudentArmour(int StudentId)
+        {
+            return Ok(new JsonResult(await _studentService.GetStudentArmour(StudentId)));
+        }
+
+        [HttpGet("GetStudentFood{StudentId}")]
+        public async Task<IActionResult> GetStudentFood(int StudentId)
+        {
+            return Ok(new JsonResult(await _studentService.GetStudentFood(StudentId)));
+        }
+
+        [HttpGet("GetStudentEquipment{StudentId}")]
+        public IActionResult GetStudentEquipment(int StudentId)
+        {
+            return Ok(new JsonResult(_studentService.GetStudentEquipment(StudentId)));
         }
     }
 }

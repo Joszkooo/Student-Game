@@ -46,50 +46,11 @@
                 </CardContent>
             </Card>
         </div>
-        <h1>Nadal wątpliwości?</h1>
-        <h3>Sprawdz co sadza o nas inni gracze</h3>
-        <div class="content-center">
-            <Carousel
-                class="relative w-full max-w-sm"
-                :plugins="[Autoplay({
-                    delay: 5000,
-                })]"
-                :opts="{
-                align: 'start',
-                loop: true,
-                }">
-                <CarouselContent class="-ml-1">
-                <CarouselItem v-for="(_, index) in 5" :key="index" class="pl-1 md:basis-1/2 lg:basis-1/3">
-                    <div class="p-1">
-                    <Card>
-                        <CardContent class="flex aspect-square items-center justify-center p-6">
-                        <span class="text-2xl font-semibold">{{ index + 1 }}</span>
-                        </CardContent>
-                    </Card>
-                    </div>
-                </CarouselItem>
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-            </Carousel>
-        </div>
-
-        <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-                <AccordionTrigger>Is it accessible?</AccordionTrigger>
-                    <AccordionContent>
-                        Yes. It adheres to the WAI-ARIA design pattern.
-                    </AccordionContent>
-            </AccordionItem>
-        </Accordion>
-
-        <TestimonialCard/>
     </div>
 </template>
 
 <script setup lang="ts">
     import { Button } from '@/components/ui/button'
-    import Autoplay from 'embla-carousel-autoplay'
     import {
         Card,
         CardContent,
@@ -98,16 +59,4 @@
         CardHeader,
         CardTitle,
     } from '@/components/ui/card'
-
-    import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-    } from '@/components/ui/carousel'
-
-    import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-
-    import TestimonialCard from '@/components/TestimonialCard.vue'
 </script>

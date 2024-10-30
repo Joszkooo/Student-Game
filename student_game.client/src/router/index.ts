@@ -5,7 +5,6 @@ import Contact from '../views/Landing-page/Contact.vue'
 import Login from '../views/Landing-page/Login.vue'
 import Profile from '../views/Game/Profile.vue'
 import Battle from '../views/Game/Battle.vue'
-import Gym from '../views/Game/Gym.vue'
 import Shop from '../views/Game/Shop.vue'
 
 const routes = [
@@ -38,11 +37,6 @@ const routes = [
         path: '/battle',
         name: 'Battle',
         component: Battle
-    },
-    {
-        path: '/gym',
-        name: 'Gym',
-        component: Gym
     },
     {
         path: '/shop',
