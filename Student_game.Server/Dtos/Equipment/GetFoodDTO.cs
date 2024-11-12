@@ -7,6 +7,7 @@ namespace Student_game.Server.Dtos.Equipment
 {
     public class GetFoodDTO
     {
+        public int Id { get; set;}
         public string Name { get; set; }
         public Boost BoostType { get; set; }
         public int BoostAmount { get; set; }

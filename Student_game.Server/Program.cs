@@ -43,13 +43,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddCors(options =>
-{options.AddPolicy("AllowSpecificOrigins", builder =>{
-    builder.WithOrigins("https://localhost:5174") // Frontend URL
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-        .AllowCredentials();
+    {
+        options.AddPolicy("AllowSpecificOrigins", builder =>{
+            builder.WithOrigins("https://localhost:5174", "https://localhost:5173") // Frontend URL
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+            });
     });
-});
 
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IArmourService, ArmourService>();

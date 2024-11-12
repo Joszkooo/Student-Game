@@ -9,8 +9,8 @@ namespace Student_game.Server.Services.ShopService
     {
         // ten weapon do poprawy -> chcemy moc sprzedac dowolny przedmiot
         // problem jest taki ze musimy wiedziec jaki to jest przedmiot zeby go sprzedac
-        Task<ServiceResponse<Weapon>> BuyItem(int ItemID, int StudentID);
-        Task<ServiceResponse<Weapon>> SellItem(int ItemID, int StudentID);
-        Task<ServiceResponse<Weapon>> ShowRandomDailyDeal();
+        Task<ServiceResponse<Object>> BuyItem(int ItemID, int StudentID);
+        Task<ServiceResponse<Object>> SellItem(int ItemID, int StudentID);
+        Task<ServiceResponse<Object>> ShowRandomDailyDeal();
     }
 }

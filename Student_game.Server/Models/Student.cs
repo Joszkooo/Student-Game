@@ -42,7 +42,7 @@ namespace Student_game.Server.Models
         public int LuckPoints { get; set; } = 1;        // pomaga przy losowaniu do ataku
 
         [Required]
-        public int IntelligencePoints { get; set; } = 1;// 
+        public int IntelligencePoints { get; set; } = 1;// cappuje zakladanie broni/zbroi aby nie bylo przypadku kiedy osoba na 1lvl moze zalozyc najlepszy przedmiot w grze 
         
         // Equipped items
         [ForeignKey("Armour")]

@@ -9,30 +9,35 @@ namespace Student_game.Server.Services.FightService
     public class FightService : IFightService
     {
         private readonly DataContext _context;
-
-        public FightService(DataContext context)
+        private readonly IEnemyService _enemyService;
+        public FightService(DataContext context, IEnemyService enemyService)
         {
             _context = context;
+            _enemyService = enemyService;
         }
 
-        public async Task<ServiceResponse<AttackResultDTO>> SpecificEnemyAttack(int EnemyId)
+        public async Task<ServiceResponse<AttackResultDTO>> EnemyAttack(int EnemyId)
         {
             var serviceResponse = new ServiceResponse<AttackResultDTO>();
             try
             {
-                var dbEnemy = await _context.Enemies.FirstOrDefaultAsync(s => s.Id == EnemyId);
-                if (dbEnemy is not null)
+                var enemyDB = await _context.Enemies.FirstOrDefaultAsync(x => x.Id == EnemyId);
+                if (enemyDB is not null)
                 {
-                    var damage = 0;
-                    damage += dbEnemy.AttackPoints;
-                    damage += WeaponAttack(dbEnemy.Weapon.Id, EnemyId).Adapt<AttackResultDTO>().Damage;
-                    serviceResponse.Data = damage.Adapt<AttackResultDTO>();
+                    var attack = enemyDB.AttackPoints;
+                    var luck = enemyDB.LuckPoints;
+                    var weaponHitChance = enemyDB.Weapon.HitChance;
+                    var weaponAttack = enemyDB.Weapon.Damage;
+                    
+                    var totalDMG = attack + weaponAttack;
+                    var totalHitChance = (luck + weaponHitChance) / 100;
+
                 }
-                else
-                {
+                else{
                     serviceResponse.Success = false;
-                    serviceResponse.Message = $"Brak wroga w bazie danych";
+                    serviceResponse.Message = $"Brak przecwinika w bazie danych o id {EnemyId}";
                 }
+                
             }
             catch (Exception ex)
             {
@@ -44,21 +49,35 @@ namespace Student_game.Server.Services.FightService
         }
 
         // starts new fight, picks opponent and sets up everything idk REPAIR IT
-        public async Task<ServiceResponse<FightResultDTO>> Fight()
+        public async Task<ServiceResponse<FightResultDTO>> Fight(int student)
         {
-            throw new NotImplementedException();
-            // var serviceResponse = new ServiceResponse<FightResultDTO>();
-            // try
-            // {
-            //     // var dbStudent = _context.Students
-            //     var dbEnemy = _context.Enemies.FirstOrDefaultAsync(e => e.Id == new Random().Next(0, ));
-            // }
-            // catch (Exception ex)
-            // {
-            //     serviceResponse.Success = false;
-            //     serviceResponse.Message = $"Error: {ex.Message}";
-            //     return serviceResponse;
-            // }
+            var serviceResponse = new ServiceResponse<FightResultDTO>();
+            try
+            {
+                var randomEnemy = _enemyService.GetRandomEnemy().Result.Data;
+                if (randomEnemy is not null)
+                {
+                    do
+                    {
+                        // student turn
+                        
+                        // enemy turn
+
+                    } while (randomEnemy.HealthPoints <= 0 || randomEnemy.HealthPoints <= 0);
+                }
+                else{
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = $"Brak losowego przeciwnika";
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = $"Error: {ex.Message}";
+                return serviceResponse;
+            }
+            return serviceResponse;
         }
 
         // full attack to deal 
@@ -67,19 +86,7 @@ namespace Student_game.Server.Services.FightService
             var serviceResponse = new ServiceResponse<AttackResultDTO>();
             try
             {
-                var dbStudent = await _context.Students.FirstOrDefaultAsync(s => s.Id == PlayerId);
-                if (dbStudent is not null)
-                {
-                    var damage = 0;
-                    damage += dbStudent.AttackPoints;
-                    damage += WeaponAttack(dbStudent.Weapon.Id, PlayerId).Adapt<AttackResultDTO>().Damage;
-                    serviceResponse.Data = damage.Adapt<AttackResultDTO>();
-                }
-                else
-                {
-                    serviceResponse.Success = false;
-                    serviceResponse.Message = $"Brak studenta w bazie danych";
-                }
+                
             }
             catch (Exception ex)
             {
@@ -90,48 +97,5 @@ namespace Student_game.Server.Services.FightService
             return serviceResponse;
         }
         
-
-        // only weapon attack to deal
-        public async Task<ServiceResponse<AttackResultDTO>> WeaponAttack(int WeaponId, int StudentId)
-        {
-            var serviceResponse = new ServiceResponse<AttackResultDTO>();
-            try
-            {
-                var dbWeapon =  await _context.Weapons.FirstOrDefaultAsync(w => w.Id == WeaponId);
-                var dbStudent = await _context.Students.FirstOrDefaultAsync(s => s.Id == StudentId);
-                if (dbWeapon is not null && dbStudent is not null)
-                {
-                    var chance = new Random().Next(100) + dbStudent.LuckPoints;
-
-                    // udalo sie trafic 
-                    if (chance >= dbWeapon.HitChance){
-                        var result =  dbWeapon.Adapt<AttackResultDTO>();
-
-                        result.ActualHitChance = chance;
-                        serviceResponse.Data = result;
-                    }
-                    else{
-                        serviceResponse.Message = $"Pudło! Wyrzuciłeś {chance}% na trafienie! \n Potrzebowales {dbWeapon.HitChance}%";
-                    }
-                }
-                else
-                {
-                    serviceResponse.Success = false;
-                    serviceResponse.Message = $"Brak broni {WeaponId} lub studenta {StudentId} w bazie danych";
-                }
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = $"Error: {ex.Message}";
-                return serviceResponse;
-            }
-            return serviceResponse;
-        }
-
-        public Task<ServiceResponse<AttackResultDTO>> RandomEnemyAttack(Enemy enemy)
-        {
-            return PlayerAttack(enemy.Id);
-        }
     }
 }

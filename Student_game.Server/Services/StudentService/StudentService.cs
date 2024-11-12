@@ -54,6 +54,7 @@ namespace Student_game.Server.Services.StudentService
                     .Include(x => x.Armour)
                     .Select(x => new GetArmourDTO   // idk how to use Mapster with this DTO so i do it manually 
                     {
+                        Id = x.Armour.Id,
                         Name = x.Armour.Name,
                         Defense = x.Armour.Defense,
                         Cost = x.Armour.Cost,
@@ -91,6 +92,7 @@ namespace Student_game.Server.Services.StudentService
                     .Include(x => x.Weapon)
                     .Select(x => new GetWeaponDTO   // idk how to use Mapster with this DTO so i do it manually 
                     {
+                        Id = x.Weapon.Id,
                         Name = x.Weapon.Name,
                         Damage = x.Weapon.Damage,
                         HitChance = x.Weapon.HitChance,
@@ -129,6 +131,7 @@ namespace Student_game.Server.Services.StudentService
                     .Include(f => f.Food)
                     .Select(f => new GetFoodDTO     // idk how to use Mapster with this DTO so i do it manually 
                     {
+                        Id = f.Food.Id,
                         Name = f.Food.Name,
                         BoostType = f.Food.BoostType,
                         BoostAmount = f.Food.BoostAmount,

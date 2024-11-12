@@ -7,6 +7,7 @@ namespace Student_game.Server.Dtos.Equipment
 {
     public class GetWeaponDTO
     {
+        public int Id { get; set;}
         public string Name { get; set; }
         public int Damage { get; set; }
         public int HitChance { get; set; }

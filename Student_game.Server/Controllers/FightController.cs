@@ -16,11 +16,6 @@ namespace Student_game.Server.Controllers
             _fightService = fightService;
         }
 
-        [HttpGet("WeaponAttack{WeaponId, StudentId}")]
-        public async Task<IActionResult> WeaponAttack(int WeaponId, int StudentId)
-        {
-            return Ok(new JsonResult(await _fightService.WeaponAttack(WeaponId, StudentId)));
-        }
 
         [HttpGet("PlayerAttack{PlayerId}")]
         public async Task<IActionResult> PlayerAttack(int PlayerId)
@@ -29,21 +24,15 @@ namespace Student_game.Server.Controllers
         }
 
         [HttpGet("SpecificEnemyAttack{EnemyId}")]
-        public async Task<IActionResult> SpecificEnemyAttack(int EnemyId)
+        public async Task<IActionResult> EnemyAttack(int EnemyId)
         {
-            return Ok(new JsonResult(await _fightService.SpecificEnemyAttack(EnemyId)));
-        }
-
-        [HttpGet("RandomEnemyAttack{enemy}")]
-        public async Task<IActionResult> RandomEnemyAttack(Enemy enemy)
-        {
-            return Ok(new JsonResult(await _fightService.RandomEnemyAttack(enemy)));
+            return Ok(new JsonResult(await _fightService.EnemyAttack(EnemyId)));
         }
 
         [HttpPost("Fight")]
-        public async Task<IActionResult> Fight()
+        public async Task<IActionResult> Fight(int StudentId)
         {
-            return Ok(new JsonResult(await _fightService.Fight()));
+            return Ok(new JsonResult(await _fightService.Fight(StudentId)));
         }
     }
 }

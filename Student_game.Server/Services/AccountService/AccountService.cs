@@ -30,13 +30,12 @@ namespace Student_game.Server.Services.AccountService
                 if (account is not null)
                 {
                     serviceResponse.Data = account.Adapt<GetAccountDTO>();
-                    return serviceResponse;
                 }
                 else{
                     serviceResponse.Success = false;
                     serviceResponse.Message = $"No account with {id} is found.";
-                    return serviceResponse;
                 }
+                return serviceResponse;
             }
             catch (Exception ex)
             {

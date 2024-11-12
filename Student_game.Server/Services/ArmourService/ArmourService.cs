@@ -48,14 +48,13 @@ namespace Student_game.Server.Services.ArmourService
                 if (dbArmoursId is not null)
                 {
                     serviceResponse.Data = dbArmoursId;
-                    return serviceResponse;
                 }
                 else
                 {
                     serviceResponse.Success = false;
                     serviceResponse.Message = $"Brak zbroi o Id {id}";
-                    return serviceResponse;
                 }
+                return serviceResponse;
             }
             catch (Exception ex)
             {
