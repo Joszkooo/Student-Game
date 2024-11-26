@@ -14,6 +14,7 @@ global using Student_game.Server.Dtos.Stats;
 global using Student_game.Server.Dtos.Fight;
 global using Student_game.Server.Dtos.Level;
 global using Student_game.Server.Dtos.Equipment;
+global using Student_game.Server.Dtos.Item;
 
 global using Student_game.Server.Services.AccountService;
 global using Student_game.Server.Services.ArmourService;
@@ -25,6 +26,7 @@ global using Student_game.Server.Services.StudentService;
 global using Student_game.Server.Services.WeaponService;
 global using Student_game.Server.Services.LevelService;
 global using Student_game.Server.Services.ShopService;
+using Student_game.Server;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -58,10 +60,10 @@ builder.Services.AddScoped<IEnemyService, EnemyService>();
 builder.Services.AddScoped<IFightService, FightService>();
 builder.Services.AddScoped<IFoodService, FoodService>();
 builder.Services.AddScoped<ILevelService, LevelService>();
+builder.Services.AddScoped<IShopService, ShopService>();
 builder.Services.AddScoped<IStatService, StatService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IWeaponService, WeaponService>();
-builder.Services.AddScoped<IShopService, ShopService>();
 
 services.AddHttpContextAccessor();
 
@@ -89,6 +91,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// app.UseMiddleware<AutoTimerHealingMiddleware>();
 
 app.UseCors("AllowSpecificOrigins");
 

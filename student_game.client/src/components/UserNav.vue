@@ -3,7 +3,7 @@
         <nav>
             <div class="container flex justify-between items-center text-white py-5 divide-x divide-solid">
                 <a class="hover:underline cursor-pointer duration-100 hover:text-gray-300"><router-link :to="{ name: 'Profile' }">Profil</router-link></a>
-                <a class="hover:underline cursor-pointer duration-100 hover:text-gray-300"><router-link :to="{ name: 'Shop' }">Sklep</router-link></a>
+                <a class="hover:underline cursor-pointer duration-100 hover:text-gray-300"><router-link :to="{ name: 'ShopBuy' }">Sklep</router-link></a>
                 <a class="hover:underline cursor-pointer duration-100 hover:text-gray-300"><router-link :to="{ name: 'Battle' }">Bitwa</router-link></a>
             </div>
         </nav>

@@ -17,22 +17,16 @@ namespace Student_game.Server.Controllers
         }
 
 
-        [HttpGet("PlayerAttack{PlayerId}")]
-        public async Task<IActionResult> PlayerAttack(int PlayerId)
+        [HttpPost("FightOnline{characters}")]
+        public async Task<IActionResult> FightOnline(FightCharactersDTO characters)
         {
-            return Ok(new JsonResult(await _fightService.PlayerAttack(PlayerId)));
+            return Ok(new JsonResult(await _fightService.FightOnline(characters)));
         }
 
-        [HttpGet("SpecificEnemyAttack{EnemyId}")]
-        public async Task<IActionResult> EnemyAttack(int EnemyId)
+        [HttpPost("FightLocaly{characters}")]
+        public async Task<IActionResult> FightLocaly(FightCharactersDTO characters)
         {
-            return Ok(new JsonResult(await _fightService.EnemyAttack(EnemyId)));
-        }
-
-        [HttpPost("Fight")]
-        public async Task<IActionResult> Fight(int StudentId)
-        {
-            return Ok(new JsonResult(await _fightService.Fight(StudentId)));
+            return Ok(new JsonResult(await _fightService.FightLocaly(characters)));
         }
     }
 }

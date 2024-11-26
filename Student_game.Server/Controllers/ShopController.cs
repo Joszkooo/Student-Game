@@ -18,23 +18,30 @@ namespace Student_game.Server.Controllers
             _shopService = shopService;
         }
 
-        [HttpPost("BuyItem{ItemID}For{StudentID}")]
-        public async Task<IActionResult> BuyItem(int ItemID, int StudentID)
+        [HttpPost("BuyItem")]
+        public async Task<IActionResult> BuyItem(PickItemDTO requestedItem)
         {
-            return Ok(new JsonResult(await _shopService.BuyItem(ItemID, StudentID)));
+            return Ok(new JsonResult(await _shopService.BuyItem(requestedItem)));
         }
 
         
-        [HttpPost("SellItem{ItemID}From{StudentID}")]
-        public async Task<IActionResult> SellItem(int ItemID, int StudentID)
+        [HttpPost("SellWeapon")]
+        public async Task<IActionResult> SellWeapon(int StudentID, int ItemID)
         {
-            return Ok(new JsonResult(await _shopService.BuyItem(ItemID, StudentID)));
+            return Ok(new JsonResult(await _shopService.SellWeapon(StudentID, ItemID)));
         }
 
-        [HttpGet("ShowRandomDailyDeal")]
-        public async Task<IActionResult> ShowRandomDailyDeal()
+        [HttpPost("SellFood")]
+        public async Task<IActionResult> SellFood(int StudentID, int ItemID)
         {
-            return Ok(new JsonResult(await _shopService.ShowRandomDailyDeal()));
+            return Ok(new JsonResult(await _shopService.SellFood(StudentID, ItemID)));
         }
+
+        [HttpPost("SellArmour")]
+        public async Task<IActionResult> SellArmour(int StudentID, int ItemID)
+        {
+            return Ok(new JsonResult(await _shopService.SellArmour(StudentID, ItemID)));
+        }
+        
     }
 }

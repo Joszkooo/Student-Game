@@ -26,7 +26,7 @@ namespace Student_game.Server.Services.LevelService
                 var dbStudent = await _context.Students.SingleOrDefaultAsync(x => x.Id == studentId);
                 if (dbStudent is not null)
                 {
-                    if(dbStudent.Experience >= 100 & dbStudent.Rank != Ranks.The_Global_Elite)
+                    if(dbStudent.Experience >= 100 && dbStudent.Rank != Ranks.The_Global_Elite)
                     {
                         dbStudent.LevelPoints += 1;
                         dbStudent.Level += 1;

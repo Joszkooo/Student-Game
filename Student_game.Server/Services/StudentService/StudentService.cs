@@ -2,9 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Mapster;
 using Student_game.Server.Dtos.Student;
-
 
 
 namespace Student_game.Server.Services.StudentService

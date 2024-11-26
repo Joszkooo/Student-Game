@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Student_game.Server.Dtos.Fight
 {
-    public class AttackResultDTO
+    public class FightCharactersDTO
     {
-        public int Damage { get; set; }
-        public int? ActualHitChance { get; set; } // after adding 
+        public int AttackerId { get; set; }
+        public int? OpponentId { get; set; }
     }
 }

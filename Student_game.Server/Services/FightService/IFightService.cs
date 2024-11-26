@@ -17,13 +17,9 @@ namespace Student_game.Server.Services.FightService
         At the end we will calculate in loop every attack from both sides and pass them in the array.
         We will pass that array and winner to the data. ende
 
-        2. idk man
         */
         
-        // That's implementation to the first point
-        Task<ServiceResponse<AttackResultDTO>> PlayerAttack(int PlayerId); // <- calculate attack and apply hit chance, luck points etc
-        Task<ServiceResponse<AttackResultDTO>> EnemyAttack(int EnemyId); // <- calculate attack and apply hit chance, luck points etc
-        Task<ServiceResponse<FightResultDTO>> Fight(int StudentId); // <- all implementation goes here, it is passed to the frontend
-
+        Task<ServiceResponse<FightResultDTO>> FightLocaly(FightCharactersDTO characters); // <- all implementation goes here, it is passed to the frontend
+        Task<ServiceResponse<FightResultDTO>> FightOnline(FightCharactersDTO characters); // <- all implementation goes here, it is passed to the frontend
     }
 }

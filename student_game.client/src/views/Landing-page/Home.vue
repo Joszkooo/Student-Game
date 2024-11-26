@@ -10,6 +10,7 @@
         </Button>
         
         <div class="text-center flex content-center">
+            
             <Card class="m-20 px-30 basis-1/3">
                 <CardHeader>
                     <CardTitle>Walcz z przeciwnikami</CardTitle>
@@ -51,12 +52,4 @@
 
 <script setup lang="ts">
     import { Button } from '@/components/ui/button'
-    import {
-        Card,
-        CardContent,
-        CardDescription,
-        CardFooter,
-        CardHeader,
-        CardTitle,
-    } from '@/components/ui/card'
 </script>

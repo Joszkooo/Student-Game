@@ -23,14 +23,24 @@ namespace Student_game.Server.Models
         public int Energy { get; set; } = 100;
         
         // Experience and position in ranking
+        [Required]
         public int LevelPoints { get; set; } = 0;
+        
+        [Required]
         public Ranks Rank { get; set; } = Ranks.Silver_I;
+        
+        [Required]
         public int Level { get; set; } = 1;
+        
+        [Required]
         public int Experience { get; set; } = 0;
 
         // Points used in fights, events etc.
         [Required]
         public int HealthPoints { get; set; } = 100;    // bazowe zdrowie
+        
+        [Required]
+        public int MaxHealth {get; set; } = 100;
         
         [Required]
         public int AttackPoints { get; set; } = 1;      // bazowy atak

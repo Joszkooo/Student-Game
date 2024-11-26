@@ -17,27 +17,30 @@ namespace Student_game.Server.Models
         public Ranks Rank { get; set; }
         
         [Required]
-        public int Level { get; set; } = new Random().Next(11);
+        public int Level { get; set; } = 100;
         
-        // Stas (should be pseudo random in the game)
+        // Stats (should be pseudo random in the game)
         [Required]
-        public int HealthPoints { get; set; } = new Random().Next(101);
+        public int HealthPoints { get; set; } = 100;
+
+        [Required]
+        public int MaxHealth {get; set; } = 100;
+
+        [Required]
+        public int AttackPoints { get; set; } = 100;
         
         [Required]
-        public int AttackPoints { get; set; } = new Random().Next(101);
+        public int DefensePoints { get; set; } = 100;
         
         [Required]
-        public int DefensePoints { get; set; } = new Random().Next(101);
-        
-        [Required]
-        public int LuckPoints { get; set; } = new Random().Next(101);
+        public int LuckPoints { get; set; } = 100;
 
 
         [ForeignKey("Weapon")]
-        public int WeaponId { get; set; }
+        public int? WeaponId { get; set; }
         
         [ForeignKey("Armor")]
-        public int ArmourId { get; set;}
+        public int? ArmourId { get; set;}
         
         // Db relation
         [Required]

@@ -1,4 +1,5 @@
 <template>
+    <h1 class="text-3xl font-bold text-center mb-8">Profile</h1>
     <v-container fluid class="p-6">
     <!-- Top Row -->
     <v-row class="justify-start space-x-4 mb-6">
@@ -20,7 +21,19 @@
     <v-row class="justify-start mb-4">
         <v-col cols="9" class="border border-white rounded-lg p-6 bg-white">
             <!-- Main Player Data Section -->
-            <div class="text-center">Main Player Data</div>
+            <div class="text-center">
+                <li v-for="item in equipment.armors">
+                    {{ item.name }}, {{ item.defense }}, {{ item.cost }}, {{ item.rarity }}, {{ item.quantity }}
+                </li>
+                <br/>
+                <li v-for="item in equipment.foods">
+                    {{ item.name }}, {{ item.boostType }}, {{ item.boostAmount }}, {{ item.duration }}, {{ item.cost }}, {{ item.rarity }}, {{ item.quantity }}
+                </li>
+                <br/>
+                <li v-for="item in equipment.weapons">
+                    {{ item.name }}, {{ item.damage }}, {{ item.hitChance }}, {{ item.cost }}, {{ item.rarity }}, {{ item.quantity }}
+                </li>
+            </div>
         </v-col>
 
     <!-- Right Column -->
@@ -43,11 +56,11 @@
             
             <div class="text-center">
                 {{ profile.experience }} exp <br/>
-                {{ profile.healthPoints }} <br/>
-                {{ profile.attackPoints }} <br/>
-                {{ profile.defensePoints }} <br/>
-                {{ profile.luckPoints }} <br/>
-                {{ profile.intelligencePoints }} <br/>
+                {{ profile.healthPoints }} hp<br/>
+                {{ profile.attackPoints }} atk<br/>
+                {{ profile.defensePoints }} def<br/>
+                {{ profile.luckPoints }} luck<br/>
+                {{ profile.intelligencePoints }} int<br/>
             </div>
             
             </div>
@@ -63,20 +76,49 @@ import axios from 'axios';
 export default {
     data() {
         return {
-        profile: {
-            nickname: 'none',
-            money: 0,
-            energy: 0,
-            rank: 'none',
-            level: 0,
-            experience: 0,
-            levelPoints: 0,
-            healthPoints: 0,
-            attackPoints: 0,
-            defensePoints: 0,
-            luckPoints: 0,
-            intelligencePoints: 0
-        }
+            profile: {
+                nickname: 'none',
+                money: 0,
+                energy: 0,
+                rank: 'none',
+                level: 0,
+                experience: 0,
+                levelPoints: 0,
+                healthPoints: 0,
+                attackPoints: 0,
+                defensePoints: 0,
+                luckPoints: 0,
+                intelligencePoints: 0
+            },
+            equipment: {
+                armors: {
+                    id: 0,
+                    name: 'none',
+                    defense: 0,
+                    cost: 0,
+                    rarity: 'none',
+                    quantity: 0
+                },
+                foods:{
+                    id: 0,
+                    name: 'none',
+                    boostType: 'none',
+                    boostAmount: 0,
+                    duration: 0,
+                    cost: 0,
+                    rarity: 'none',
+                    quantity: 0
+                },
+                weapons: {
+                    id: 0,
+                    name: 'none',
+                    damage: 0,
+                    hitChance: 0,
+                    cost: 0,
+                    rarity: 'none',
+                    quantity: 0
+                }
+            }
         };
     },
     mounted() {
@@ -87,15 +129,15 @@ export default {
         async fetchEquipment() {
             try{
                 const studentId = 1;
-                const eqResponse = await axios.get(`'http://localhost:5033/api/Student/GetStudentEquipment${studentId}`);
+                const eqResponse = await axios.get(`http://localhost:5033/api/Student/GetStudentEquipment${studentId}`);
+                
                 if (eqResponse.data.value.success) {
                     this.equipment = eqResponse.data.value.data;
-                    console.log("Eq:", this.profile);
                 } else {
-                    console.error("Failed to fetch profile: ", eqResponse.data.value.message);
+                    console.error("Failed to fetch equipment: ", eqResponse.data.value.message);
                 }
             }catch (error) {
-            console.error("Error fetching profile: ", error);
+            console.error("Error fetching equipment: ", error);
         }
         },
 
@@ -106,7 +148,6 @@ export default {
             
             if (profilResponse.data.value.success) {
                 this.profile = profilResponse.data.value.data;
-                console.log("Profil:", this.profile);
             } else {
                 console.error("Failed to fetch profile: ", profilResponse.data.value.message);
             }
