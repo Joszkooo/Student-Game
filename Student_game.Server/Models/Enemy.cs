@@ -24,9 +24,6 @@ namespace Student_game.Server.Models
         public int HealthPoints { get; set; } = 100;
 
         [Required]
-        public int MaxHealth {get; set; } = 100;
-
-        [Required]
         public int AttackPoints { get; set; } = 100;
         
         [Required]

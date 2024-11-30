@@ -1,74 +1,74 @@
 <template>
-    <h1 class="text-3xl font-bold text-center mb-8">Profile</h1>
-    <v-container fluid class="p-6">
-    <!-- Top Row -->
-    <v-row class="justify-start space-x-4 mb-6">
-        <v-col cols="3" class="border border-white rounded-lg p-4 bg-white shadow-md">
-            <!-- Player Info Box 1 -->
-            <div class="text-center font-bold text-h5 mdi mdi-heart-outline">{{ profile.healthPoints }} HP</div>
-        </v-col>
-        <v-col cols="3" class="border border-white rounded-lg p-4 bg-white shadow-md">
-            <!-- Player Info Box 2 -->
-            <div class="text-center font-bold text-h5 mdi mdi-sword"> {{ profile.attackPoints }} ATK</div>
-        </v-col>
-        <v-col cols="3" class="border border-white rounded-lg p-4 bg-white shadow-md">
-            <!-- Player Info Box 3 -->
-            <div class="text-center font-bold text-h5 mdi mdi-shield-outline"> {{ profile.defensePoints }} DEF</div>
-        </v-col>
-    </v-row>
-
-    <!-- Middle Row - Large Box -->
-    <v-row class="justify-start mb-4">
-        <v-col cols="9" class="border border-white rounded-lg p-6 bg-white">
-            <!-- Main Player Data Section -->
-            <div class="text-center">
+    <h1 class="text-3xl font-bold text-center p-8">Profile</h1>
+    
+    <div id="wrapper" class="grid grid-cols-12 gap-8 p-8">
+        <div class="col-span-12 md:col-span-4">
+            <div class="card relative h-28 rounded-xl p-4 profile_background shadow-2xl">
+                <span class="text-sm font-medium leading-none"> healthPoints </span>
+                <p class="text-center font-bold text-h5 mdi mdi-heart-outline"> {{ profile.healthPoints }} HP</p>
+            </div>
+        </div>
+        
+        <div class="col-span-12 md:col-span-4">
+            <div class="card relative h-28 rounded-xl p-4 profile_background shadow-2xl">
+                <span class="text-sm font-medium leading-none"> attackPoints </span>
+                <div class="text-center font-bold text-h5 mdi mdi-sword"> {{ profile.attackPoints }} ATK</div>
+            </div>
+        </div>
+        
+        <div class="col-span-12 md:col-span-4 ">
+            <div class="card relative h-28 rounded-xl p-4 profile_background shadow-2xl">
+                <span class="text-sm font-medium leading-none"> defensePoints </span>
+                <div class="text-center font-bold text-h5 mdi mdi-shield-outline"> {{ profile.defensePoints }} DEF</div>
+            </div>
+        </div>
+        <div id="eq" class="col-span-12 md:col-span-8 profile_background rounded-xl shadow-2xl p-8">
+            <p>Nazwa, Ilosc buffa, Cena, Rzadkość, Ilość</p>
+            <div class="card justify-start p-5 list-none">
                 <li v-for="item in equipment.armors">
-                    {{ item.name }}, {{ item.defense }}, {{ item.cost }}, {{ item.rarity }}, {{ item.quantity }}
+                    {{ item.name }}, {{ item.defense }}DEF, {{ item.cost }}, {{ item.rarity }}, {{ item.quantity }}
                 </li>
-                <br/>
+                <hr class="h-px my-8 bg-gray-500 border-0 dark:bg-gray-700">
                 <li v-for="item in equipment.foods">
                     {{ item.name }}, {{ item.boostType }}, {{ item.boostAmount }}, {{ item.duration }}, {{ item.cost }}, {{ item.rarity }}, {{ item.quantity }}
                 </li>
-                <br/>
+                <hr class="h-px my-8 bg-gray-500 border-0 dark:bg-gray-700">
                 <li v-for="item in equipment.weapons">
-                    {{ item.name }}, {{ item.damage }}, {{ item.hitChance }}, {{ item.cost }}, {{ item.rarity }}, {{ item.quantity }}
+                    {{ item.name }}, {{ item.damage }}DMG, {{ item.hitChance }}, {{ item.cost }}, {{ item.rarity }}, {{ item.quantity }}
                 </li>
             </div>
-        </v-col>
-
-    <!-- Right Column -->
-        <v-col cols="3" class="space-y-4">
-            <div class="border border-white rounded-lg p-6 bg-white">
-            <!-- Nazwa, informacje ogólne -->
-            
-            <div class="text-center">
+        </div>
+        <div id="rest" class="col-span-12 md:col-span-4 rounded-xl profile_background shadow-2xl p-8">
+            <div class="card p-0 text-center">
                 {{ profile.nickname }} <br/>
-                {{ profile.money }} money, <br/>
-                {{ profile.energy }} energy, <br/>
-                {{ profile.rank }} rank, <br/>
-                {{ profile.level}} lvl, <br/>
-                
-            </div>
-            
-            </div>
-            <div class="border border-white rounded-lg p-6 bg-white">
-            <!-- Statystyki -->
-            
-            <div class="text-center">
+                {{ profile.money }} money <br/>
+                {{ profile.energy }} energy <br/>
+                {{ profile.rank }} rank <br/>
+                {{ profile.level}} lvl
+                <hr class="h-px my-8 bg-gray-500 border-0 dark:bg-gray-700">
                 {{ profile.experience }} exp <br/>
                 {{ profile.healthPoints }} hp<br/>
                 {{ profile.attackPoints }} atk<br/>
                 {{ profile.defensePoints }} def<br/>
                 {{ profile.luckPoints }} luck<br/>
-                {{ profile.intelligencePoints }} int<br/>
+                {{ profile.intelligencePoints }} int
             </div>
-            
-            </div>
-        </v-col>
-    </v-row>
+        </div>
+    </div>
     
-    </v-container>
 </template>
+
+<style>
+    .card{
+        padding: 16px;
+        box-sizing: border-box;
+        margin-bottom: 16px;
+    }
+    .profile_background{
+        background-color: #5c5454;
+    }
+
+</style>
 
 <script>
 import axios from 'axios';

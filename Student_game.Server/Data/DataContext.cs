@@ -38,7 +38,7 @@ namespace Student_game.Server.Data
             modelBuilder.Entity<Student>()
                 .HasOne(s => s.Armour)
                 .WithMany()
-                .HasForeignKey(s => s.EqArmourId)
+                .HasForeignKey(s => s.ArmourId)
                 .OnDelete(DeleteBehavior.Restrict); // Avoid cascade delete
 
                 // ----------------------------------------
@@ -60,7 +60,7 @@ namespace Student_game.Server.Data
             modelBuilder.Entity<Student>()
                 .HasOne(s => s.Weapon)
                 .WithMany()
-                .HasForeignKey(s => s.EqWeaponId)
+                .HasForeignKey(s => s.WeaponId)
                 .OnDelete(DeleteBehavior.Restrict); // Avoid cascade delete
         }
     }

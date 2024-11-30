@@ -207,10 +207,10 @@ namespace Student_game.Server.Migrations
                     b.Property<int>("Energy")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EqArmourId")
+                    b.Property<int?>("ArmourId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EqWeaponId")
+                    b.Property<int?>("WeaponId")
                         .HasColumnType("int");
 
                     b.Property<int>("Experience")
@@ -242,9 +242,9 @@ namespace Student_game.Server.Migrations
                     b.HasIndex("AccountId")
                         .IsUnique();
 
-                    b.HasIndex("EqArmourId");
+                    b.HasIndex("ArmourId");
 
-                    b.HasIndex("EqWeaponId");
+                    b.HasIndex("WeaponId");
 
                     b.ToTable("Students");
                 });
@@ -396,12 +396,12 @@ namespace Student_game.Server.Migrations
 
                     b.HasOne("Student_game.Server.Models.Armour", "Armour")
                         .WithMany()
-                        .HasForeignKey("EqArmourId")
+                        .HasForeignKey("ArmourId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Student_game.Server.Models.Weapon", "Weapon")
                         .WithMany()
-                        .HasForeignKey("EqWeaponId")
+                        .HasForeignKey("WeaponId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Account");

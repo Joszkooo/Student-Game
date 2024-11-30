@@ -19,7 +19,7 @@ namespace Student_game.Server.Services.FightService
 
         */
         
-        Task<ServiceResponse<FightResultDTO>> FightLocaly(FightCharactersDTO characters); // <- all implementation goes here, it is passed to the frontend
+        Task<ServiceResponse<FightResultDTO>> FightLocally(FightCharactersDTO characters); // <- all implementation goes here, it is passed to the frontend
         Task<ServiceResponse<FightResultDTO>> FightOnline(FightCharactersDTO characters); // <- all implementation goes here, it is passed to the frontend
     }
 }

@@ -48,10 +48,10 @@ namespace Student_game.Server.Services.EnemyService
                 // searching for maxId in db and then getting random number of it
                 var maxId = await _context.Enemies.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
                 if (maxId is not null) { 
-                    random = new Random().Next(maxId.Id); }
+                    random = new Random().Next(1, maxId.Id + 1); }
                 else {
                     serviceResponse.Success = false;
-                    serviceResponse.Message = "Brak id w bazie Enemy!";
+                    serviceResponse.Message = $"Brak {maxId} id w bazie Enemy!";
                     return serviceResponse;
                 }
                 var dbEnemy = await _context.Enemies.SingleOrDefaultAsync(x => x.Id == random); 

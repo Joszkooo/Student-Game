@@ -35,6 +35,7 @@ namespace Student_game.Server.Services.LevelService
 
                         await _context.SaveChangesAsync();
                         serviceResponse.Data = dbStudent.Adapt<CheckIfLevelUpDTO>();
+                        serviceResponse.Message = "Level up!";
                     }
                     else {
                         serviceResponse.Message = $"Niewystaczająca ilość XP lub maksymalny poziom osiągniety";

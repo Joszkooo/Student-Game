@@ -1,7 +1,7 @@
 <template>
     <div class="min-h-screen  p-4">
         <h1 class="text-5xl font-bold text-center mb-8">Shop</h1>
-        <h2 class="text-5xl font-bold text-center mb-8 text-yellow"> gold</h2>
+        <h2 class="text-5xl font-bold text-center mb-8 text-yellow">{{ profile.money }} gold</h2>
         
         <div class="flex flex-wrap flex-row items-center justify-center">
             <h1 class="hover:underline cursor-pointer duration-100 hover:text-gray-300 text-3xl font-bold px-10  m-8 bg-white rounded-lg shadow-md "><router-link :to="{ name: 'ShopBuy' }">Buy</router-link></h1>
@@ -38,7 +38,7 @@
                 </div>
                 <button 
                 class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
-                @click="buyItem(armor, 'Armor')"
+                @click="buyItem(armor, 'Armour')"
                 >
                     Buy
                 </button>
@@ -69,6 +69,7 @@
     
 <script>
     import axios from 'axios';
+    const userId = 1;
 
 export default {
     data() {
@@ -76,14 +77,42 @@ export default {
             foodShop: [],
             armourShop: [],
             weaponShop: [],
+            profile: {
+                nickname: 'none',
+                money: 0,
+                energy: 0,
+                rank: 'none',
+                level: 0,
+                experience: 0,
+                levelPoints: 0,
+                healthPoints: 0,
+                attackPoints: 0,
+                defensePoints: 0,
+                luckPoints: 0,
+                intelligencePoints: 0
+            }
         };
     },
     mounted() {
         this.fetchAllFood();
         this.fetchAllArmour();
         this.fetchAllWeapon();
+        this.fetchStudentProfile();
     },
     methods: {
+        async fetchStudentProfile(){
+            try{
+                const userResponse  = await axios.get(`http://localhost:5033/api/Student/GetStudentProfile${userId}`);
+                if (userResponse.data.value.success) {
+                    this.profile = userResponse.data.value.data;
+                } else {
+                    console.log("Failed to fetch student: ", userResponse.data.value.message);
+                }
+            }
+            catch (error) {
+                console.log("Error fetching user: ", error);
+            }
+        },
         async fetchAllFood() {
             try{
                 const allFoodResponse = await axios.get('http://localhost:5033/api/Food/GetAllFood');
@@ -130,10 +159,10 @@ export default {
         async buyItem(item, category)
         {
             try{
-                const userId = 1;
                 const buyFoodResponse = await axios.post(`http://localhost:5033/Shop/BuyItem?ItemId=${item.id}&StudentId=${userId}&Category=${category}`); // TODO: tutaj da sie inaczej
                 if (buyFoodResponse.data.value.success) {
                     alert(`Kupiono ${item.name} za ${item.cost}`);
+                    this.fetchStudentProfile();
                 }
                 else 
                 {
@@ -144,9 +173,6 @@ export default {
                 console.error("Error while buying: ", error);
             }
         },
-        buyAnimation() {
-
-        }
     }
 }
 </script>

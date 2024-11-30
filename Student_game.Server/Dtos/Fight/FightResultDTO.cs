@@ -10,6 +10,10 @@ namespace Student_game.Server.Dtos.Fight
         public List<int> OpponentAttacks { get; set; } = new List<int>();
         public List<int> AttackerAttacks { get; set; } = new List<int>();
         public CharactersDTO Winner { get; set; } = new CharactersDTO();
+        public int WinnerGold { get; set; } = 0;
+        public int WinnerExp { get; set; } = 0;
         public CharactersDTO Looser { get; set; } = new CharactersDTO();
+        public int? LooserGold { get; set; } = 0;
+        public int? LooserExp { get; set; } = 0;
     }
 }

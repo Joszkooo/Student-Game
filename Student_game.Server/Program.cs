@@ -92,8 +92,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// app.UseMiddleware<AutoTimerHealingMiddleware>();
-
 app.UseCors("AllowSpecificOrigins");
 
 app.UseHttpsRedirection();

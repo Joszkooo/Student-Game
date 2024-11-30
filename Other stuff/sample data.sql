@@ -51,30 +51,30 @@ INSERT INTO Armours (Name, Defense, Cost, Rarity) VALUES
 ('Mithril Armor', 90, 450, 5);
 
 
-INSERT INTO Enemies (Name, Rank, Level, HealthPoints, AttackPoints, DefensePoints, LuckPoints, WeaponId, ArmourId , MaxHealth) VALUES
-('Goblin', 1, 5, 150, 120, 50, 30, 1, 2, 150),
-('Orc', 2, 8, 300, 180, 80, 40, 2, 3, 300),
-('Troll', 2, 12, 450, 150, 120, 20, 3, 4, 450),
-('Dragon', 5, 20, 1000, 500, 400, 10, 4, 5, 1000),
-('Skeleton', 1, 3, 100, 90, 30, 15, 5, 6, 100),
-('Zombie', 1, 4, 120, 80, 50, 25, 6, 7, 120),
-('Vampire', 3, 10, 500, 300, 200, 50, 7, 8, 500),
-('Werewolf', 4, 15, 700, 400, 300, 60, 8, 9, 700),
-('Demon', 5, 18, 900, 450, 350, 70, 9, 10, 900),
-('Witch', 3, 13, 600, 350, 250, 80, 10, 1, 600);
+INSERT INTO Enemies (Name, Rank, Level, HealthPoints, AttackPoints, DefensePoints, LuckPoints, WeaponId, ArmourId) VALUES
+('Goblin', 1, 5, 150, 120, 50, 30, 1, 2),
+('Orc', 2, 8, 300, 180, 80, 40, 2, 3),
+('Troll', 2, 12, 450, 150, 120, 20, 3, 4),
+('Dragon', 5, 20, 1000, 500, 400, 10, 4, 5),
+('Skeleton', 1, 3, 100, 90, 30, 15, 5, 6),
+('Zombie', 1, 4, 120, 80, 50, 25, 6, 7),
+('Vampire', 3, 10, 500, 300, 200, 50, 7, 8),
+('Werewolf', 4, 15, 700, 400, 300, 60, 8, 9),
+('Demon', 5, 18, 900, 450, 350, 70, 9, 10),
+('Witch', 3, 13, 600, 350, 250, 80, 10, 1);
 
 
-INSERT INTO Students (Money, Energy, LevelPoints, Rank, Level, Experience, HealthPoints, AttackPoints, DefensePoints, LuckPoints, IntelligencePoints, AccountId, MaxHealth) VALUES
-(1000, 100, 50, 1, 10, 500, 200, 150, 100, 80, 70, 1, 200),
-(500, 80, 30, 2, 5, 300, 150, 100, 50, 60, 50, 2, 150),
-(2000, 120, 70, 3, 15, 700, 250, 200, 120, 90, 80, 3, 250),
-(1500, 110, 60, 4, 12, 600, 220, 170, 110, 85, 75, 4, 220),
-(1000, 100, 50, 2, 10, 500, 200, 150, 100, 80, 70, 5, 200),
-(800, 90, 40, 3, 8, 400, 180, 140, 90, 75, 65, 6, 180),
-(1200, 95, 55, 4, 11, 550, 210, 160, 105, 85, 70, 7, 210),
-(1800, 105, 65, 2, 14, 650, 230, 190, 115, 90, 80, 8, 230),
-(900, 85, 45, 1, 9, 450, 190, 130, 95, 70, 60, 9, 190),
-(500, 75, 35, 2, 7, 350, 170, 120, 85, 65, 55, 10, 170);
+INSERT INTO Students (Money, Energy, LevelPoints, Rank, Level, Experience, HealthPoints, AttackPoints, DefensePoints, LuckPoints, IntelligencePoints, AccountId) VALUES
+(1000, 100, 50, 1, 10, 500, 200, 150, 100, 80, 70, 1),
+(500, 80, 30, 2, 5, 300, 150, 100, 50, 60, 50, 2),
+(2000, 120, 70, 3, 15, 700, 250, 200, 120, 90, 80, 3),
+(1500, 110, 60, 4, 12, 600, 220, 170, 110, 85, 75, 4),
+(1000, 100, 50, 2, 10, 500, 200, 150, 100, 80, 70, 5),
+(800, 90, 40, 3, 8, 400, 180, 140, 90, 75, 65, 6),
+(1200, 95, 55, 4, 11, 550, 210, 160, 105, 85, 70, 7),
+(1800, 105, 65, 2, 14, 650, 230, 190, 115, 90, 80, 8),
+(900, 85, 45, 1, 9, 450, 190, 130, 95, 70, 60, 9),
+(500, 75, 35, 2, 7, 350, 170, 120, 85, 65, 55, 10);
 
 
 INSERT INTO Stats (Fights, Victories, Defeats, StudentId) VALUES

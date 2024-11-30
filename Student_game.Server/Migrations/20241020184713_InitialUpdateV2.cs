@@ -129,8 +129,8 @@ namespace Student_game.Server.Migrations
                     DefensePoints = table.Column<int>(type: "int", nullable: false),
                     LuckPoints = table.Column<int>(type: "int", nullable: false),
                     IntelligencePoints = table.Column<int>(type: "int", nullable: false),
-                    EqArmourId = table.Column<int>(type: "int", nullable: true),
-                    EqWeaponId = table.Column<int>(type: "int", nullable: true),
+                    ArmourId = table.Column<int>(type: "int", nullable: true),
+                    WeaponId = table.Column<int>(type: "int", nullable: true),
                     AccountId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -143,14 +143,14 @@ namespace Student_game.Server.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Students_Armours_EqArmourId",
-                        column: x => x.EqArmourId,
+                        name: "FK_Students_Armours_ArmourId",
+                        column: x => x.ArmourId,
                         principalTable: "Armours",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Students_Weapons_EqWeaponId",
-                        column: x => x.EqWeaponId,
+                        name: "FK_Students_Weapons_WeaponId",
+                        column: x => x.WeaponId,
                         principalTable: "Weapons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -312,14 +312,14 @@ namespace Student_game.Server.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Students_EqArmourId",
+                name: "IX_Students_ArmourId",
                 table: "Students",
-                column: "EqArmourId");
+                column: "ArmourId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Students_EqWeaponId",
+                name: "IX_Students_WeaponId",
                 table: "Students",
-                column: "EqWeaponId");
+                column: "WeaponId");
         }
 
         /// <inheritdoc />

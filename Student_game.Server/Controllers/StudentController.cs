@@ -17,7 +17,7 @@ namespace Student_game.Server.Controllers
             _studentService = StudentService;
         }
         
-        [HttpGet("{id}")]
+        [HttpGet("{StudentId}")]
         public async Task<IActionResult> GetStudentById(int StudentId)
         {
             return Ok(new JsonResult(await _studentService.GetStudentById(StudentId)));

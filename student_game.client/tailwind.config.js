@@ -23,6 +23,12 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        'one': "url('./public/klif rycerz.png')",
+        'two': "url('./public/pixelowe miasto.png')",
+        'three': "url('./public/zamek dziewczyna.png')",
+        'four': "url('./public/zamek pioruny.jpg')",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

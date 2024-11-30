@@ -40,9 +40,6 @@ namespace Student_game.Server.Models
         public int HealthPoints { get; set; } = 100;    // bazowe zdrowie
         
         [Required]
-        public int MaxHealth {get; set; } = 100;
-        
-        [Required]
         public int AttackPoints { get; set; } = 1;      // bazowy atak
         
         [Required]
@@ -57,11 +54,11 @@ namespace Student_game.Server.Models
         // Equipped items
         [ForeignKey("Armour")]
         [AllowNull]
-        public int? EqArmourId { get; set; }
+        public int? ArmourId { get; set; }
         
         [ForeignKey("Weapon")]
         [AllowNull]
-        public int? EqWeaponId { get; set; }
+        public int? WeaponId { get; set; }
 
         [ForeignKey("Account")]
         public int AccountId { get; set; }
