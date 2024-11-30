@@ -17,11 +17,40 @@ namespace Student_game.Server.Controllers
             _studentService = StudentService;
         }
         
-        [HttpGet]
-        [Route("GetStudent")]
-        public async Task<JsonResult> GetStudent(int id)
+        [HttpGet("{StudentId}")]
+        public async Task<IActionResult> GetStudentById(int StudentId)
         {
-            return new JsonResult(await _studentService.GetStudent(id));
+            return Ok(new JsonResult(await _studentService.GetStudentById(StudentId)));
+        }
+
+        [HttpGet("GetStudentProfile{StudentId}")]
+        public async Task<IActionResult> GetStudentProfile(int StudentId)
+        {
+            return Ok(new JsonResult(await _studentService.GetStudentProfile(StudentId)));
+        }
+
+        [HttpGet("GetStudentWeapon{StudentId}")]
+        public async Task<IActionResult> GetStudentWeapon(int StudentId)
+        {
+            return Ok(new JsonResult(await _studentService.GetStudentWeapon(StudentId)));
+        }        
+
+        [HttpGet("GetStudentArmour{StudentId}")]
+        public async Task<IActionResult> GetStudentArmour(int StudentId)
+        {
+            return Ok(new JsonResult(await _studentService.GetStudentArmour(StudentId)));
+        }
+
+        [HttpGet("GetStudentFood{StudentId}")]
+        public async Task<IActionResult> GetStudentFood(int StudentId)
+        {
+            return Ok(new JsonResult(await _studentService.GetStudentFood(StudentId)));
+        }
+
+        [HttpGet("GetStudentEquipment{StudentId}")]
+        public IActionResult GetStudentEquipment(int StudentId)
+        {
+            return Ok(new JsonResult(_studentService.GetStudentEquipment(StudentId)));
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1tzFqbawccai1oEn0J7jRUxBHJMXJy9HS19lGqMG2Sw=",
+  "Hash": "LSnE+AIYSrwmnkXEi3bhUJN2FXdnLTAwsRwNtUwH1zs=",
   "Source": "Student_game.Server",
   "BasePath": "_content/Student_game.Server",
   "Mode": "Default",
@@ -12,10 +12,10 @@
       "Source": "student_game.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
       "AdditionalPublishProperties": "",
-      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;Configuration;Platform;TargetFramework;RuntimeIdentifier;SelfContained",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
       "AdditionalBuildProperties": "",
-      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;Configuration;Platform;TargetFramework;RuntimeIdentifier;SelfContained"
     }
   ],
   "DiscoveryPatterns": [],

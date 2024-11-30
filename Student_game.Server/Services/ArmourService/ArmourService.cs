@@ -8,29 +8,26 @@ namespace Student_game.Server.Services.ArmourService
     public class ArmourService : IArmourService
     {
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
 
-        public ArmourService(DataContext context, IMapper mapper)
+        public ArmourService(DataContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
-        public async Task<ServiceResponse<Armour>> GetAllArmour()
+        public async Task<ServiceResponse<List<Armour>>> GetAllArmour()
         {
-            var serviceResponse = new ServiceResponse<Armour>();
+            var serviceResponse = new ServiceResponse<List<Armour>>();
             try
             {
                 List<Armour> dbArmours = await _context.Armours.ToListAsync();
                 if (dbArmours is not null)
                 {
-                    serviceResponse.Data = dbArmours.Select();
+                    serviceResponse.Data = dbArmours;
                 }
                 else
                 {
                     serviceResponse.Success = false;
-                    serviceResponse.Message = $"Brak zbroi!";
-                    return serviceResponse;
+                    serviceResponse.Message = $"Brak zbroi w bazie danych";
                 }
             }
             catch (Exception ex)
@@ -39,6 +36,7 @@ namespace Student_game.Server.Services.ArmourService
                 serviceResponse.Message = $"Error: {ex.Message}";
                 return serviceResponse;
             }
+            return serviceResponse;
         }
 
         public async Task<ServiceResponse<Armour>> GetArmourById(int id)
@@ -50,14 +48,13 @@ namespace Student_game.Server.Services.ArmourService
                 if (dbArmoursId is not null)
                 {
                     serviceResponse.Data = dbArmoursId;
-                    return serviceResponse;
                 }
                 else
                 {
                     serviceResponse.Success = false;
                     serviceResponse.Message = $"Brak zbroi o Id {id}";
-                    return serviceResponse;
                 }
+                return serviceResponse;
             }
             catch (Exception ex)
             {

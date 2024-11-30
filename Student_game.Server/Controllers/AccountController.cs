@@ -17,12 +17,29 @@ namespace Student_game.Server.Controllers
             _accountService = accountService;
         }
         
-        [HttpGet]
-        [Route("GetAccount")]
-        public async Task<JsonResult> GetAccount(int id)
+        [HttpGet("Get{AccountId}")]
+        public async Task<IActionResult> GetAccount(int AccountId)
         {
-            return new JsonResult(await _accountService.GetAccount(id));
+            return Ok(new JsonResult(await _accountService.GetAccount(AccountId)));
         }
+
+        [HttpGet("GetAllAccounts")]
+        public async Task<IActionResult> GetAllAccounts()
+        {
+            return Ok(new JsonResult(await _accountService.GetAllAccounts()));
+        }
+
+        [HttpDelete("Delete{AccountId}")]
+        public async Task<IActionResult> DeleteAccount(int AccountId)
+        {
+            return Ok(new JsonResult(await _accountService.DeleteAccount(AccountId)));
+        }
+
+        // [HttpPost("MakeAccount")]
+        // public async Task<IActionResult> MakeAccount(Account newAccount)
+        // {
+        //     return Ok(new JsonResult(await _accountService.MakeAccount(newAccount)));
+        // }
         
     }
 }

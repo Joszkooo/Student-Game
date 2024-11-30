@@ -1,6 +1,7 @@
 namespace Student_game.Server.Models
 {
-    // first 6 from Fortnite
+    
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Rarity
     {
         Common = 1, // grey

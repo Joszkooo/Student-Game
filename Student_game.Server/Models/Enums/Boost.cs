@@ -1,5 +1,8 @@
+
+
 namespace Student_game.Server.Models
 {
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Boost
     {
         HealthBoost = 1,

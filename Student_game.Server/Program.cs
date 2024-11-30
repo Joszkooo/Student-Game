@@ -2,22 +2,32 @@ global using Microsoft.EntityFrameworkCore;
 global using System.ComponentModel.DataAnnotations;
 global using Microsoft.AspNetCore.Mvc;
 global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Text.Json.Serialization;
 
-global using AutoMapper;
+global using Mapster;
 
 global using Student_game.Server.Models;
 global using Student_game.Server.Data;
 
 global using Student_game.Server.Dtos.Account;
+global using Student_game.Server.Dtos.Stats;
+global using Student_game.Server.Dtos.Fight;
+global using Student_game.Server.Dtos.Level;
+global using Student_game.Server.Dtos.Equipment;
+global using Student_game.Server.Dtos.Item;
 
 global using Student_game.Server.Services.AccountService;
 global using Student_game.Server.Services.ArmourService;
-global using Student_game.Server.Services.EnemieService;
+global using Student_game.Server.Services.EnemyService;
 global using Student_game.Server.Services.FightService;
 global using Student_game.Server.Services.FoodService;
 global using Student_game.Server.Services.StatService;
 global using Student_game.Server.Services.StudentService;
 global using Student_game.Server.Services.WeaponService;
+global using Student_game.Server.Services.LevelService;
+global using Student_game.Server.Services.ShopService;
+using Student_game.Server;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -34,15 +44,26 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
+builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowSpecificOrigins", builder =>{
+            builder.WithOrigins("https://localhost:5174", "https://localhost:5173") // Frontend URL
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+            });
+    });
+
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IArmourService, ArmourService>();
-builder.Services.AddScoped<IEnemieService, EnemieService>();
+builder.Services.AddScoped<IEnemyService, EnemyService>();
 builder.Services.AddScoped<IFightService, FightService>();
 builder.Services.AddScoped<IFoodService, FoodService>();
+builder.Services.AddScoped<ILevelService, LevelService>();
+builder.Services.AddScoped<IShopService, ShopService>();
 builder.Services.AddScoped<IStatService, StatService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IWeaponService, WeaponService>();
-
 
 services.AddHttpContextAccessor();
 
@@ -70,6 +91,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowSpecificOrigins");
 
 app.UseHttpsRedirection();
 

@@ -5,8 +5,8 @@ import Contact from '../views/Landing-page/Contact.vue'
 import Login from '../views/Landing-page/Login.vue'
 import Profile from '../views/Game/Profile.vue'
 import Battle from '../views/Game/Battle.vue'
-import Gym from '../views/Game/Gym.vue'
-import Shop from '../views/Game/Shop.vue'
+import ShopSell from '../views/Game/ShopSell.vue'
+import ShopBuy from '../views/Game/ShopBuy.vue'
 
 const routes = [
     {
@@ -40,15 +40,15 @@ const routes = [
         component: Battle
     },
     {
-        path: '/gym',
-        name: 'Gym',
-        component: Gym
+        path: '/shop-buy',
+        name: 'ShopBuy',
+        component: ShopBuy
     },
     {
-        path: '/shop',
-        name: 'Shop',
-        component: Shop
-    }
+        path: '/shop-sell',
+        name: 'ShopSell',
+        component: ShopSell
+    },
 ]
 
 const router = createRouter({
