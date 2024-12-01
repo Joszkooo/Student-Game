@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0mue9LYBo7R24a2umJPLAoIkD4EGM7JzhuM/xzGl+7jLMks/XuHIqL1BAxZ46MHGYou+wquVETouGIKoREdDUg==",
+  "dgSpecHash": "ZcmcQBPB+h8=",
   "success": true,
-  "projectFilePath": "D:\\CODE\\PracaDyplomowa\\Student_game.Server\\Student_game.Server.csproj",
+  "projectFilePath": "C:\\Users\\joszko\\Documents\\GitHub\\PracaDyplomowa\\Student_game.Server\\Student_game.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joszko\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\joszko\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
@@ -15,7 +15,7 @@
     "C:\\Users\\joszko\\.nuget\\packages\\microsoft.aspnet.webapi.core\\5.3.0\\microsoft.aspnet.webapi.core.5.3.0.nupkg.sha512",
     "C:\\Users\\joszko\\.nuget\\packages\\microsoft.aspnet.webapi.cors\\5.3.0\\microsoft.aspnet.webapi.cors.5.3.0.nupkg.sha512",
     "C:\\Users\\joszko\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\8.0.8\\microsoft.aspnetcore.authentication.google.8.0.8.nupkg.sha512",
-    "C:\\Users\\joszko\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.10\\microsoft.aspnetcore.spaproxy.8.0.10.nupkg.sha512",
+    "C:\\Users\\joszko\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.11\\microsoft.aspnetcore.spaproxy.8.0.11.nupkg.sha512",
     "C:\\Users\\joszko\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\joszko\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
     "C:\\Users\\joszko\\.nuget\\packages\\microsoft.codeanalysis.common\\4.5.0\\microsoft.codeanalysis.common.4.5.0.nupkg.sha512",

@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "LSnE+AIYSrwmnkXEi3bhUJN2FXdnLTAwsRwNtUwH1zs=",
+  "Hash": "+ROEa5uDEEz46Dz12Z4z6Wp7nrkIcG/rnrWbSPaUucg=",
   "Source": "Student_game.Server",
   "BasePath": "_content/Student_game.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "D:\\CODE\\PracaDyplomowa\\student_game.client\\student_game.client.esproj",
+      "Identity": "C:\\Users\\joszko\\Documents\\GitHub\\PracaDyplomowa\\student_game.client\\student_game.client.esproj",
       "Version": 2,
       "Source": "student_game.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",

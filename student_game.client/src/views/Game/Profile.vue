@@ -65,7 +65,8 @@
         margin-bottom: 16px;
     }
     .profile_background{
-        background-color: #5c5454;
+        background-color: #454343;
+        /* background-color: #636363; */
     }
 
 </style>

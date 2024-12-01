@@ -84,6 +84,7 @@ namespace Student_game.Server.Services.FightService
 
                     // transforming player and enemy from db into only data we need 
                     CharactersDTO player = new CharactersDTO{
+                        Name = "Student",
                         HealthPoints = playerDB.HealthPoints,
                         AttackPoints = playerDB.AttackPoints,
                         DefensePoints = playerDB.DefensePoints,
@@ -92,6 +93,7 @@ namespace Student_game.Server.Services.FightService
                         Armour = playerArmourDB,
                     };
                     CharactersDTO enemy = new CharactersDTO{
+                        Name = enemyDB.Name,
                         HealthPoints = enemyDB.HealthPoints,
                         AttackPoints = enemyDB.AttackPoints,
                         DefensePoints = enemyDB.DefensePoints,
@@ -102,13 +104,15 @@ namespace Student_game.Server.Services.FightService
 
                     // moving the rest of implementation to Attack function
                     var response = Attack(player, enemy);
-                    response.WinnerExp += Random.Next(0, 101) * RankChecker(enemyDB);
-                    response.WinnerGold += Random.Next(0, 101) * RankChecker(enemyDB);
-                    playerDB.Money += response.WinnerGold;
-                    playerDB.Experience += response.WinnerExp;
+                    if (response.Winner.Name == "Student")
+                    {
+                        response.WinnerExp += Random.Next(0, 101) * RankChecker(enemyDB);
+                        response.WinnerGold += Random.Next(0, 101) * RankChecker(enemyDB);
+                        playerDB.Money += response.WinnerGold;
+                        playerDB.Experience += response.WinnerExp;
+                    }
                     
                     await _context.SaveChangesAsync();
-                    
                     serviceResponse.Data = response;
             }
             catch (Exception ex)

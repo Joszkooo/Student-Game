@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:5173",
 "RedirectUrl": "",
 "LaunchCommand": "npm run dev",
-"WorkingDirectory": "D:\\CODE\\PracaDyplomowa\\Student_game.Server\\..\\student_game.client",
+"WorkingDirectory": "C:\\Users\\joszko\\Documents\\GitHub\\PracaDyplomowa\\Student_game.Server\\..\\student_game.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

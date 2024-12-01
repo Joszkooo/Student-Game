@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Student_game.Server.Services.EquipmentService;
 
 namespace Student_game.Server.Controllers
 {
@@ -17,22 +16,22 @@ namespace Student_game.Server.Controllers
             _equipmentService = equipmentService;
         }
 
-        [HttpPost("EquipWeapon{StudentId}")]
-        public async Task<IActionResult> EquipWeapon(int StudentId, int WeaponId)
+        [HttpPost("EquipWeapon")]
+        public async Task<IActionResult> EquipWeapon(GetEquipmentServiceDTO studentItem)
         {
-            return Ok(await _equipmentService.EquipWeapon(StudentId, WeaponId));
+            return Ok(await _equipmentService.EquipWeapon(studentItem));
         }
 
-        [HttpPost("EquipArmour{StudentId}")]
-        public async Task<IActionResult> EquipArmour(int StudentId, int ArmourId)
+        [HttpPost("EquipArmour")]
+        public async Task<IActionResult> EquipArmour(GetEquipmentServiceDTO studentItem)
         {
-            return Ok(await _equipmentService.EquipArmour(StudentId, ArmourId));
+            return Ok(await _equipmentService.EquipArmour(studentItem));
         }
 
-        [HttpPost("UseFood{StudentId}")]
-        public async Task<IActionResult> UseFood(int StudentId, int FoodId)
+        [HttpPost("UseFood")]
+        public async Task<IActionResult> UseFood(GetEquipmentServiceDTO studentItem)
         {
-            return Ok(await _equipmentService.UseFood(StudentId, FoodId));
+            return Ok(await _equipmentService.UseFood(studentItem));
         }
     }
 }

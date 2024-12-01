@@ -7,6 +7,7 @@ namespace Student_game.Server.Dtos.Fight
 {
     public class CharactersDTO
     {
+        public string? Name { get; set; }
         public int HealthPoints { get; set; }
         public int AttackPoints { get; set; }
         public int DefensePoints { get; set; }

@@ -26,6 +26,7 @@ global using Student_game.Server.Services.StudentService;
 global using Student_game.Server.Services.WeaponService;
 global using Student_game.Server.Services.LevelService;
 global using Student_game.Server.Services.ShopService;
+global using Student_game.Server.Services.EquipmentService;
 using Student_game.Server;
 
 
@@ -57,6 +58,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IArmourService, ArmourService>();
 builder.Services.AddScoped<IEnemyService, EnemyService>();
+builder.Services.AddScoped<IEquipmentService, EquipmentService>();
 builder.Services.AddScoped<IFightService, FightService>();
 builder.Services.AddScoped<IFoodService, FoodService>();
 builder.Services.AddScoped<ILevelService, LevelService>();
@@ -67,18 +69,18 @@ builder.Services.AddScoped<IWeaponService, WeaponService>();
 
 services.AddHttpContextAccessor();
 
-services.AddAuthentication(options =>
-    {
-        options.DefaultAuthenticateScheme = "Cookies";
-        options.DefaultChallengeScheme = "Google";
-    })
-    .AddGoogle(googleOptions =>
-    {
-        googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-        googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-    });
+// services.AddAuthentication(options =>
+//     {
+//         options.DefaultAuthenticateScheme = "Cookies";
+//         options.DefaultChallengeScheme = "Google";
+//     })
+//     .AddGoogle(googleOptions =>
+//     {
+//         googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+//         googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+//     });
 
-services.AddAuthorization();
+// services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -96,9 +98,9 @@ app.UseCors("AllowSpecificOrigins");
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
+// app.UseAuthentication();
 
-app.UseAuthorization();
+// app.UseAuthorization();
 
 app.MapControllers();
 
