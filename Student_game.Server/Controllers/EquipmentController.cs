@@ -17,22 +17,16 @@ namespace Student_game.Server.Controllers
             _equipmentService = equipmentService;
         }
 
-        [HttpPost("EquipWeapon{StudentId}")]
-        public async Task<IActionResult> EquipWeapon(int StudentId, int WeaponId)
+        [HttpPost("EquipWeapon{studentItem}")]
+        public async Task<IActionResult> EquipWeapon(GetEquipmentServiceDTO studentItem)
         {
-            return Ok(await _equipmentService.EquipWeapon(StudentId, WeaponId));
+            return Ok(await _equipmentService.EquipWeapon(studentItem));
         }
 
         [HttpPost("EquipArmour{StudentId}")]
-        public async Task<IActionResult> EquipArmour(int StudentId, int ArmourId)
+        public async Task<IActionResult> EquipArmour(GetEquipmentServiceDTO studentItem)
         {
-            return Ok(await _equipmentService.EquipArmour(StudentId, ArmourId));
-        }
-
-        [HttpPost("UseFood{StudentId}")]
-        public async Task<IActionResult> UseFood(int StudentId, int FoodId)
-        {
-            return Ok(await _equipmentService.UseFood(StudentId, FoodId));
+            return Ok(await _equipmentService.EquipArmour(studentItem));
         }
     }
 }

@@ -14,6 +14,5 @@ namespace Student_game.Server.Services.StudentService
         Task<ServiceResponse<List<GetArmourDTO>>> GetStudentArmour(int StudentId);
         Task<ServiceResponse<List<GetFoodDTO>>> GetStudentFood(int StudentId);
         ServiceResponse<StudentEquipmentDTO> GetStudentEquipment(int StudentId);
-
     }
 }

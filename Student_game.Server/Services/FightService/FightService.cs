@@ -78,12 +78,17 @@ namespace Student_game.Server.Services.FightService
                 }
                 
                     // if player (student) have weapon/armour, load it
-                    await LoadPlayerEquipment(playerWeaponDB, playerArmourDB, playerDB);
-                    // if enemy have weapon/armour, load it
-                    await LoadEnemyEquipment(enemyWeaponDB, enemyArmourDB, enemyDB);
+                    if (playerDB.WeaponId is not null){
+                        playerWeaponDB = await _context.Weapons.FirstOrDefaultAsync(w => w.Id == playerDB.WeaponId); 
+                    }
+                    if (playerDB.ArmourId is not null){
+                        playerArmourDB = await _context.Armours.FirstOrDefaultAsync(w => w.Id == playerDB.ArmourId);
+                    }
 
                     // transforming player and enemy from db into only data we need 
                     CharactersDTO player = new CharactersDTO{
+                        Id = playerDB.Id,
+                        Name = "Student",
                         HealthPoints = playerDB.HealthPoints,
                         AttackPoints = playerDB.AttackPoints,
                         DefensePoints = playerDB.DefensePoints,
@@ -92,23 +97,25 @@ namespace Student_game.Server.Services.FightService
                         Armour = playerArmourDB,
                     };
                     CharactersDTO enemy = new CharactersDTO{
+                        Id = enemyDB.Id,
+                        Name = enemyDB.Name,
                         HealthPoints = enemyDB.HealthPoints,
                         AttackPoints = enemyDB.AttackPoints,
                         DefensePoints = enemyDB.DefensePoints,
-                        LuckPoints = enemyDB.LuckPoints,
-                        Weapon = enemyWeaponDB,
-                        Armour = enemyArmourDB,
+                        LuckPoints = enemyDB.LuckPoints
                     };
 
                     // moving the rest of implementation to Attack function
                     var response = Attack(player, enemy);
-                    response.WinnerExp += Random.Next(0, 101) * RankChecker(enemyDB);
-                    response.WinnerGold += Random.Next(0, 101) * RankChecker(enemyDB);
-                    playerDB.Money += response.WinnerGold;
-                    playerDB.Experience += response.WinnerExp;
+                    if (response.Winner.Name == "Student")
+                    {
+                        response.WinnerExp += Random.Next(0, 101) * RankChecker(enemyDB);
+                        response.WinnerGold += Random.Next(0, 101) * RankChecker(enemyDB);
+                        playerDB.Money += response.WinnerGold;
+                        playerDB.Experience += response.WinnerExp;
+                    }
                     
                     await _context.SaveChangesAsync();
-                    
                     serviceResponse.Data = response;
             }
             catch (Exception ex)
@@ -118,22 +125,6 @@ namespace Student_game.Server.Services.FightService
                 return serviceResponse;
             }
             return serviceResponse;
-        }
-        // TODO: Można to uprościć prawdopodobnie przez dodanie T zamiast Student/Enemy
-        private async Task LoadPlayerEquipment(Weapon? playerWeaponDB, Armour? playerArmourDB, Student playerDB)
-        {
-            if (playerDB.WeaponId is not null)
-                {playerWeaponDB = await _context.Weapons.FirstOrDefaultAsync(w => w.Id == playerDB.WeaponId);}
-            if (playerDB.ArmourId is not null)
-                {playerArmourDB = await _context.Armours.FirstOrDefaultAsync(w => w.Id == playerDB.ArmourId);}
-        }
-
-        private async Task LoadEnemyEquipment(Weapon? enemyWeaponDB, Armour? enemyArmourDB, Enemy enemyDB)
-        {
-            if (enemyDB.WeaponId is not null)
-                {enemyWeaponDB = await _context.Weapons.FirstOrDefaultAsync(w => w.Id == enemyDB.WeaponId);}
-            if (enemyDB.ArmourId is not null)
-                {enemyArmourDB = await _context.Armours.FirstOrDefaultAsync(w => w.Id == enemyDB.ArmourId);}
         }
 
         private int RankChecker(Enemy enemy)

@@ -25,7 +25,6 @@ namespace Student_game.Server.Models
         public Rarity Rarity{ get; set; }
 
         // db relation
-        public ICollection<Enemy> Enemies { get; set; } = new List<Enemy>();
         public ICollection<Student_Weapon> Student_Weapons { get; set; } = new List<Student_Weapon>();
 
     }

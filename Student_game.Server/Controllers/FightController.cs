@@ -17,13 +17,13 @@ namespace Student_game.Server.Controllers
         }
 
 
-        [HttpPost("FightOnline")]
+        [HttpPost("FightOnline{characters}")]
         public async Task<IActionResult> FightOnline(FightCharactersDTO characters)
         {
             return Ok(new JsonResult(await _fightService.FightOnline(characters)));
         }
 
-        [HttpPost("FightLocally")]
+        [HttpPost("FightLocally{characters}")]
         public async Task<IActionResult> FightLocally(FightCharactersDTO characters)
         {
             return Ok(new JsonResult(await _fightService.FightLocally(characters)));

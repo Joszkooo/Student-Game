@@ -1,5 +1,5 @@
 <template>
-    <div class="text-white py-11 px-6">
+    <div class="text-white py-11 px-6 min-h-screen ">
         <h1 class="text-4xl font-bold mb-8 bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent ">My story...</h1>
         <div class="columns-2 space-y-6"> 
             <p class="text-lg">

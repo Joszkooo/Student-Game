@@ -32,18 +32,5 @@ namespace Student_game.Server.Models
         [Required]
         public int LuckPoints { get; set; } = 100;
 
-
-        [ForeignKey("Weapon")]
-        public int? WeaponId { get; set; }
-        
-        [ForeignKey("Armor")]
-        public int? ArmourId { get; set;}
-        
-        // Db relation
-        [Required]
-        public Weapon Weapon { get; set; } = null!;
-        
-        [Required]
-        public Armour Armour { get; set; } = null!;
     }
 }

@@ -76,6 +76,10 @@
     @apply bg-background text-foreground;
   }
 }
+.shop_background{
+  background-color: #525252;
+}
+
 .body-background { 
   background-image:
     radial-gradient(circle at center, rgba(255, 255, 255, 0.005) 0, rgba(255, 255, 255, 0.005) 1px, transparent 1px),

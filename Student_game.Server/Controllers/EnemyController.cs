@@ -16,10 +16,10 @@ namespace Student_game.Server.Controllers
             _enemyService = enemyService;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetEnemyById(int id)
+        [HttpGet("GetEnemyBy{Id}")]
+        public async Task<IActionResult> GetEnemyById(int Id)
         {
-            return Ok(new JsonResult(await _enemyService.GetEnemyById(id)));
+            return Ok(new JsonResult(await _enemyService.GetEnemyById(Id)));
         }
         
         [HttpGet]

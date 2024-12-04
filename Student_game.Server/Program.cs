@@ -26,6 +26,7 @@ global using Student_game.Server.Services.StudentService;
 global using Student_game.Server.Services.WeaponService;
 global using Student_game.Server.Services.LevelService;
 global using Student_game.Server.Services.ShopService;
+global using Student_game.Server.Services.EquipmentService;
 using Student_game.Server;
 
 
@@ -57,6 +58,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IArmourService, ArmourService>();
 builder.Services.AddScoped<IEnemyService, EnemyService>();
+builder.Services.AddScoped<IEquipmentService, EquipmentService>();
 builder.Services.AddScoped<IFightService, FightService>();
 builder.Services.AddScoped<IFoodService, FoodService>();
 builder.Services.AddScoped<ILevelService, LevelService>();

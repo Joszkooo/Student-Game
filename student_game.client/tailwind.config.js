@@ -24,10 +24,10 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        'one': "url('./public/klif rycerz.png')",
-        'two': "url('./public/pixelowe miasto.png')",
-        'three': "url('./public/zamek dziewczyna.png')",
-        'four': "url('./public/zamek pioruny.jpg')",
+        'one': "url('/klif rycerz.png')",
+        'two': "url('/pixelowe miasto.png')",
+        'three': "url('/zamek dziewczyna.png')",
+        'four': "url('/zamek pioruny.jpg')",
       },
       colors: {
         border: "hsl(var(--border))",
