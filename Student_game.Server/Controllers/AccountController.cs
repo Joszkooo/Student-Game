@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Student_game.Server.Controllers
 {
@@ -11,10 +13,66 @@ namespace Student_game.Server.Controllers
     {
         
         private readonly IAccountService _accountService;
-
-        public AccountController(IAccountService accountService)
+        private readonly DataContext _context;
+        public AccountController(IAccountService accountService, DataContext context)
         {
             _accountService = accountService;
+            _context = context;
+        }
+
+        [HttpGet("signin-google")]
+        public IActionResult SingInGoogle()
+        {
+            var redirectUrl = Url.Action("GoogleResponse", "Account");
+            var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+            return Challenge(properties, "Google");
+        }
+
+        [HttpGet("google-response")]
+        public async Task<IActionResult> GoogleResponse()
+        {
+            var result = await HttpContext.AuthenticateAsync("Cookies");
+            var claims = result.Principal?.Identities?.FirstOrDefault()?.Claims;
+
+            var email = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+            var name = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+
+            if (email == null || name == null) return BadRequest("Failed to retrieve Google data");
+
+            // Check if user exists
+            var existingAccount = await _context.Accounts.FirstOrDefaultAsync(a => a.Email == email);
+
+            if (existingAccount == null)
+            {
+                var account = new Account
+                {
+                    Name = name,
+                    Email = email,
+                    Nickname = name.Split(' ')[0],
+                    DateCreated = DateTime.UtcNow
+                };
+                var student = new Student();
+                student.AccountId = account.Id;
+                var studentStas = new Stat();
+                studentStas.StudentId = student.Id;
+                var studentWeapon = new Student_Weapon();
+                studentWeapon.StudentId = student.Id;
+                var studentFood = new Student_Food();
+                studentFood.StudentId = student.Id;
+                var studentArmour = new Student_Armour();
+                studentArmour.Id = student.Id;
+
+
+                _context.Accounts.Add(account);
+                _context.Students.Add(student);
+                _context.Stats.Add(studentStas);
+                _context.Student_Weapons.Add(studentWeapon);
+                _context.Student_Armors.Add(studentArmour);
+                _context.Student_Foods.Add(studentFood);
+                await _context.SaveChangesAsync();
+            }
+
+            return Redirect("/profile"); // Redirect to the appropriate frontend view
         }
         
         [HttpGet("Get{AccountId}")]

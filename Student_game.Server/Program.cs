@@ -45,15 +45,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-builder.Services.AddCors(options =>
-    {
-        options.AddPolicy("AllowSpecificOrigins", builder =>{
-            builder.WithOrigins("https://localhost:5174", "https://localhost:5173") // Frontend URL
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowCredentials();
-            });
-    });
+// builder.Services.AddCors(options =>
+//     {
+//         options.AddPolicy("AllowSpecificOrigins", builder =>{
+//             builder.WithOrigins("https://localhost:5174", "https://localhost:5173") // Frontend URL
+//                 .AllowAnyHeader()
+//                 .AllowAnyMethod()
+//                 .AllowCredentials();
+//             });
+//     });
 
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IArmourService, ArmourService>();
@@ -69,6 +69,7 @@ builder.Services.AddScoped<IWeaponService, WeaponService>();
 
 services.AddHttpContextAccessor();
 
+<<<<<<< Updated upstream
 // services.AddAuthentication(options =>
 //     {
 //         options.DefaultAuthenticateScheme = "Cookies";
@@ -79,11 +80,25 @@ services.AddHttpContextAccessor();
 //         googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
 //         googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
 //     });
+=======
+services.AddAuthentication( options =>
+{
+        options.DefaultAuthenticateScheme = "Cookies";
+        options.DefaultChallengeScheme = "Google";
+})
+.AddCookie("Cookies")
+.AddGoogle("Google", googleOptions=>
+{
+    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+});
+>>>>>>> Stashed changes
 
 // services.AddAuthorization();
 
 var app = builder.Build();
 
+app.UseCors(c=>c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 app.UseDefaultFiles();
 app.UseStaticFiles();
 

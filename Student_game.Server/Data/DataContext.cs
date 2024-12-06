@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Student_game.Server.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext
     {
-        public DataContext(DbContextOptions options) : base(options) {}
+        public DataContext(DbContextOptions<DataContext> options) : base(options) {}
         public DbSet<Account> Accounts {get; set;}
         public DbSet<Armour> Armours {get; set;}
         public DbSet<Enemy> Enemies {get; set;}

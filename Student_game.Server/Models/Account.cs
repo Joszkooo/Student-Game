@@ -23,9 +23,6 @@ namespace Student_game.Server.Models
         public string Email { get; set; } = string.Empty;
 
         public DateTime DateCreated { get; set;} = DateTime.Now;
-        
-        [Required]
-        public DateOnly Born_date { get; set; }
 
         [Required]
         public bool IsAdmin { get; set;} = false;

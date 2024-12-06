@@ -64,8 +64,7 @@ namespace Student_game.Server.Services.FightService
 
                 // we are deciding if we want random enemy or specific one
                 var enemyDB = characters.OpponentId is null 
-                    ? (await _enemyService.GetRandomEnemy()).Data 
-                    : await _context.Enemies.FirstOrDefaultAsync(x => x.Id == characters.OpponentId);
+                    ? (await _enemyService.GetRandomEnemy()).Data : await _context.Enemies.FirstOrDefaultAsync(x => x.Id == characters.OpponentId);
                 
                 // player (student) must be declared
                 var playerDB = await _context.Students.FirstOrDefaultAsync(x => x.Id == characters.AttackerId);
