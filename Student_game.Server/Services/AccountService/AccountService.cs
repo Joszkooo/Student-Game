@@ -26,7 +26,7 @@ namespace Student_game.Server.Services.AccountService
             var serviceResponse = new ServiceResponse<GetAccountDTO>();
             try
             {
-                var account = await _context.Accounts.FirstOrDefaultAsync(a => a.Id == AccountId);
+                var account = await _context.Users.FirstOrDefaultAsync(a => a.Id == AccountId);
                 if (account is not null)
                 {
                     serviceResponse.Data = account.Adapt<GetAccountDTO>();
@@ -50,7 +50,7 @@ namespace Student_game.Server.Services.AccountService
             var serviceResponse = new ServiceResponse<Account>();
             try
             {
-                var accountDB = await _context.Accounts.FirstOrDefaultAsync(a => a.Id == AccountId);
+                var accountDB = await _context.Users.FirstOrDefaultAsync(a => a.Id == AccountId);
                 if (accountDB is null)
                 {
                     serviceResponse.Success = false;
@@ -96,7 +96,7 @@ namespace Student_game.Server.Services.AccountService
             var serviceResponse = new ServiceResponse<List<Account>>();
             try
             {
-                var accountsDB = await _context.Accounts.ToListAsync();
+                var accountsDB = await _context.Users.ToListAsync();
                 if (accountsDB.Any())
                 {
                     serviceResponse.Data = accountsDB;

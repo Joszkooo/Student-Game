@@ -28,6 +28,9 @@ global using Student_game.Server.Services.LevelService;
 global using Student_game.Server.Services.ShopService;
 global using Student_game.Server.Services.EquipmentService;
 using Student_game.Server;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters; 
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,7 +45,17 @@ builder.Services.AddDbContext<DataContext>(option =>
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen( options => 
+{
+    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey
+    });
+    options.OperationFilter<SecurityRequirementsOperationFilter>();
+});
+
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddCors(options =>
@@ -69,18 +82,24 @@ builder.Services.AddScoped<IWeaponService, WeaponService>();
 
 services.AddHttpContextAccessor();
 
-services.AddAuthentication(options =>
-    {
+services.AddAuthentication( options =>
+{
         options.DefaultAuthenticateScheme = "Cookies";
         options.DefaultChallengeScheme = "Google";
-    })
-    .AddGoogle(googleOptions =>
-    {
-        googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-        googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-    });
+})
+.AddCookie("Cookies")
+.AddGoogle("Google", googleOptions=>
+{
+    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+});
 
 services.AddAuthorization();
+
+builder.Services.AddIdentity<Account, IdentityRole<int>>()
+    .AddEntityFrameworkStores<DataContext>()
+    .AddDefaultUI()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 

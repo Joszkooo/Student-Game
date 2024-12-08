@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace Student_game.Server.Models
 {
-    public class Account
+    public class Account: IdentityUser<int>
     {
-        public int Id { get; set; }
-        
         [Required]
         [Column(TypeName = "varchar(50)")]
         public string Name { get; set; } = string.Empty;
@@ -17,10 +17,6 @@ namespace Student_game.Server.Models
         [Required]
         [Column(TypeName = "varchar(50)")]
         public string Nickname { get; set; } = string.Empty;
-
-        [Required, EmailAddress]
-        [Column(TypeName = "varchar(50)")]
-        public string Email { get; set; } = string.Empty;
 
         public DateTime DateCreated { get; set;} = DateTime.Now;
         
@@ -31,6 +27,6 @@ namespace Student_game.Server.Models
         public bool IsAdmin { get; set;} = false;
 
         // Db relation
-        public Student? Student { get; set; }
+        // public Student? Student { get; set; }
     }
 }
