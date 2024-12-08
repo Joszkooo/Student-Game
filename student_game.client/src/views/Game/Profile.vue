@@ -22,38 +22,6 @@
                 <div class="text-center font-bold text-h5 mdi mdi-shield-outline"> {{ profile.defensePoints }} DEF</div>
             </div>
         </div>
-<<<<<<< Updated upstream
-        <div id="eq" class="col-span-12 md:col-span-8 profile_background rounded-xl shadow-2xl p-8">
-            <p>Nazwa, Ilosc buffa, Cena, Rzadkość, Ilość</p>
-            <div class="card justify-start p-5 list-none">
-                <li v-for="item in equipment.armors">
-                    {{ item.name }}, {{ item.defense }}DEF, {{ item.cost }}, {{ item.rarity }}, {{ item.quantity }}
-                </li>
-                <hr class="h-px my-8 bg-gray-500 border-0 dark:bg-gray-700">
-                <li v-for="item in equipment.foods">
-                    {{ item.name }}, {{ item.boostType }}, {{ item.boostAmount }}, {{ item.duration }}, {{ item.cost }}, {{ item.rarity }}, {{ item.quantity }}
-                </li>
-                <hr class="h-px my-8 bg-gray-500 border-0 dark:bg-gray-700">
-                <li v-for="item in equipment.weapons">
-                    {{ item.name }}, {{ item.damage }}DMG, {{ item.hitChance }}, {{ item.cost }}, {{ item.rarity }}, {{ item.quantity }}
-                </li>
-            </div>
-        </div>
-        <div id="rest" class="col-span-12 md:col-span-4 rounded-xl profile_background shadow-2xl p-8">
-            <div class="card p-0 text-center">
-                {{ profile.nickname }} <br/>
-                {{ profile.money }} money <br/>
-                {{ profile.energy }} energy <br/>
-                {{ profile.rank }} rank <br/>
-                {{ profile.level}} lvl
-                <hr class="h-px my-8 bg-gray-500 border-0 dark:bg-gray-700">
-                {{ profile.experience }} exp <br/>
-                {{ profile.healthPoints }} hp<br/>
-                {{ profile.attackPoints }} atk<br/>
-                {{ profile.defensePoints }} def<br/>
-                {{ profile.luckPoints }} luck<br/>
-                {{ profile.intelligencePoints }} int
-=======
         <div id="eq" class="col-span-12 md:col-span-8 profile_background rounded-xl shadow-2xl p-8 ">
             <div class="card p-5">
                 <v-table class="profile_background text-slate-200">
@@ -209,7 +177,6 @@
                     <li>{{ profile.luckPoints }} luck</li>
                     <li  class="bg-[#424242]">{{ profile.intelligencePoints }} int</li>
                 </ul>
->>>>>>> Stashed changes
             </div>
         </div>
     </div>
@@ -230,14 +197,9 @@
 
 <script>
 import axios from 'axios';
-<<<<<<< Updated upstream
-
-export default {
-=======
 const studentId = 1;
 
 export default {    
->>>>>>> Stashed changes
     data() {
         return {
             profile: {
@@ -323,20 +285,6 @@ export default {
         },
 
         async fetchProfile() {
-<<<<<<< Updated upstream
-        try {
-            const studentId = 1;
-            const profilResponse = await axios.get(`http://localhost:5033/api/Student/GetStudentProfile${studentId}`);
-            
-            if (profilResponse.data.value.success) {
-                this.profile = profilResponse.data.value.data;
-            } else {
-                console.error("Failed to fetch profile: ", profilResponse.data.value.message);
-            }
-        } catch (error) {
-            console.error("Error fetching profile: ", error);
-        }
-=======
             try {
                 const profilResponse = await axios.get(`http://localhost:5033/api/Student/GetStudentProfile${studentId}`);
                 
@@ -386,7 +334,6 @@ export default {
             catch (error) {
                 console.error("Error fetching armour: ", error);
             }
->>>>>>> Stashed changes
         }
     }
 };
