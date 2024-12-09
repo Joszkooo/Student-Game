@@ -12,8 +12,7 @@
                 <a class="hover:underline cursor-pointer duration-100 hover:text-gray-300"><router-link :to="{ name: 'About' }">About</router-link></a>
                 <a class="hover:underline cursor-pointer duration-100 hover:text-gray-300" href="https://github.com/Joszkooo" target="_blank">Other projects</a>
             </div>
-            <Button class="hover:underline px-5 shadow-neon bg-black-500 cursor-pointer duration-100 hover:text-gray-300 rounded-full"><router-link :to="{ name: 'Login' }">Login!</router-link></Button>
-        
+            <Button class="hover:underline px-5 shadow-neon bg-black-500 cursor-pointer duration-100 hover:text-gray-300 rounded-full"@click="">Zaloguj się!</Button>
         </nav>
     </header>
 

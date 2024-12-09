@@ -59,9 +59,6 @@ namespace Student_game.Server.Services.FightService
                 Weapon? playerWeaponDB = null;
                 Armour? playerArmourDB = null;
 
-                Weapon? enemyWeaponDB = null;
-                Armour? enemyArmourDB = null;
-
                 // we are deciding if we want random enemy or specific one
                 var enemyDB = characters.OpponentId is null 
                     ? (await _enemyService.GetRandomEnemy()).Data 

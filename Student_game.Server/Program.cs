@@ -27,6 +27,7 @@ global using Student_game.Server.Services.WeaponService;
 global using Student_game.Server.Services.LevelService;
 global using Student_game.Server.Services.ShopService;
 global using Student_game.Server.Services.EquipmentService;
+
 using Student_game.Server;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
@@ -58,15 +59,15 @@ builder.Services.AddSwaggerGen( options =>
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-builder.Services.AddCors(options =>
-    {
-        options.AddPolicy("AllowSpecificOrigins", builder =>{
-            builder.WithOrigins("https://localhost:5174", "https://localhost:5173") // Frontend URL
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowCredentials();
-            });
-    });
+// builder.Services.AddCors(options =>
+//     {
+//         options.AddPolicy("AllowSpecificOrigins", builder =>{
+//             builder.WithOrigins("https://localhost:5174", "https://localhost:5173") // Frontend URL
+//                 .AllowAnyHeader()
+//                 .AllowAnyMethod()
+//                 .AllowCredentials();
+//             });
+//     });
 
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IArmourService, ArmourService>();
@@ -103,6 +104,7 @@ builder.Services.AddIdentity<Account, IdentityRole<int>>()
 
 var app = builder.Build();
 
+app.UseCors(c=>c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 app.UseDefaultFiles();
 app.UseStaticFiles();
 

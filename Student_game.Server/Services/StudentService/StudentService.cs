@@ -205,6 +205,8 @@ namespace Student_game.Server.Services.StudentService
                 {
                     GetStudentProfileDTO response = student.Adapt<GetStudentProfileDTO>(); 
                     response.Nickname = student.Account.Nickname;
+                    response.ArmourId = student.ArmourId is null ? null : student.ArmourId;
+                    response.WeaponId = student.WeaponId is null ? null : student.WeaponId;
                     
                     serviceResponse.Data = response;
                 }

@@ -11,7 +11,7 @@
           "AutoMapper": "13.0.1",
           "Mapster": "7.4.0",
           "Microsoft.AspNet.WebApi.Cors": "5.3.0",
-          "Microsoft.AspNetCore.Authentication.Google": "8.0.8",
+          "Microsoft.AspNetCore.Authentication.Google": "8.0.11",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.11",
           "Microsoft.AspNetCore.Identity.UI": "8.0.11",
           "Microsoft.AspNetCore.SpaProxy": "8.0.11",
@@ -145,11 +145,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Authentication.Google/8.0.8": {
+      "Microsoft.AspNetCore.Authentication.Google/8.0.11": {
         "runtime": {
           "lib/net8.0/Microsoft.AspNetCore.Authentication.Google.dll": {
-            "assemblyVersion": "8.0.8.0",
-            "fileVersion": "8.0.824.36908"
+            "assemblyVersion": "8.0.11.0",
+            "fileVersion": "8.0.1124.52116"
           }
         }
       },
@@ -1267,12 +1267,12 @@
       "path": "microsoft.aspnet.webapi.cors/5.3.0",
       "hashPath": "microsoft.aspnet.webapi.cors.5.3.0.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Authentication.Google/8.0.8": {
+    "Microsoft.AspNetCore.Authentication.Google/8.0.11": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Hc6PfWcpNCSq9ZhesZSgLD62ACsxBuAx9jhkOv+No5tx+AdPPU+tonrxzM+PuTDvijOVPy4YydzuDK9NR4Z+PQ==",
-      "path": "microsoft.aspnetcore.authentication.google/8.0.8",
-      "hashPath": "microsoft.aspnetcore.authentication.google.8.0.8.nupkg.sha512"
+      "sha512": "sha512-XYjmQF9ggDnpXds7aH5CgW2SWVmubJ/F6NOnDwDseMYnEBZSwhstkY9qZszd6wsAhpW1HeT9yO9nZqFPRMiDAA==",
+      "path": "microsoft.aspnetcore.authentication.google/8.0.11",
+      "hashPath": "microsoft.aspnetcore.authentication.google.8.0.11.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/8.0.11": {
       "type": "package",

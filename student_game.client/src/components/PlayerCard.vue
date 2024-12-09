@@ -12,9 +12,9 @@
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
             <v-list-item
                 density="compact"
-                prepend-icon="mdi mdi-one-up"
+                prepend-icon="mdi-heart-outline"
             >
-                <v-list-item-subtitle class="text-neutral-950">{{ rank }} </v-list-item-subtitle>
+                <v-list-item-subtitle class="text-neutral-950">{{ hp }} HP </v-list-item-subtitle>
             </v-list-item>
         </v-col>
     
@@ -27,6 +27,7 @@
             </v-list-item>
         </v-col>
     </v-row>
+    
     <v-list class="bg-transparent">
         <v-list-item 
             density="compact" 
@@ -56,12 +57,12 @@
             </v-row>
         </v-list-item>
     </v-list>
-    <button> Wybierz! </button>
 </template>
 
 <script>
 export default {
     props: {
+        hp: Number,
         attackPoints: Number,
         level: Number,
         defensePoints: Number,
@@ -70,4 +71,3 @@ export default {
     }
 }
 </script>
-

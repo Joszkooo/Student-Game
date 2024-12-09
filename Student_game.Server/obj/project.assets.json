@@ -158,7 +158,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Authentication.Google/8.0.8": {
+      "Microsoft.AspNetCore.Authentication.Google/8.0.11": {
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.AspNetCore.Authentication.Google.dll": {
@@ -2093,10 +2093,10 @@
         "microsoft.aspnet.webapi.cors.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Authentication.Google/8.0.8": {
-      "sha512": "Hc6PfWcpNCSq9ZhesZSgLD62ACsxBuAx9jhkOv+No5tx+AdPPU+tonrxzM+PuTDvijOVPy4YydzuDK9NR4Z+PQ==",
+    "Microsoft.AspNetCore.Authentication.Google/8.0.11": {
+      "sha512": "XYjmQF9ggDnpXds7aH5CgW2SWVmubJ/F6NOnDwDseMYnEBZSwhstkY9qZszd6wsAhpW1HeT9yO9nZqFPRMiDAA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authentication.google/8.0.8",
+      "path": "microsoft.aspnetcore.authentication.google/8.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2104,7 +2104,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net8.0/Microsoft.AspNetCore.Authentication.Google.dll",
         "lib/net8.0/Microsoft.AspNetCore.Authentication.Google.xml",
-        "microsoft.aspnetcore.authentication.google.8.0.8.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.google.8.0.11.nupkg.sha512",
         "microsoft.aspnetcore.authentication.google.nuspec"
       ]
     },
@@ -5312,7 +5312,7 @@
       "AutoMapper >= 13.0.1",
       "Mapster >= 7.4.0",
       "Microsoft.AspNet.WebApi.Cors >= 5.3.0",
-      "Microsoft.AspNetCore.Authentication.Google >= 8.0.8",
+      "Microsoft.AspNetCore.Authentication.Google >= 8.0.11",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.11",
       "Microsoft.AspNetCore.Identity.UI >= 8.0.11",
       "Microsoft.AspNetCore.SpaProxy >= 8.*-*",
@@ -5383,7 +5383,7 @@
           },
           "Microsoft.AspNetCore.Authentication.Google": {
             "target": "Package",
-            "version": "[8.0.8, )"
+            "version": "[8.0.11, )"
           },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",

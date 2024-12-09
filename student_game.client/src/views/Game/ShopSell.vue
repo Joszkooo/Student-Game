@@ -34,7 +34,7 @@
         <!-- Armor Section -->
         <div class="shop_background rounded-lg shadow-md p-4 text-slate-200">
             <h2 class="text-2xl font-semibold flex justify-center mb-4">Zbroje</h2>
-            <div v-for="armour in userArmour" :key="armour.id" class="border-b py-2 flex justify-between items-center">
+            <div v-for="(armour, index) in userArmour" :key="armour.id" class="border-b py-2 flex justify-between items-center">
                 <div>
                     <p class="text-xl font-medium">{{ armour.name }} x {{ armour.quantity }}</p>
                     <p class="text-base text-red">Obrona: {{ armour.defense }}</p>
@@ -48,6 +48,7 @@
                 </v-btn>
             </div>
         </div>
+        
 
         <!-- Food Section -->
         <div class="shop_background rounded-lg shadow-md p-4 text-slate-200">
@@ -93,12 +94,12 @@
     
 <script>
     import axios from 'axios';
-
+    
     const userId = 1;
 export default {
-    
     data() {
         return {
+            bgColors: ["#454343", "#636363"],
             sellResponse: [],
             sellSuccess: false,
             userFood: [],
