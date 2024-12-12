@@ -50,7 +50,7 @@ namespace Student_game.Server.Services.StudentService
                 var armourDTO = await _context.Student_Armors
                     .Where(x => x.StudentId == StudentId)
                     .Include(x => x.Armour)
-                    .Select(x => new GetArmourDTO   // idk how to use Mapster with this DTO so i do it manually 
+                    .Select(x => new GetArmourDTO   // idk how to use Mapster with this DTO so i did it manually 
                     {
                         Id = x.Armour.Id,
                         Name = x.Armour.Name,
@@ -88,7 +88,7 @@ namespace Student_game.Server.Services.StudentService
                 var weaponDTO = await _context.Student_Weapons
                     .Where(x => x.StudentId == StudentId)
                     .Include(x => x.Weapon)
-                    .Select(x => new GetWeaponDTO   // idk how to use Mapster with this DTO so i do it manually 
+                    .Select(x => new GetWeaponDTO   // idk how to use Mapster with this DTO so i did it manually 
                     {
                         Id = x.Weapon.Id,
                         Name = x.Weapon.Name,
@@ -127,7 +127,7 @@ namespace Student_game.Server.Services.StudentService
                 var foodDTO = await _context.Student_Foods
                     .Where(s => s.StudentId == StudentId)
                     .Include(f => f.Food)
-                    .Select(f => new GetFoodDTO     // idk how to use Mapster with this DTO so i do it manually 
+                    .Select(f => new GetFoodDTO     // idk how to use Mapster with this DTO so i did it manually 
                     {
                         Id = f.Food.Id,
                         Name = f.Food.Name,

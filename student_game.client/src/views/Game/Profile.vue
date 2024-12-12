@@ -7,26 +7,26 @@
         <div class="col-span-12 md:col-span-4">
             <div class="card relative h-28 rounded-xl p-4 shop_background shadow-2xl">
                 <span class="text-sm font-medium leading-none"> healthPoints </span>
-                <p class="text-center font-bold text-h5 mdi mdi-heart-outline"> {{ profile.healthPoints }} HP</p>
+                <p class="text-center text-3xl font-bold mdi mdi-heart-outline"> {{ profile.healthPoints }} HP / 300 HP</p>
             </div>
         </div>
 
         <div class="col-span-12 md:col-span-4 text-slate-200">
             <div class="card relative h-28 rounded-xl p-4 shop_background shadow-2xl">
                 <span class="text-sm font-medium leading-none"> attackPoints </span>
-                <div class="text-center font-bold text-h5 mdi mdi-sword"> {{ profile.attackPoints }} ATK</div>
+                <div class="text-center text-2xl font-bold text-h5 mdi mdi-sword"> {{ profile.attackPoints }} ATK / 200 ATK</div>
             </div>
         </div>
 
         <div class="col-span-12 md:col-span-4 text-slate-200">
             <div class="card relative h-28 rounded-xl p-4 shop_background shadow-2xl">
                 <span class="text-sm font-medium leading-none"> defensePoints </span>
-                <div class="text-center font-bold text-h5 mdi mdi-shield-outline"> {{ profile.defensePoints }} DEF</div>
+                <div class="text-center text-2xl font-bold text-h5 mdi mdi-shield-outline"> {{ profile.defensePoints }} DEF/ 100 DEF</div>
             </div>
         </div>
         <div id="eq" class="col-span-12 md:col-span-8 shop_background rounded-xl shadow-2xl p-8 ">
             <div class="card p-5">
-                <v-table class="profile_background text-slate-200">
+                <v-table class="bg-[#454343] text-slate-200">
                     <thead>
                         <tr class="bg-[#424242]">
                             <th class="text-left ">
@@ -51,19 +51,18 @@
                     </thead>
                     <tbody>
                         <tr
-                            v-for="item in equipment.armors">
-                            <!-- <div :style="`background-color: ${bgColors[index%2]} -->
+                            v-for="item in equipment.armors" :key="item.id">
                                 <td>{{ item.name }}</td>
                                 <td>{{ item.defense }}</td>
                                 <td>{{ item.cost }}</td>
                                 <td>{{ item.rarity }}</td>
                                 <td>{{ item.quantity }}</td>
-                                <td class="text-right"> <button>Załóż</button> </td>
+                                <td class="text-right"> <button @click="equipArmour(item.id)">Załóż</button> </td>
                         </tr>
                     </tbody>
                 </v-table>
                 <hr class="h-px my-4 bg-gray-500 border-0 dark:bg-gray-700">
-                <v-table class="profile_background text-slate-200">
+                <v-table class="bg-[#454343] text-slate-200">
                     <thead>
                         <tr class="bg-[#424242]">
                             <th class="text-left">
@@ -98,13 +97,13 @@
                                     <td>{{ item.cost }}</td>
                                     <td>{{ item.rarity }}</td>
                                     <td>{{ item.quantity }}</td>
-                                    <td class="text-right"> <button>Załóż</button> </td>
+                                    <td class="text-right"></td>
                         </tr>
                         
                     </tbody>
                 </v-table>
                 <hr class="h-px my-4 bg-gray-500 border-0 dark:bg-gray-700">
-                <v-table class="profile_background text-slate-200"> <!-- <div :style="`background-color: ${bgColors[index%2]}`"> -->
+                <v-table class="bg-[#454343] text-slate-200"> <!-- <div :style="`background-color: ${bgColors[index%2]}`"> -->
                     <thead>
                         <tr class="bg-[#424242]">
                             <th class="text-left">
@@ -132,14 +131,14 @@
                     </thead>
                     <tbody>
                         <tr
-                            v-for="item in equipment.weapons">
+                            v-for="item in equipment.weapons" :key="item.id">
                                     <td>{{ item.name }}</td>
                                     <td>{{ item.damage }} DMG</td>
                                     <td>{{ item.hitChance }}%</td>
                                     <td>{{ item.cost }}</td>
                                     <td>{{ item.rarity }}</td>
                                     <td>{{ item.quantity }}</td>
-                                    <td class="text-right"> <button>Załóż</button> </td>
+                                    <td class="text-right"> <button @click="equipWeapon(item.id)">Załóż</button> </td>
                         </tr>
                     </tbody>
                 </v-table>
@@ -157,7 +156,6 @@
                         <li>{{ userWeapon.rarity }}</li>
                     </ul>
                     <h2 v-if="userWeapon.id == 0">Brak założonej broni</h2>
-                    <v-btn v-if="userWeapon.id != 0" class="text-black rounded bg-white" id="takeOff">Sciągnij</v-btn>
                 </div>
                 <div id="armour" class="border-4 border-[#424242]">
                     <h2 class="text-slate-200">Zbroja</h2>
@@ -168,7 +166,6 @@
                         <li>{{ userArmour.rarity }}</li>
                     </ul>
                     <h2 v-if="userArmour.id == 0">Brak założonej broni</h2>
-                    <v-btn v-if="userArmour.id != 0" class="text-black rounded bg-white" id="takeOff">Sciągnij</v-btn>
                 </div>
             </div>
             <div id="minor info" class="card p-0 text-center">
@@ -182,6 +179,19 @@
                     <li  class="bg-[#424242]">{{ profile.intelligencePoints }} int</li>
                 </ul>
             </div>
+            <div id="minor info" class="card p-0 text-center">
+                <ul>
+                    <li  class="bg-[#424242]">{{ profile.healthPoints }} HP 
+                        <button class="">+</button> <button>-</button>
+                    </li>
+                    <li>{{ profile.attackPoints }} ATK </li>
+                    <li  class="bg-[#424242]">{{ profile.defensePoints }} DEF </li>
+                    <li>{{ profile.luckPoints}} luck </li>
+                    <li  class="bg-[#424242]">{{ profile.intelligencePoints }} int </li>
+                    <li>{{ profile.levelPoints }} lvl points</li>
+                    <li  class="bg-[#424242]">{{ profile.level }} level</li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -193,10 +203,6 @@
         box-sizing: border-box;
         margin-bottom: 16px;
     }
-    .profile_background{
-        background-color: #454343;
-        /* background-color: #636363; */
-    }
 </style>
 
 <script>
@@ -205,6 +211,10 @@ const studentId = 1;
 export default {    
     data() {
         return {
+            studentItem: {
+                "studentID": studentId,
+                "itemID": 0
+            },
             profile: {
                 nickname: 'none',
                 money: 0,
@@ -335,6 +345,31 @@ export default {
             }
             catch (error) {
                 console.error("Error fetching armour: ", error);
+            }
+        },
+        async equipWeapon(itemID){
+            this.studentItem.itemID = itemID;
+            const equipWeaponResponse = await axios.post(`http://localhost:5033/api/Equipment/EquipWeapon`, this.studentItem);
+            if(equipWeaponResponse.data.value.success){
+                console.log(equipWeaponResponse.data.value.message);
+
+                this.fetchProfile();
+                this.fetchEquipment();
+                this.fetchWeapon();
+            }else{
+                console.error("Error fetching equipWeapon: ", equipWeaponResponse.data.value.message);
+            }
+        },
+        async equipArmour(itemID){
+            this.studentItem.itemID = itemID;
+            const equipArmourResponse = await axios.post(`http://localhost:5033/api/Equipment/EquipArmour`, this.studentItem);
+            if(equipArmourResponse.data.value.success){
+                console.log(equipArmourResponse.data.value.message);
+                this.fetchProfile();
+                this.fetchEquipment();
+                this.fetchArmour();
+            }else{
+                console.error("Error fetching equipArmour: ", equipArmourResponse.data.value.message);
             }
         }
     }

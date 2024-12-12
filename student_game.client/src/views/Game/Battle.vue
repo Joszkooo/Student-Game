@@ -126,8 +126,8 @@ export default{
             enemyId: 0,
             fightEnd: false,
             characters:{
-            "attackerId": studentId,
-            "opponentId": 0
+                "attackerId": studentId,
+                "opponentId": 0
             },
             enemyPicture: [
                 "/Goblin.jpg",
@@ -308,14 +308,28 @@ export default{
                     this.fightData = fightResponse.data.value.data;
                     if (this.fightData.winner.name == "Student"){
                         this.fightResultMessage = "Wygrana!";
+                        this.incrementBattle(true);
                     }else{
                         this.fightResultMessage = "Przegrana!"
+                        this.incrementBattle(false);
                     }
                     console.log(this.fightData);
                 } else{
                     console.error("Failed to fight: ", fightResponse.data.value.message);
                 }
-        } 
+        },
+        async incrementBattle(fightResult) {
+            if (fightResult == true){
+                const incrementResult = await axios.post(`http://localhost:5033/api/Stat/IncrementVictories?id=${studentId}`);
+            }else {
+                const incrementResult = await axios.post(`http://localhost:5033/api/Stat/IncrementDefeats?id=${studentId}`);
+            }
+            if(incrementResult.data.value.success) {
+                console.log(incrementResult.data.value.data);
+            }else {
+                console.error("Error while incrementing battle info");
+            }
+        },
     },
 }
 </script>

@@ -15,9 +15,15 @@ namespace Student_game.Server.Services.LevelService
             _context = context;
         }
 
-        // funkcja do sprawdzenia czy po np walce jest mozliwy lvl up,
-        // jesli odpowiednie xp jest osiagniete oraz maksymalny poziom NIE jest osiagniety,
-        // mozna przystapic do inkrementacji danych
+
+        /* 
+        This function must run after every fight.
+            Function to monitor if Level Up is available, if so it add's:
+                - level points + 1
+                - level + 1
+                - rank + 1
+            and reduces exp by 100
+        */
         public async Task<ServiceResponse<CheckIfLevelUpDTO>> CheckIfLevelUp(int studentId)
         {
             var serviceResponse = new ServiceResponse<CheckIfLevelUpDTO>();
@@ -57,17 +63,26 @@ namespace Student_game.Server.Services.LevelService
             return serviceResponse;
         }
 
-        // funkcja sluzy do lvlowania postaci w zakladce profil (guziczki w prawej dolnej czesci)
-        // updateujemy nasza postac zgodnie z przekazana lista 
-        // logika listy -> [HP, ATK, DEF, LUCK, INT], zgodnie z liczba na danym miejscu inkrementuyjemy statystyke o wczesniej wspomniania ilosc 
-        public async Task<ServiceResponse<IncrementLevelPointsDTO>> IncrementLevelPoints(int studentId, List<int> points)
+        /* 
+        Function that allow's players to level up and spend their level points.
+
+            If player have enough level points, it will add points where player wanted it in the list:
+                - HP
+                - ATK
+                - DEF
+                - LUCK
+                - INT
+            Then it reduces levelPoints by the sum of it.
+        */
+        public async Task<ServiceResponse<IncrementLevelPointsDTO>> IncrementLevelPoints(int studentId, List<int>? points = null)
         {
             var serviceResponse = new ServiceResponse<IncrementLevelPointsDTO>();
             try
             {
-                if (points.Count() != 5)
+                var pointsToGive = points ?? [0, 0, 0, 0, 0];
+                if (pointsToGive.All(o => o == 0))
                 {
-                    serviceResponse.Message = $"Lista nie jest równa 4 ";
+                    serviceResponse.Message = $"Lista nie zawiera punktów do przydzielenia";
                     serviceResponse.Success = false;
                     return serviceResponse;
                 }
@@ -76,11 +91,18 @@ namespace Student_game.Server.Services.LevelService
 
                 if (dbStudent is not null)
                 {
-                    dbStudent.HealthPoints += points[0];
-                    dbStudent.AttackPoints += points[1];
-                    dbStudent.DefensePoints += points[2];
-                    dbStudent.LuckPoints += points[3];
-                    dbStudent.IntelligencePoints += points[4];
+                    var levelPointsSpent = pointsToGive.Sum();
+                    if (dbStudent.LevelPoints < levelPointsSpent) {
+                        serviceResponse.Message = "Niewystarczajaca ilosc level pointsow do levelowania";
+                        serviceResponse.Success = false;
+                        return serviceResponse;
+                    }
+                    dbStudent.HealthPoints += pointsToGive[0];
+                    dbStudent.AttackPoints += pointsToGive[1];
+                    dbStudent.DefensePoints += pointsToGive[2];
+                    dbStudent.LuckPoints += pointsToGive[3];
+                    dbStudent.IntelligencePoints += pointsToGive[4];
+                    dbStudent.LevelPoints -= levelPointsSpent;
                     
                     await _context.SaveChangesAsync();
                     serviceResponse.Data = dbStudent.Adapt<IncrementLevelPointsDTO>();

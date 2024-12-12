@@ -83,24 +83,24 @@ builder.Services.AddScoped<IWeaponService, WeaponService>();
 
 services.AddHttpContextAccessor();
 
-services.AddAuthentication( options =>
-{
-        options.DefaultAuthenticateScheme = "Cookies";
-        options.DefaultChallengeScheme = "Google";
-})
-.AddCookie("Cookies")
-.AddGoogle("Google", googleOptions=>
-{
-    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-});
+// services.AddAuthentication( options =>
+// {
+//         options.DefaultAuthenticateScheme = "Cookies";
+//         options.DefaultChallengeScheme = "Google";
+// })
+// .AddCookie("Cookies")
+// .AddGoogle("Google", googleOptions=>
+// {
+//     googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+//     googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+// });
 
-services.AddAuthorization();
+// services.AddAuthorization();
 
-builder.Services.AddIdentity<Account, IdentityRole<int>>()
-    .AddEntityFrameworkStores<DataContext>()
-    .AddDefaultUI()
-    .AddDefaultTokenProviders();
+// builder.Services.AddIdentity<Account, IdentityRole<int>>()
+//     .AddEntityFrameworkStores<DataContext>()
+//     .AddDefaultUI()
+//     .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
@@ -119,9 +119,9 @@ app.UseCors("AllowSpecificOrigins");
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
+// app.UseAuthentication();
 
-app.UseAuthorization();
+// app.UseAuthorization();
 
 app.MapControllers();
 
