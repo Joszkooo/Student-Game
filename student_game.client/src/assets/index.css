@@ -99,3 +99,12 @@ html{
 h1,h2,h3{
   color: white;
 }
+
+/* <uniquifier>: Use a unique and descriptive class name */
+
+body {
+  font-family: "JetBrains Mono", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}

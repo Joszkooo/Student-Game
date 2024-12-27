@@ -97,12 +97,34 @@ namespace Student_game.Server.Services.LevelService
                         serviceResponse.Success = false;
                         return serviceResponse;
                     }
-                    dbStudent.HealthPoints += pointsToGive[0];
-                    dbStudent.AttackPoints += pointsToGive[1];
-                    dbStudent.DefensePoints += pointsToGive[2];
-                    dbStudent.LuckPoints += pointsToGive[3];
-                    dbStudent.IntelligencePoints += pointsToGive[4];
+
+                    dbStudent.HealthPoints += pointsToGive[0] * 5;
+                    dbStudent.AttackPoints += pointsToGive[1] * 5;
+                    dbStudent.DefensePoints += pointsToGive[2] * 5;
+                    dbStudent.LuckPoints += pointsToGive[3] * 5;
+                    dbStudent.IntelligencePoints += pointsToGive[4] * 5;
                     dbStudent.LevelPoints -= levelPointsSpent;
+                    
+                    if (dbStudent.HealthPoints >= 300){
+                        serviceResponse.Message = "Punkty zdrowia ponad limit";
+                        return serviceResponse;
+                    }
+                    else if (dbStudent.AttackPoints >= 200){
+                        serviceResponse.Message = "Punkty ataku ponad limit";
+                        return serviceResponse;
+                    }
+                    else if (dbStudent.DefensePoints >= 100){
+                        serviceResponse.Message = "Punkty pancerza ponad limit";
+                        return serviceResponse;
+                    }
+                    else if (dbStudent.LuckPoints >= 100){
+                        serviceResponse.Message = "Punkty szczęścia ponad limit";
+                        return serviceResponse;
+                    }
+                    else if (dbStudent.IntelligencePoints >= 100){
+                        serviceResponse.Message = "Punkty inteligencji ponad limit";
+                        return serviceResponse;
+                    }
                     
                     await _context.SaveChangesAsync();
                     serviceResponse.Data = dbStudent.Adapt<IncrementLevelPointsDTO>();

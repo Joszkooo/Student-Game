@@ -320,9 +320,9 @@ export default{
         },
         async incrementBattle(fightResult) {
             if (fightResult == true){
-                const incrementResult = await axios.post(`http://localhost:5033/api/Stat/IncrementVictories?id=${studentId}`);
+                await axios.post(`http://localhost:5033/api/Stat/IncrementVictories?id=${studentId}`);
             }else {
-                const incrementResult = await axios.post(`http://localhost:5033/api/Stat/IncrementDefeats?id=${studentId}`);
+                await axios.post(`http://localhost:5033/api/Stat/IncrementDefeats?id=${studentId}`);
             }
             if(incrementResult.data.value.success) {
                 console.log(incrementResult.data.value.data);

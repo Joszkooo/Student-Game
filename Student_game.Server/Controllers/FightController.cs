@@ -16,7 +16,6 @@ namespace Student_game.Server.Controllers
             _fightService = fightService;
         }
 
-
         [HttpPost("FightOnline")]
         public async Task<IActionResult> FightOnline(FightCharactersDTO characters)
         {  

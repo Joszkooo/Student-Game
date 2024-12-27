@@ -14,6 +14,28 @@ namespace Student_game.Server.Services.StatService
         {
             _context = dataContext;
         }
+        public async Task<ServiceResponse<List<Stat>>> GetAllStats()
+        {
+            var serviceResponse = new ServiceResponse<List<Stat>>(); 
+            try
+            {
+                var stats = await _context.Stats
+                    .ToListAsync();
+                if (stats != null){
+                    serviceResponse.Data = stats;
+                }else{
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = $"Brak statystyk w bazie danych";
+                }
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = $"Error: {ex.Message}";
+                return serviceResponse;
+            }
+            return serviceResponse;
+        }
         public async Task<ServiceResponse<GetStatDTO>> GetStatByStudentId(int id)
         {
             var serviceResponse = new ServiceResponse<GetStatDTO>(); 
@@ -89,5 +111,6 @@ namespace Student_game.Server.Services.StatService
             }
             return serviceResponse;
         }
+
     }
 }

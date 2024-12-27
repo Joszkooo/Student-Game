@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Student_game.Server.props" />
+</Project>

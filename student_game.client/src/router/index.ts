@@ -6,6 +6,7 @@ import Profile from '../views/Game/Profile.vue'
 import Battle from '../views/Game/Battle.vue'
 import ShopSell from '../views/Game/ShopSell.vue'
 import ShopBuy from '../views/Game/ShopBuy.vue'
+import Ranking from '../views/Game/Ranking.vue'
 
 const routes = [
     {
@@ -42,6 +43,11 @@ const routes = [
         path: '/shop-sell',
         name: 'ShopSell',
         component: ShopSell
+    },
+    {
+        path: '/ranking',
+        name: 'Ranking',
+        component: Ranking
     },
 ]
 

@@ -15,7 +15,11 @@ namespace Student_game.Server.Controllers
         {
             _statService = statService;
         }
-
+        [HttpGet("GetAllStats")]
+        public async Task<IActionResult> GetAllStats()
+        {
+            return Ok(new JsonResult(await _statService.GetAllStats()));
+        }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetStatByStudentId(int id)
         {

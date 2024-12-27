@@ -5,26 +5,70 @@
 
     <div id="wrapper" class="grid grid-cols-12 gap-8 p-8 text-slate-200">
         <div class="col-span-12 md:col-span-4">
-            <div class="card relative h-28 rounded-xl p-4 shop_background shadow-2xl">
-                <span class="text-sm font-medium leading-none"> healthPoints </span>
-                <p class="text-center text-3xl font-bold mdi mdi-heart-outline"> {{ profile.healthPoints }} HP / 300 HP</p>
+            <div class="card h-28 rounded-xl p-4 shop_background shadow-2xl">
+                <div class="flex items-center justify-center gap-4">
+                    <v-progress-circular
+                        :model-value="profile.healthPoints / 3"
+                        :rotate="360"
+                        :size="80"
+                        :width="15"
+                        color="grey-lighten-2"
+                        class="flex-shrink-0"
+                    >
+                        <span class="text-sm font-medium">{{ Math.round(profile.healthPoints / 3) }}%</span>
+                    </v-progress-circular>
+                    <p class="text-2xl md:text-3xl font-bold flex items-center gap-2">
+                        <span class="mdi mdi-heart text-red-500"></span>
+                        <span class="whitespace-nowrap ml-5">{{ profile.healthPoints }} / 300 HP</span>
+                    </p>
+                </div>
             </div>
         </div>
 
         <div class="col-span-12 md:col-span-4 text-slate-200">
             <div class="card relative h-28 rounded-xl p-4 shop_background shadow-2xl">
-                <span class="text-sm font-medium leading-none"> attackPoints </span>
-                <div class="text-center text-2xl font-bold text-h5 mdi mdi-sword"> {{ profile.attackPoints }} ATK / 200 ATK</div>
+                <div class="flex items-center justify-center gap-4">
+                    <v-progress-circular
+                        :model-value="profile.attackPoints / 2"
+                        :rotate="360"
+                        :size="80"
+                        :width="15"
+                        color="grey-lighten-2"
+                        class="flex-shrink-0"
+                    >
+                        <span class="text-sm font-medium">{{ Math.round(profile.attackPoints / 2) }}%</span>
+                    </v-progress-circular>
+                    <p class="text-2xl md:text-3xl font-bold flex items-center gap-2">
+                        <span class="mdi mdi-heart text-red-500"></span>
+                        <span class="whitespace-nowrap ml-5">{{ profile.attackPoints }} / 200 ATK</span>
+                    </p>
+                </div>
             </div>
         </div>
 
         <div class="col-span-12 md:col-span-4 text-slate-200">
-            <div class="card relative h-28 rounded-xl p-4 shop_background shadow-2xl">
-                <span class="text-sm font-medium leading-none"> defensePoints </span>
-                <div class="text-center text-2xl font-bold text-h5 mdi mdi-shield-outline"> {{ profile.defensePoints }} DEF/ 100 DEF</div>
+            <div class="card h-28 rounded-xl p-4 shop_background shadow-2xl">
+                <div class="flex items-center justify-center gap-4">
+                    <v-progress-circular
+                        :model-value="profile.defensePoints"
+                        :rotate="360"
+                        :size="80"
+                        :width="15"
+                        color="grey-lighten-2"
+                        class="flex-shrink-0"
+                    >
+                        <span class="text-sm font-medium">{{ Math.round(profile.defensePoints) }}%</span>
+                    </v-progress-circular>
+                    <p class="text-2xl md:text-3xl font-bold flex items-center gap-2">
+                        <span class="mdi mdi-heart text-red-500"></span>
+                        <span class="whitespace-nowrap ml-5">{{ profile.defensePoints }} / 100 DEF</span>
+                    </p>
+                </div>
             </div>
         </div>
+        
         <div id="eq" class="col-span-12 md:col-span-8 shop_background rounded-xl shadow-2xl p-8 ">
+            <span class="text-2xl font-bold flex text-center justify-center">Ekwipunek</span>
             <div class="card p-5">
                 <v-table class="bg-[#454343] text-slate-200">
                     <thead>
@@ -149,10 +193,10 @@
                 <div id="weapon" class="border-4 border-[#424242]">
                     <h2 class="text-slate-200">Broń</h2>
                     <img src="/sword.jpg" alt="sword">
-                    <ul v-if="userWeapon.id != 0">
+                    <ul v-if="userWeapon.id != 0" class="justify-center text-center">
                         <li>{{ userWeapon.name }}</li>
-                        <li>{{ userWeapon.damage }}</li>
-                        <li>{{ userWeapon.hitChance }}</li>
+                        <li>{{ userWeapon.damage }} DMG</li>
+                        <li>{{ userWeapon.hitChance }}% na uderzenie</li>
                         <li>{{ userWeapon.rarity }}</li>
                     </ul>
                     <h2 v-if="userWeapon.id == 0">Brak założonej broni</h2>
@@ -160,7 +204,7 @@
                 <div id="armour" class="border-4 border-[#424242]">
                     <h2 class="text-slate-200">Zbroja</h2>
                     <img src="/chestplate.jpg" alt="chestplate">
-                    <ul v-if="userArmour.id != 0">
+                    <ul v-if="userArmour.id != 0" class="justify-center text-center">
                         <li>{{ userArmour.name }}</li>
                         <li>{{ userArmour.defense }} DEF</li>
                         <li>{{ userArmour.rarity }}</li>
@@ -168,32 +212,175 @@
                     <h2 v-if="userArmour.id == 0">Brak założonej broni</h2>
                 </div>
             </div>
-            <div id="minor info" class="card p-0 text-center">
-                <ul>
-                    <li  class="bg-[#424242]">{{ profile.money }} $ </li>
-                    <li>{{ profile.energy }} energy </li>
-                    <li  class="bg-[#424242]">{{ profile.rank }} rank </li>
-                    <li>{{ profile.level}} lvl </li>
-                    <li  class="bg-[#424242]">{{ profile.experience }} exp </li>
-                    <li>{{ profile.luckPoints }} luck</li>
-                    <li  class="bg-[#424242]">{{ profile.intelligencePoints }} int</li>
+            <div id="minor info" class="card text-center text-xl">
+                <ul class="">
+                    <li  class="bg-[#424242] border-4 border-black/10 rounded-xl mb-10">{{ profile.rank }},  {{ profile.level}} lvl</li>
+                    <li class="border-4 border-black/10 rounded-xl mb-10">{{ profile.experience }}exp / 100exp <button @click="levelUp()" class="ml-8 p-1 bg-white justify-end rounded-lg">LEVEL UP</button> </li>
+                    <li  class="bg-[#424242] border-4 border-black/10 rounded-xl mb-10">{{ profile.luckPoints }} szczęścia, {{ profile.intelligencePoints }} inteligencji</li>
+                    <li class="border-4 border-black/10 rounded-xl mb-10">{{ profile.levelPoints }} lvl points</li>
+                    <li  class="bg-[#424242] border-4 border-black/10 rounded-xl mb-10">W:{{ userStats.victories }}, P: {{ userStats.defeats }}</li>
+                    <li class="border-4 border-black/10 rounded-xl mb-10">{{ userStats.fights }} bitw</li>
                 </ul>
-            </div>
-            <div id="minor info" class="card p-0 text-center">
-                <ul>
-                    <li  class="bg-[#424242]">{{ profile.healthPoints }} HP 
-                        <button class="">+</button> <button>-</button>
-                    </li>
-                    <li>{{ profile.attackPoints }} ATK </li>
-                    <li  class="bg-[#424242]">{{ profile.defensePoints }} DEF </li>
-                    <li>{{ profile.luckPoints}} luck </li>
-                    <li  class="bg-[#424242]">{{ profile.intelligencePoints }} int </li>
-                    <li>{{ profile.levelPoints }} lvl points</li>
-                    <li  class="bg-[#424242]">{{ profile.level }} level</li>
-                </ul>
+                <div class="bg-black/10 border border-white/10 rounded-md flex flex-col gap-2 border-t px-4 py-2">
+                    <div class="grid grid-cols-5 gap-2">
+                        <div class="text-center">
+                            <div
+                            class="flex items-center justify-center p-2 text-natural-100 border border-white/10 rounded-lg hover:cursor-pointer"
+                            @click="increasePoint(0)"
+                            >
+                                <img class="w-8 aspect-square rotateUp" src="/up-arrow.png" alt="Increase">
+                            </div>
+                            <p
+                            :class="['text-white font-semibold', denyAnimation[0] ? 'deny-animation' : '']"
+                            @animationend="resetDeny(0)"
+                            >
+                            {{ spendingPoints[0] }}
+                            </p>
+                            <p class="text-white">HP</p>
+                            <div
+                            class="flex items-center justify-center p-2 text-natural-100 border border-white/10 rounded-lg hover:cursor-pointer"
+                            @click="decreasePoint(0)"
+                            >
+                                <img class="w-8 aspect-square rotateDown" src="/up-arrow.png" alt="Decrease">
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <div
+                            class="flex items-center justify-center p-2 text-natural-100 border border-white/10 rounded-lg hover:cursor-pointer"
+                            @click="increasePoint(1)"
+                            >
+                                <img class="w-8 aspect-square rotateUp" src="/up-arrow.png" alt="Increase">
+                            </div>
+                            <p
+                            :class="['text-white font-semibold', denyAnimation[1] ? 'deny-animation' : '']"
+                            @animationend="resetDeny(1)"
+                            >
+                            {{ spendingPoints[1] }}
+                            </p>
+                            <p class="text-white">ATK</p>
+                            <div
+                            class="flex items-center justify-center p-2 text-natural-100 border border-white/10 rounded-lg hover:cursor-pointer"
+                            @click="decreasePoint(1)"
+                            >
+                                <img class="w-8 aspect-square rotateDown" src="/up-arrow.png" alt="Decrease">
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <div
+                            class="flex items-center justify-center p-2 text-natural-100 border border-white/10 rounded-lg hover:cursor-pointer"
+                            @click="increasePoint(2)"
+                            >
+                                <img class="w-8 aspect-square rotateUp" src="/up-arrow.png" alt="Increase">
+                            </div>
+                            <p
+                            :class="['text-white font-semibold', denyAnimation[2] ? 'deny-animation' : '']"
+                            @animationend="resetDeny(2)"
+                            >
+                            {{ spendingPoints[2] }}
+                            </p>
+                            <p class="text-white">DEF</p>
+                            <div
+                            class="flex items-center justify-center p-2 text-natural-100 border border-white/10 rounded-lg hover:cursor-pointer"
+                            @click="decreasePoint(2)"
+                            >
+                                <img class="w-8 aspect-square rotateDown" src="/up-arrow.png" alt="Decrease">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div
+                            class="flex items-center justify-center p-2 text-natural-100 border border-white/10 rounded-lg hover:cursor-pointer"
+                            @click="increasePoint(3)"
+                            >
+                                <img class="w-8 aspect-square rotateUp" src="/up-arrow.png" alt="Increase">
+                            </div>
+                            <p
+                            :class="['text-white font-semibold', denyAnimation[3] ? 'deny-animation' : '']"
+                            @animationend="resetDeny(3)"
+                            >
+                            {{ spendingPoints[3] }}
+                            </p>
+                            <p class="text-white">LUCK</p>
+                            <div
+                            class="flex items-center justify-center p-2 text-natural-100 border border-white/10 rounded-lg hover:cursor-pointer"
+                            @click="decreasePoint(3)"
+                            >
+                                <img class="w-8 aspect-square rotateDown" src="/up-arrow.png" alt="Decrease">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div
+                            class="flex items-center justify-center p-2 text-natural-100 border border-white/10 rounded-lg hover:cursor-pointer"
+                            @click="increasePoint(4)"
+                            >
+                                <img class="w-8 aspect-square rotateUp" src="/up-arrow.png" alt="Increase">
+                            </div>
+                            <p
+                            :class="['text-white font-semibold', denyAnimation[4] ? 'deny-animation' : '']"
+                            @animationend="resetDeny(4)"
+                            >
+                            {{ spendingPoints[4] }}
+                            </p>
+                            <p class="text-white">INT</p>
+                            <div
+                            class="flex items-center justify-center p-2 text-natural-100 border border-white/10 rounded-lg hover:cursor-pointer"
+                            @click="decreasePoint(4)"
+                            >
+                                <img class="w-8 aspect-square rotateDown" src="/up-arrow.png" alt="Decrease">
+                            </div>
+                        </div>
+                    </div>
+                    <span class="flex justify-center items-center text-white font-bold hover:cursor-pointer" @click="spendPoints">{{ profile.levelPoints }} level points</span>
+                </div>
+
             </div>
         </div>
     </div>
+
+
+    <v-dialog
+        v-model="levelSuccess"
+        width="auto"
+    >
+        <v-card
+            max-width="400"
+            prepend-icon="mdi-check"
+            title="Nowy poziom!"
+        >
+            <v-card-text>
+                Levelowałeś na <strong> {{ levelResponse.level }} lvl</strong> i <strong> masz {{ levelResponse.experience }}</strong> exp'a.
+                Twoja ranga to <strong>{{ levelResponse.rank }}</strong>
+            </v-card-text>
+        <template v-slot:actions>
+            <v-btn
+                class="ms-auto hover:underline"
+                text="Ok"
+                @click="levelSuccess = false"
+            ></v-btn>
+        </template>
+        </v-card>
+    </v-dialog>
+
+    <v-dialog
+        v-model="levelFailure"
+        width="auto"
+    >
+        <v-card
+            max-width="400"
+            prepend-icon="mdi-message-alert-outline"
+            text="Brak wystarczającej ilości exp'a do nowego poziomu lub maksymalny poziom osiągnięty!"
+            title="Za mało exp'a"
+        >
+        <template v-slot:actions>
+            <v-btn
+                class="ms-auto hover:underline"
+                text="Ok"
+                @click="levelFailure = false"
+            ></v-btn>
+        </template>
+        </v-card>
+    </v-dialog>
 
 </template>
 
@@ -203,6 +390,39 @@
         box-sizing: border-box;
         margin-bottom: 16px;
     }
+    .rotateUp {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    }
+    .rotateDown {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    }
+
+    .deny-animation {
+    animation: shake 0.5s ease;
+    }
+
+    @keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    }
 </style>
 
 <script>
@@ -211,9 +431,36 @@ const studentId = 1;
 export default {    
     data() {
         return {
+            spendingPoints: [0, 0, 0, 0, 0],
+            denyAnimation: [false, false, false, false, false],
+            pointsData: {
+                id: 0,
+                healthPoints: 0,
+                attackPoints: 0,
+                defensePoints: 0,
+                luckPoints: 0,
+                intelligencePoints: 0
+            },
+            levelResponse: {
+                id: 0,
+                levelPoints: 0,
+                level: 0,
+                experience: 0,
+                rank: "null"
+            },
+            pointsModal: false,
+            levelSuccess: false,
+            levelFailure: false,
             studentItem: {
                 "studentID": studentId,
                 "itemID": 0
+            },
+            userStats: {
+                id: 0,
+                nickname: "none",
+                fights: 0,
+                victories: 0,
+                defeats: 0
             },
             profile: {
                 nickname: 'none',
@@ -280,8 +527,27 @@ export default {
     mounted() {
         this.fetchProfile();
         this.fetchEquipment();
+        this.fetchStats();
     },
     methods: {
+        increasePoint(index){
+            if(this.spendingPoints[index] >= 0 ){
+                this.spendingPoints[index]++;
+            }
+        },
+        decreasePoint(index){
+            if(this.spendingPoints[index] > 0 ){
+                this.spendingPoints[index]--;
+            }else {
+                this.triggerDeny(index);
+            }
+        },
+        triggerDeny(index) {
+            this.denyAnimation[index] = true; // Start the deny animation
+        },
+        resetDeny(index) {
+            this.denyAnimation[index] = false; // Reset animation state after it ends
+        },
         async fetchEquipment() {
             try{
                 const studentId = 1;
@@ -370,6 +636,47 @@ export default {
                 this.fetchArmour();
             }else{
                 console.error("Error fetching equipArmour: ", equipArmourResponse.data.value.message);
+            }
+        },
+        async fetchStats(){
+            try{
+                const userStatsResponse = await axios.get(`http://localhost:5033/api/Stat/${studentId}`);
+            if(userStatsResponse.data.value.success){
+                this.userStats = userStatsResponse.data.value.data;
+            }
+            else {
+                    console.error("Failed to fetch user stats: ", userStatsResponse.data.value.message);
+                }
+            } catch (error) {
+                console.error("Error fetching stats: ", error);
+            }
+        },
+        async levelUp(){
+            try {
+                const levelUpResponse = await axios.patch(`http://localhost:5033/api/Level/CheckLvlUp${studentId}`);
+                if(levelUpResponse.data.value.success){
+                    this.levelResponse = levelUpResponse.data.value.data;
+                    this.levelSuccess = true;
+                    this.fetchProfile();
+                }else {
+                    this.levelFailure = true;
+                    console.error("Failed to fetch level: ", levelUpResponse.data.value.message);
+                }
+            } catch (error) {
+                console.error("Error fetching level: ", error);
+            }
+        },
+        async spendPoints(){
+            try {
+                const spendPointsResponse = await axios.patch(`http://localhost:5033/api/Level/IncrementLvlPoints${studentId}`, this.spendingPoints);
+                if(spendPointsResponse.data.value.success){
+                    this.pointsData = spendPointsResponse.data.value.data;
+                    this.fetchProfile();
+                }else {
+                    console.error("Failed to fetch points: ", spendPointsResponse.data.value.message);
+                }
+            } catch (error) {
+                console.error("Error fetching points: ", error);
             }
         }
     }

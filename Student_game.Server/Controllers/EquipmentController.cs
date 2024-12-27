@@ -20,13 +20,13 @@ namespace Student_game.Server.Controllers
         [HttpPost("EquipWeapon")]
         public async Task<IActionResult> EquipWeapon(GetEquipmentServiceDTO studentItem)
         {
-            return Ok(await _equipmentService.EquipWeapon(studentItem));
+            return Ok(new JsonResult(await _equipmentService.EquipWeapon(studentItem)));
         }
 
         [HttpPost("EquipArmour")]
         public async Task<IActionResult> EquipArmour(GetEquipmentServiceDTO studentItem)
         {
-            return Ok(await _equipmentService.EquipArmour(studentItem));
+            return Ok(new JsonResult(await _equipmentService.EquipArmour(studentItem)));
         }
     }
 }
