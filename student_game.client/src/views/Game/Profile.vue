@@ -4,212 +4,52 @@
     </h1>
 
     <div id="wrapper" class="grid grid-cols-12 gap-8 p-8 text-slate-200">
-        <div class="col-span-12 md:col-span-4">
-            <div class="card h-28 rounded-xl p-4 shop_background shadow-2xl">
-                <div class="flex items-center justify-center gap-4">
-                    <v-progress-circular
-                        :model-value="profile.healthPoints / 3"
-                        :rotate="360"
-                        :size="80"
-                        :width="15"
-                        color="grey-lighten-2"
-                        class="flex-shrink-0"
-                    >
-                        <span class="text-sm font-medium">{{ Math.round(profile.healthPoints / 3) }}%</span>
-                    </v-progress-circular>
-                    <p class="text-2xl md:text-3xl font-bold flex items-center gap-2">
-                        <span class="mdi mdi-heart text-red-500"></span>
-                        <span class="whitespace-nowrap ml-5">{{ profile.healthPoints }} / 300 HP</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-span-12 md:col-span-4 text-slate-200">
-            <div class="card relative h-28 rounded-xl p-4 shop_background shadow-2xl">
-                <div class="flex items-center justify-center gap-4">
-                    <v-progress-circular
-                        :model-value="profile.attackPoints / 2"
-                        :rotate="360"
-                        :size="80"
-                        :width="15"
-                        color="grey-lighten-2"
-                        class="flex-shrink-0"
-                    >
-                        <span class="text-sm font-medium">{{ Math.round(profile.attackPoints / 2) }}%</span>
-                    </v-progress-circular>
-                    <p class="text-2xl md:text-3xl font-bold flex items-center gap-2">
-                        <span class="mdi mdi-heart text-red-500"></span>
-                        <span class="whitespace-nowrap ml-5">{{ profile.attackPoints }} / 200 ATK</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-span-12 md:col-span-4 text-slate-200">
-            <div class="card h-28 rounded-xl p-4 shop_background shadow-2xl">
-                <div class="flex items-center justify-center gap-4">
-                    <v-progress-circular
-                        :model-value="profile.defensePoints"
-                        :rotate="360"
-                        :size="80"
-                        :width="15"
-                        color="grey-lighten-2"
-                        class="flex-shrink-0"
-                    >
-                        <span class="text-sm font-medium">{{ Math.round(profile.defensePoints) }}%</span>
-                    </v-progress-circular>
-                    <p class="text-2xl md:text-3xl font-bold flex items-center gap-2">
-                        <span class="mdi mdi-heart text-red-500"></span>
-                        <span class="whitespace-nowrap ml-5">{{ profile.defensePoints }} / 100 DEF</span>
-                    </p>
-                </div>
-            </div>
-        </div>
+        <StatCard
+            :value="profile.healthPoints"
+            :maxValue="300"
+            label="HP"
+            iconClass="mdi mdi-heart text-red-500"
+        />
+        <StatCard
+            :value="profile.attackPoints"
+            :maxValue="200"
+            label="ATK"
+            iconClass="mdi mdi-sword text-yellow-500"
+        />
+        <StatCard
+            :value="profile.defensePoints"
+            :maxValue="100"
+            label="DEF"
+            iconClass="mdi mdi-shield text-blue-500"
+        />
         
-        <div id="eq" class="col-span-12 md:col-span-8 shop_background rounded-xl shadow-2xl p-8 ">
-            <span class="text-2xl font-bold flex text-center justify-center">Ekwipunek</span>
-            <div class="card p-5">
-                <v-table class="bg-[#454343] text-slate-200">
-                    <thead>
-                        <tr class="bg-[#424242]">
-                            <th class="text-left ">
-                                Nazwa
-                            </th>
-                            <th class="text-left">
-                                Defense
-                            </th>
-                            <th class="text-left">
-                                Cena
-                            </th>
-                            <th class="text-left">
-                                Rzadkość
-                            </th>
-                            <th class="text-left">
-                                Ilość
-                            </th>
-                            <th class="text-left">
-                                
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            v-for="item in equipment.armors" :key="item.id">
-                                <td>{{ item.name }}</td>
-                                <td>{{ item.defense }}</td>
-                                <td>{{ item.cost }}</td>
-                                <td>{{ item.rarity }}</td>
-                                <td>{{ item.quantity }}</td>
-                                <td class="text-right"> <button @click="equipArmour(item.id)">Załóż</button> </td>
-                        </tr>
-                    </tbody>
-                </v-table>
-                <hr class="h-px my-4 bg-gray-500 border-0 dark:bg-gray-700">
-                <v-table class="bg-[#454343] text-slate-200">
-                    <thead>
-                        <tr class="bg-[#424242]">
-                            <th class="text-left">
-                                Nazwa
-                            </th>
-                            <th class="text-left">
-                                Typ buffa
-                            </th>
-                            <th class="text-left">
-                                Czas trwania
-                            </th>
-                            <th class="text-left">
-                                Cena
-                            </th>
-                            <th class="text-left">
-                                Rzadkość
-                            </th>
-                            <th class="text-left">
-                                Ilość
-                            </th>
-                            <th class="text-left">
-                                
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            v-for="item in equipment.foods">
-                                    <td>{{ item.name }}</td>
-                                    <td>{{ item.boostType }}</td>
-                                    <td>{{ item.duration }}</td>
-                                    <td>{{ item.cost }}</td>
-                                    <td>{{ item.rarity }}</td>
-                                    <td>{{ item.quantity }}</td>
-                                    <td class="text-right"></td>
-                        </tr>
-                        
-                    </tbody>
-                </v-table>
-                <hr class="h-px my-4 bg-gray-500 border-0 dark:bg-gray-700">
-                <v-table class="bg-[#454343] text-slate-200"> <!-- <div :style="`background-color: ${bgColors[index%2]}`"> -->
-                    <thead>
-                        <tr class="bg-[#424242]">
-                            <th class="text-left">
-                                Nazwa
-                            </th>
-                            <th class="text-left">
-                                Obrażenia
-                            </th>
-                            <th class="text-left">
-                                Trafienie
-                            </th>
-                            <th class="text-left">
-                                Cena
-                            </th>
-                            <th class="text-left">
-                                Rzadkość
-                            </th>
-                            <th class="text-left">
-                                Ilość
-                            </th>
-                            <th class="text-left">
-                                
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            v-for="item in equipment.weapons" :key="item.id">
-                                    <td>{{ item.name }}</td>
-                                    <td>{{ item.damage }} DMG</td>
-                                    <td>{{ item.hitChance }}%</td>
-                                    <td>{{ item.cost }}</td>
-                                    <td>{{ item.rarity }}</td>
-                                    <td>{{ item.quantity }}</td>
-                                    <td class="text-right"> <button @click="equipWeapon(item.id)">Załóż</button> </td>
-                        </tr>
-                    </tbody>
-                </v-table>
-            </div>
-        </div>
+        <EquipmentTable
+            :equipment="equipment"
+            :equipArmour="equipArmour"
+            :equipWeapon="equipWeapon"
+        />
+        
         <div id="rest" class="col-span-12 md:col-span-4 rounded-xl shop_background shadow-2xl p-7 font-bold flex flex-col justify-around">
             <div id="equipped" class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div id="weapon" class="border-4 border-[#424242]">
                     <h2 class="text-slate-200">Broń</h2>
                     <img src="/sword.jpg" alt="sword">
-                    <ul v-if="userWeapon.id != 0" class="justify-center text-center">
-                        <li>{{ userWeapon.name }}</li>
-                        <li>{{ userWeapon.damage }} DMG</li>
-                        <li>{{ userWeapon.hitChance }}% na uderzenie</li>
-                        <li>{{ userWeapon.rarity }}</li>
+                    <ul v-if="wearingWeapon.id != 0" class="justify-center text-center">
+                        <li>{{ wearingWeapon.name }}</li>
+                        <li>{{ wearingWeapon.damage }} DMG | {{ wearingWeapon.hitChance }}% na uderzenie</li>
+                        <li>{{ wearingWeapon.rarity }}</li>
                     </ul>
-                    <h2 v-if="userWeapon.id == 0">Brak założonej broni</h2>
+                    <h2 v-if="wearingWeapon.id == 0">Brak założonej broni</h2>
                 </div>
                 <div id="armour" class="border-4 border-[#424242]">
                     <h2 class="text-slate-200">Zbroja</h2>
                     <img src="/chestplate.jpg" alt="chestplate">
-                    <ul v-if="userArmour.id != 0" class="justify-center text-center">
-                        <li>{{ userArmour.name }}</li>
-                        <li>{{ userArmour.defense }} DEF</li>
-                        <li>{{ userArmour.rarity }}</li>
+                    <ul v-if="wearingArmour.id != 0" class="justify-center text-center">
+                        <li>{{ wearingArmour.name }}</li>
+                        <li>{{ wearingArmour.defense }} DEF</li>
+                        <li>{{ wearingArmour.rarity }}</li>
                     </ul>
-                    <h2 v-if="userArmour.id == 0">Brak założonej broni</h2>
+                    <h2 v-if="wearingArmour.id == 0">Brak założonej broni</h2>
                 </div>
             </div>
             <div id="minor info" class="card text-center text-xl">
@@ -381,54 +221,19 @@
         </template>
         </v-card>
     </v-dialog>
-
 </template>
-
-<style>
-    .card{
-        padding: 16px;
-        box-sizing: border-box;
-        margin-bottom: 16px;
-    }
-    .rotateUp {
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    transform: rotate(-90deg);
-    }
-    .rotateDown {
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
-    }
-
-    .deny-animation {
-    animation: shake 0.5s ease;
-    }
-
-    @keyframes shake {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    25% {
-        transform: translateX(-5px);
-    }
-    50% {
-        transform: translateX(5px);
-    }
-    75% {
-        transform: translateX(-5px);
-    }
-    }
-</style>
 
 <script>
 import axios from 'axios';
+import StatCard from '@/components/Profile/StatCard.vue';
+import EquipmentTable from '@/components/Profile/EquipmentTable.vue';
+
 const studentId = 1;
 export default {    
+    components: {
+        StatCard,
+        EquipmentTable
+    },
     data() {
         return {
             spendingPoints: [0, 0, 0, 0, 0],
@@ -507,7 +312,7 @@ export default {
                     quantity: 0
                 }
             },
-            userWeapon: {
+            wearingWeapon: {
                 id: 0,
                 name: null,
                 damage: null,
@@ -515,7 +320,7 @@ export default {
                 cost: null,
                 rarity: null
             },
-            userArmour: {
+            wearingArmour: {
                 id: 0,
                 name: null,
                 defense: null,
@@ -590,7 +395,7 @@ export default {
                 const weaponResponse = await axios.get(`http://localhost:5033/api/Weapon/${this.profile.weaponId}`);
                 
                 if (weaponResponse.data.value.success) {
-                    this.userWeapon = weaponResponse.data.value.data;
+                    this.wearingWeapon = weaponResponse.data.value.data;
                 }else {
                     console.error("Failed to fetch user weapon: ", weaponResponse.data.value.message);
                 }
@@ -604,7 +409,7 @@ export default {
                 const armourResponse = await axios.get(`http://localhost:5033/api/Armour/${this.profile.armourId}`);
                 
                 if (armourResponse.data.value.success) {
-                    this.userArmour = armourResponse.data.value.data;
+                    this.wearingArmour = armourResponse.data.value.data;
                 }else {
                     console.error("Failed to fetch user armour: ", armourResponse.data.value.message);
                 }

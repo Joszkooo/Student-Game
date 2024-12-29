@@ -6,7 +6,7 @@
         </h1>
         <p class="pt-3 font-medium text-xl text-gray-200">&& pokonaj wszystkich na swojej drodze</p>
         <Button class="rounded-full mt-5 shadow-neon bg-black-500"> 
-            Zacznij teraz!
+            <router-link :to="{ name: 'Login' }">Zacznij teraz!</router-link>
         </Button>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-8 content-center mt-20">

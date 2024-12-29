@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Landing-page/Home.vue'
 import About from '../views/Landing-page/About.vue'
 import Contact from '../views/Landing-page/Contact.vue'
+import Login from '../views/Landing-page/Login.vue'
+import Register from '../views/Landing-page/Register.vue'
 import Profile from '../views/Game/Profile.vue'
 import Battle from '../views/Game/Battle.vue'
 import ShopSell from '../views/Game/ShopSell.vue'
@@ -23,6 +25,16 @@ const routes = [
         path: '/contact',
         name: 'Contact',
         component: Contact
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        component: Register
     },
     {
         path: '/profile',

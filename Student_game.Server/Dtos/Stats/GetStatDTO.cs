@@ -12,7 +12,6 @@ namespace Student_game.Server.Dtos.Stats
         [Required]
         public string Nickname { get; set;} = string.Empty;
 
-        // Stats added during gameplay
         [Required]
         public int Fights { get; set; } = 0;
         
@@ -21,5 +20,7 @@ namespace Student_game.Server.Dtos.Stats
         
         [Required]
         public int Defeats { get; set; } = 0;
+
+        public Ranks? Rank { get; set; } = null;
     }
 }

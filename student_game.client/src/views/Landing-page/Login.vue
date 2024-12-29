@@ -1,66 +1,22 @@
-<script setup lang="ts">
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-</script>
 
 <template>
-        <div class="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px] text0">
-            <div class="flex items-center justify-center py-12">
-                <div class="mx-auto grid w-[350px] gap-6">
-                    <div class="grid gap-2 text-center text-white">
-                        <h1 class="text-3xl font-bold ">
-                            Login
-                        </h1>
-                        <p class="text-balance text-muted-foreground">
-                            Enter your email below to login to your account
-                        </p>
-                    </div>
-                    <div class="grid gap-4">
-                        <div class="grid gap-2">
-                            <Label for="email">Email</Label>
-                                <Input
-                                    id="email"
-                                    type="email"
-                                    placeholder="m@example.com"
-                                    required
-                                />
-                        </div>
-                        <div class="grid gap-2">
-                            <div class="flex items-center">
-                                <Label for="password">Password</Label>
-                                    <a
-                                        href="/forgot-password"
-                                        class="ml-auto inline-block text-sm underline"
-                                    >
-                                        Forgot your password?
-                                    </a>
-                            </div>
-                            <Input id="password" type="password" required />
-                        </div>
-                        <Button type="submit" class="w-full">
-                            Login
-                        </Button>
-                        <Button variant="outline" class="w-full">
-                            Login with Google
-                        </Button>
-                    </div>
-                    <div class="mt-4 text-center text-sm">
-                        Don't have an account?
-                        <a href="#" class="underline">
-                            Sign up
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="hidden bg-muted lg:block">
-            <img
-                src="@/assets/placeholder.jpg"
-                alt="Image"
-                width="1024"
-                height="768"
-                class="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-            >
-            </div>
-        </div>
+    <div class="max-w-md relative flex flex-col p-4 rounded-md text-slate-200 bg-white">
+    <div class="text-2xl font-bold mb-2 text-[#1e0e4b] text-center">Welcome back to <span class="text-[#7747ff]">App</span></div>
+    <div class="text-sm font-normal mb-4 text-center text-[#1e0e4b]">Log in to your account</div>
+<form class="flex flex-col gap-3">
+    <div class="block relative"> 
+    <label for="email" class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Email</label>
+    <input type="text" id="email" class="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0">
+    
+    </div>
+    <div class="block relative"> 
+    <label for="password" class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Password</label>
+    <input type="text" id="password" class="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0">
+    
+    </div>
+    <button type="submit" class="bg-[#7747ff] w-max m-auto px-6 py-2 rounded text-white text-sm font-normal">Submit</button>
+
+</form>
+<div class="text-sm text-center mt-[1.6rem]">Don’t have an account yet? <a class="text-sm text-[#7747ff]" href="#">Sign up for free!</a></div>
+</div>
 </template>

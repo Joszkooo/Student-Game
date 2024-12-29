@@ -1,11 +1,15 @@
 <template>
     <div id="wrapper" class="min-h-screen p-5">
-        <h1 class="text-white text-5xl text-center font-bold" id="chooseTitle">Wybierz swojego przeciwnika!</h1>
-        <div class="flex justify-center mt-10" @click="this.fetchEnemy();">
+        <div class="text-5xl font-bold text-center mb-4 flex justify-center gap-4">
+            <span class="font-bold p-2 block bg-gradient-to-r from-red-500 via-amber-400 to-orange-800 bg-clip-text text-transparent">
+                Wybierz swojego przeciwnika!
+            </span>
+        </div>
+        <div class="flex justify-center mt-10 text-slate-200" @click="this.fetchEnemy();">
             <button id="refresh" type='button'
-            class='py-2.5 pl-4 group pr-3.5 text-sm bg-white text-slate-200 shadow-neon rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 flex gap-2 items-center hover:bg-indigo-700'>
+            class='py-2.5 pl-4 group pr-3.5 text-sm shadow-neon rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 flex gap-2 items-center hover:bg-indigo-700'>
             Odśwież
-            <svg class="transition-all duration-700 group-hover:animate-spin"
+            <svg class="transition-all duration-700 group-hover:animate-spin text-slate-200"
             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
             fill="none">
                 <path
@@ -101,12 +105,7 @@
             <p>Exp wygranego: {{ fightData.winnerExp }}</p>
             <p>Imie przegranego: {{ fightData.looser.name }}</p>
         </v-card-text>
-        <template v-slot:actions>
-            <v-btn
-                class="ms-auto hover:underline"
-                text="Nowa walka!"
-                @click="this.fetchEnemy(); fightEnd = false; chooseTitle.style.display = 'grid'; chooseTitle.style.display = 'grid'; refresh.style.display = 'grid';"
-            ></v-btn>
+        <template v-slot:actions class="text-center">
             <router-link :to="{ name: 'Profile' }">Powrót do proflu</router-link>
         </template>
         </v-card>

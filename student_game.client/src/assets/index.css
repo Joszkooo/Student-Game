@@ -108,3 +108,41 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+.card{
+  padding: 16px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+.rotateUp {
+-webkit-transform: rotate(-90deg);
+-moz-transform: rotate(-90deg);
+-o-transform: rotate(-90deg);
+-ms-transform: rotate(-90deg);
+transform: rotate(-90deg);
+}
+.rotateDown {
+-webkit-transform: rotate(90deg);
+-moz-transform: rotate(90deg);
+-o-transform: rotate(90deg);
+-ms-transform: rotate(90deg);
+transform: rotate(90deg);
+}
+
+.deny-animation {
+animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+0%, 100% {
+  transform: translateX(0);
+}
+25% {
+  transform: translateX(-5px);
+}
+50% {
+  transform: translateX(5px);
+}
+75% {
+  transform: translateX(-5px);
+}
+}

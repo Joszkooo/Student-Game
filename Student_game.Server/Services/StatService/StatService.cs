@@ -14,13 +14,24 @@ namespace Student_game.Server.Services.StatService
         {
             _context = dataContext;
         }
-        public async Task<ServiceResponse<List<Stat>>> GetAllStats()
+        public async Task<ServiceResponse<List<GetStatDTO>>> GetAllStats()
         {
-            var serviceResponse = new ServiceResponse<List<Stat>>(); 
+            var serviceResponse = new ServiceResponse<List<GetStatDTO>>(); 
             try
             {
                 var stats = await _context.Stats
-                    .ToListAsync();
+                    .Include(s => s.Student)
+                        .ThenInclude(st => st.Account)
+                            .Select(f => new GetStatDTO     // idk how to use Mapster with this DTO so i did it manually 
+                            {
+                                Id = f.Id,
+                                Nickname = f.Student.Account.Nickname,
+                                Fights = f.Fights,
+                                Victories = f.Victories,
+                                Defeats = f.Defeats,
+                                Rank = f.Student.Rank
+                            })
+                            .ToListAsync();
                 if (stats != null){
                     serviceResponse.Data = stats;
                 }else{
@@ -49,6 +60,7 @@ namespace Student_game.Server.Services.StatService
                 {
                     GetStatDTO response = stats.Adapt<GetStatDTO>();
                     response.Nickname = stats.Student.Account.Nickname;
+                    response.Rank = stats.Student.Rank;
                     serviceResponse.Data = response;
                     
                 }
