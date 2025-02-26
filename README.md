@@ -9,9 +9,7 @@
 <h3 align="center">Student Game</h3>
 
   <p align="center">
-    Student Game is an competitive game built as a web application. It combines classic RPG elements with modern design to create a unique gaming experience centered around progression and continuous improvement.
-    You start your journey as a student who must constantly develop your skills and increase your strength to overcome various challenges. These challenges are represented by monsters, each symbolizing the obstacles you encounter on your journey. 
-    As you progress, you'll engage in more difficult battles, improve your abilities, and manage your resources by buying, selling, and equipping different items.
+    Student Game is a competitive game built as a web application. It combines classic RPG elements with modern design to create a unique gaming experience centered around progression and continuous improvement.
     <br />
     <br />
     <a href="https://joszkooo.online">View Demo</a>
@@ -53,10 +51,10 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started. To avoid retyping too much info, do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`, `project_license`
+Start your journey as a `student` who must constantly develop your skills and increase your strength to overcome various `challenges`. These challenges are represented by `monsters`, each symbolizing the obstacles you encounter on your journey.
+As you progress, you'll engage in more difficult `battles`, improve your abilities, and manage your resources by buying, selling, and equipping `different items`!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 ### Built With
@@ -72,36 +70,26 @@ Here's a blank template to get started. To avoid retyping too much info, do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To get started with Student Game locally, clone this repository and follow the setup instructions.
 
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
-  npm install npm@latest -g
+  git clone https://github.com/vllm-project/aibrix.git
+  cd Student_game.Server
+  dotnet install
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
+(Optional)  If database is down or you want to host it yourself, change connection strings. In order to do it, open `appsettings.json`
+Here you need to change to this:
+```json
+   "ConnectionStrings": {
+    "DefaultConnection": "Server=.\\SQLEXPRESS;Database=Student_game; Initial Catalog=Student_game;Persist Security Info=False; Encrypt=True; TrustServerCertificate=False; Connection Timeout=30; Trusted_Connection=false; TrustServerCertificate=true;"
+  },
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -121,22 +109,17 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- CONTACT -->
 ## Contact
 
-Michał Jodko - [@linkedin_handle](https://linkedin.com/in/michał-jodko) - michaljodko02@gmail.com
-
-Project Link: [https://github.com/Joszkooo/Student-Game](https://github.com/Joszkooo/Student-Game)
+Michał Jodko - [my linkedin](https://linkedin.com/in/michał-jodko) 
+Email: michaljodko02@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
 [issues-url]: https://github.com/Joszkooo/Student-Game/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/michał-jodko
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: https://github.com/Joszkooo/Student-Game/blob/main/Other%20stuff/Screenshot%202024-09-05%20182609.png
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://vuejs.org/
 [.NET8]: https://img.shields.io/badge/-.NET%208.0-blueviolet?logo=dotnet
