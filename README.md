@@ -2,11 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Joszkooo/Student-Game">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-<h3 align="center">Student Game</h3>
+<h1 align="center">Student Game</h1>
 
   <p align="center">
     Student Game is a competitive game built as a web application. It combines classic RPG elements with modern design to create a unique gaming experience centered around progression and continuous improvement.
@@ -49,7 +45,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Student Game Logo][logo]](https://example.com)
 
 Start your journey as a `student` who must constantly develop your skills and increase your strength to overcome various `challenges`. These challenges are represented by `monsters`, each symbolizing the obstacles you encounter on your journey.
 As you progress, you'll engage in more difficult `battles`, improve your abilities, and manage your resources by buying, selling, and equipping `different items`!
@@ -120,6 +116,7 @@ Email: michaljodko02@gmail.com
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/michał-jodko
 [product-screenshot]: https://github.com/Joszkooo/Student-Game/blob/main/Other%20stuff/Screenshot%202024-09-05%20182609.png
+[logo]: https://github.com/Joszkooo/Student-Game/blob/main/Other%20stuff/Logo.png
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://vuejs.org/
 [.NET8]: https://img.shields.io/badge/-.NET%208.0-blueviolet?logo=dotnet
