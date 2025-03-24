@@ -59,7 +59,7 @@
                     <li  class="bg-[#424242] border-4 border-black/10 rounded-xl mb-10">{{ profile.luckPoints }} szczęścia, {{ profile.intelligencePoints }} inteligencji</li>
                     <li class="border-4 border-black/10 rounded-xl mb-10">{{ profile.levelPoints }} lvl points</li>
                     <li  class="bg-[#424242] border-4 border-black/10 rounded-xl mb-10">W:{{ userStats.victories }}, P: {{ userStats.defeats }}</li>
-                    <li class="border-4 border-black/10 rounded-xl mb-10">{{ userStats.fights }} bitw</li>
+                    <li class="border-4 border-black/10 rounded-xl mb-10">{{ userStats.fights }} bitew</li>
                 </ul>
                 <div class="bg-black/10 border border-white/10 rounded-md flex flex-col gap-2 border-t px-4 py-2">
                     <div class="grid grid-cols-5 gap-2">
@@ -228,7 +228,7 @@ import axios from 'axios';
 import StatCard from '@/components/Profile/StatCard.vue';
 import EquipmentTable from '@/components/Profile/EquipmentTable.vue';
 
-const studentId = 1;
+const studentId = 3;
 export default {    
     components: {
         StatCard,
@@ -355,7 +355,6 @@ export default {
         },
         async fetchEquipment() {
             try{
-                const studentId = 1;
                 const eqResponse = await axios.get(`http://localhost:5033/api/Student/GetStudentEquipment${studentId}`);
                 
                 if (eqResponse.data.value.success) {

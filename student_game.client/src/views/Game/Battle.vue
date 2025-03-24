@@ -115,7 +115,7 @@
 <script>
 import PlayerCard from "@/components/PlayerCard.vue";
 import axios from "axios";
-const studentId = 1;
+const studentId = 3;
 
 export default{
     components: {PlayerCard},

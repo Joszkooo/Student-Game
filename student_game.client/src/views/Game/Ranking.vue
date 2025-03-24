@@ -57,12 +57,12 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 </template>
 
 <script>
     import axios from "axios";
-    const studentId = 1;
+    const studentId = 3;
     export default {
         data() {
             return {
@@ -116,7 +116,7 @@
                 }
             },
             calculateUserPlace() {
-                // Sort the array by a ranking criterion (e.g., victories, fights, etc.)
+                // Sort the array by a ranking criterion
                 const sortedStats = [...this.statsArray].sort((a, b) => b.victories - a.victories || b.fights - a.fights);
 
                 // Find the user's position in the sorted array

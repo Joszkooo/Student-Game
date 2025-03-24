@@ -95,7 +95,7 @@
 <script>
     import axios from 'axios';
     
-    const userId = 1;
+    const studentId = 3;
 export default {
     data() {
         return {
@@ -130,7 +130,7 @@ export default {
     methods: {
         async fetchStudentProfile(){
             try{
-                const userResponse  = await axios.get(`http://localhost:5033/api/Student/GetStudentProfile${userId}`);
+                const userResponse  = await axios.get(`http://localhost:5033/api/Student/GetStudentProfile${studentId}`);
                 if (userResponse.data.value.success) {
                     this.profile = userResponse.data.value.data;
                 } else {
@@ -143,7 +143,7 @@ export default {
         },
         async fetchUserFood() {
             try{
-                const userFoodResponse = await axios.get(`http://localhost:5033/api/Student/GetStudentFood${userId}`);
+                const userFoodResponse = await axios.get(`http://localhost:5033/api/Student/GetStudentFood${studentId}`);
                 
                 if (userFoodResponse.data.value.success) {
                     this.userFood = userFoodResponse.data.value.data;
@@ -158,7 +158,7 @@ export default {
         },
         async fetchUserArmour() {
             try{
-                const userArmourResponse = await axios.get(`http://localhost:5033/api/Student/GetStudentArmour${userId}`);
+                const userArmourResponse = await axios.get(`http://localhost:5033/api/Student/GetStudentArmour${studentId}`);
                 
                 if (userArmourResponse.data.value.success) {
                     this.userArmour = userArmourResponse.data.value.data;
@@ -172,7 +172,7 @@ export default {
         },
         async fetchUserWeapon() {
             try{
-                const userWeaponResponse = await axios.get(`http://localhost:5033/api/Student/GetStudentWeapon${userId}`);
+                const userWeaponResponse = await axios.get(`http://localhost:5033/api/Student/GetStudentWeapon${studentId}`);
                 
                 if (userWeaponResponse.data.value.success) {
                     this.userWeapon = userWeaponResponse.data.value.data;
@@ -189,17 +189,17 @@ export default {
             let sellResponse;
             try{
                 if (type == 'armour'){
-                    sellResponse = await axios.post(`http://localhost:5033/Shop/SellArmour?StudentID=${userId}&ItemID=${item.id}`); // TODO: tutaj da sie inaczej
+                    sellResponse = await axios.post(`http://localhost:5033/Shop/SellArmour?StudentID=${studentId}&ItemID=${item.id}`); // TODO: tutaj da sie inaczej
                     this.fetchUserArmour();
                     this.fetchStudentProfile();
                 }
                 else if( type == 'weapon') {
-                    sellResponse = await axios.post(`http://localhost:5033/Shop/SellWeapon?StudentID=${userId}&ItemID=${item.id}`);
+                    sellResponse = await axios.post(`http://localhost:5033/Shop/SellWeapon?StudentID=${studentId}&ItemID=${item.id}`);
                     this.fetchUserWeapon();
                     this.fetchStudentProfile();
                 }
                 else if (type == 'food') {
-                    sellResponse = await axios.post(`http://localhost:5033/Shop/SellFood?StudentID=${userId}&ItemID=${item.id}`);
+                    sellResponse = await axios.post(`http://localhost:5033/Shop/SellFood?StudentID=${studentId}&ItemID=${item.id}`);
                     this.fetchUserFood();
                     this.fetchStudentProfile();
                 }

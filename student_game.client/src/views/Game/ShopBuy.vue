@@ -114,7 +114,7 @@
 
 <script>
     import axios from 'axios';
-    const userId = 1;
+    const studentId = 3;
 
 export default {
     data() {
@@ -150,7 +150,7 @@ export default {
     methods: {
         async fetchStudentProfile(){
             try{
-                const userResponse  = await axios.get(`http://localhost:5033/api/Student/GetStudentProfile${userId}`);
+                const userResponse  = await axios.get(`http://localhost:5033/api/Student/GetStudentProfile${studentId}`);
                 if (userResponse.data.value.success) {
                     this.profile = userResponse.data.value.data;
                 } else {
@@ -207,7 +207,7 @@ export default {
         async buyItem(item, category)
         {
             try{
-                const buyFoodResponse = await axios.post(`http://localhost:5033/Shop/BuyItem?ItemId=${item.id}&StudentId=${userId}&Category=${category}`); // TODO: tutaj da sie inaczej
+                const buyFoodResponse = await axios.post(`http://localhost:5033/Shop/BuyItem?ItemId=${item.id}&StudentId=${studentId}&Category=${category}`); // TODO: tutaj da sie inaczej
                 if (buyFoodResponse.data.value.success) {
                     this.buySuccess = true;
                     this.buyResponse = [item.name, item.cost];
