@@ -8,7 +8,7 @@
     Student Game is a competitive game built as a web application. It combines classic RPG elements with modern design to create a unique gaming experience centered around progression and continuous improvement.
     <br />
     <br />
-    <a href="https://joszkooo.online">View Demo</a>
+    <a href="https://youtu.be/drJHShlQFIk">View Demo</a>
     &middot;
     <a href="https://github.com/Joszkooo/Student-Game/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
