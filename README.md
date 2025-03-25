@@ -84,7 +84,7 @@ This is an example of how to list things you need to use the software and how to
 Here you need to change to this:
 ```json
    "ConnectionStrings": {
-    "DefaultConnection": "Server=.\\SQLEXPRESS;Database=Student_game; Initial Catalog=Student_game;Persist Security Info=False; Encrypt=True; TrustServerCertificate=False; Connection Timeout=30; Trusted_Connection=false; TrustServerCertificate=true;"
+    "DefaultConnection": "Server=.\\SQLEXPRESS;Database=NAME_OF_YOUR_DATABASE; Initial Catalog=Student_game;Persist Security Info=False; Encrypt=True; TrustServerCertificate=False; Connection Timeout=30; Trusted_Connection=false; TrustServerCertificate=true;"
   },
    ```
 
