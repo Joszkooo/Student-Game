@@ -35,7 +35,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -69,8 +68,9 @@ As you progress, you'll engage in more difficult `battles`, improve your abiliti
 To get started with Student Game locally, clone this repository and follow the setup instructions.
 
 ### Prerequisites
+.NET SDK: Ensure you have [https://dotnet.microsoft.com/en-us/download/dotnet/8.0](.NET8) SKD installed.
+Node.js and npm: Install [https://nodejs.org/en/download](Node.js) (which includes npm) for the frontend tooling.
 
-This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
   git clone https://github.com/vllm-project/aibrix.git
@@ -79,7 +79,14 @@ This is an example of how to list things you need to use the software and how to
   ```
 
 ### Installation
-
+1. Restore .NET dependencies.
+2. Build the project.
+3. Run the project.
+```sh
+  dotnet restore Student_game.Server.sln
+  dotnet build Student_game.Server.sln
+  dotnet watch run
+```
 (Optional)  If database is down or you want to host it yourself, change connection strings. In order to do it, open `appsettings.json`
 Here you need to change to this:
 ```json
@@ -89,18 +96,6 @@ Here you need to change to this:
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- CONTACT -->
 ## Contact
@@ -123,3 +118,4 @@ Email: michaljodko02@gmail.com
 [.NET8-url]: https://dotnet.microsoft.com/en-us/
 [Tailwind]: https://img.shields.io/badge/Tailwind_CSS-grey?style=for-the-badge&logo=tailwind-css&logoColor=38B2AC
 [Tailwind-url]: https://tailwindcss.com/
+[Node.js]: https://nodejs.org/en/download
