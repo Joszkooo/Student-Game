@@ -85,7 +85,7 @@ Node.js and npm: Install [https://nodejs.org/en/download](Node.js) (which includ
 ```sh
   dotnet restore Student_game.Server.sln
   dotnet build Student_game.Server.sln
-  dotnet watch run
+  dotnet run
 ```
 (Optional)  If database is down or you want to host it yourself, change connection strings. In order to do it, open `appsettings.json`
 Here you need to change to this:
